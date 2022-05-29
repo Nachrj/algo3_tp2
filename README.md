@@ -8,7 +8,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 * **Ignacio Rodriguez Justo** - [Nachrj](https://github.com/Nachrj)
 * **Ezequiel Tosto Valenzuela** - [echitosto](https://github.com/echitosto)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
+* **Juan Cruz Hernández** - [juanh2607](https://github.com/juanh2607)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 
 Corrector: **{Corrector}**
