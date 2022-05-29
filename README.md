@@ -10,7 +10,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Ezequiel Tosto Valenzuela** - [echitosto](https://github.com/echitosto)
 * **Juan Cruz Hernández** - [juanh2607](https://github.com/juanh2607)
 * **Bruno Pascaretta** - [BrunoPasca](https://github.com/BrunoPasca)
-* **Integrante 5** - [integrante5](https://github.com/integrante5)
+* **Agustín Nicolás de la Rosa** - [Rofertin](https://github.com/Rofertin)
 
 Corrector: **{Corrector}**
 
