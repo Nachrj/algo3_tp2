@@ -1,10 +1,10 @@
 ![tp2](https://github.com/Nachrj/algo3_tp2/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/Nachrj/algo3_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/Nachrj/algo3_tp2)
 
-# TP2 Algoritmos 3: {nombre} 
+# TP2 Algoritmos 3: GPS Challenge
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 9
 
 * **Ignacio Rodriguez Justo** - [Nachrj](https://github.com/Nachrj)
 * **Ezequiel Tosto Valenzuela** - [echitosto](https://github.com/echitosto)
