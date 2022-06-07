@@ -6,5 +6,5 @@ public void test01MotoChocaConPozoYEsPenalizadoPor3Movimientos{
 
 	j.avanzar( "derecha", tablero );
 
-	assertEquals( 3, j.obtenerMovimientos())
+	assertEquals( 4, j.obtenerMovimientos())
 }

@@ -6,5 +6,5 @@ public void test034x4ChocaConPozoYNoEsPenalizado{
 
 	j.avanzar( "derecha", tablero );
 
-	assertEquals( 0, j.obtenerMovimientos())
+	assertEquals( 1, j.obtenerMovimientos())
 }

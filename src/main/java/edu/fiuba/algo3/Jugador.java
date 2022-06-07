@@ -30,9 +30,10 @@ public class Jugador {
         posiciones.put("Izquierda", new Tupla(-1,0));
     }
     
-    public void avanzar (String direccion, Tablero tablero) {
+    public int avanzar (String direccion, Tablero tablero) {
         Coordenada coord_a_sumar = new Coordenada(posiciones.get(direccion).a(), posiciones.get(direccion).b());
-        coordenada.sumar_coordeanadas(coord_a_sumar);
+        
+        vehiculo.avanzar(coord_a_sumar);
         
     }
 }

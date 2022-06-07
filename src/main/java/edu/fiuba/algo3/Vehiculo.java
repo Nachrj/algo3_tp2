@@ -8,6 +8,6 @@ package edu.fiuba.algo3;
  *
  * @author bruno
  */
-public class Vehiculo {
-    
+public abstract class Vehiculo {
+    public abstract int avanzar(Coordenada direccion);
 }
