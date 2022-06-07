@@ -10,8 +10,14 @@ package edu.fiuba.algo3;
  */
 public class Coordenada {
     int posX,posY;
+
     public Coordenada(int x, int y){
         posX = x;
         posY = y;
+    }
+
+    public void sumar_coordeanadas(Coordenada coordenada){
+        posX += coordenada.posX;
+        posY += coordenada.posY;
     }
 }
