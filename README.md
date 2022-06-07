@@ -8,7 +8,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 * **Ignacio Rodriguez Justo** - [Nachrj](https://github.com/Nachrj) irodriguezj@fi.uba.ar
 * **Bruno Pascaretta** - [BrunoPasca](https://github.com/BrunoPasca) bpascaretta@fi.uba.ar
-* **Juan Cruz Hernández** - [juanh2607](https://github.com/juanh2607)  jchernandez@fi.uba.ar adelarosa@fi.uba.ar
+* **Juan Cruz Hernández** - [juanh2607](https://github.com/juanh2607)  jchernandez@fi.uba.ar
 * **de la Rosa Agustín Nicolás** - [Rofertin](https://github.com/https://github.com/Rofertin) adelarosa@fi.uba.ar
 
 Corrector: **{Corrector}**

@@ -6,8 +6,43 @@ package edu.fiuba.algo3;
 
 /**
  *
- * @author bruno
+ * @author Agustín, putear por wpp cualquier cosa
  */
 public class Tablero {
-    
+    int filas;
+    int columnas;
+    Jugador jugador;
+    Coordenada posicionJugador;
+    Calle calle;
+
+    public Tablero( Calle calleUsuario, Coordenada c){
+        calle = calleUsuario;
+        posicionJugador = c;
+    }
+
+    private boolean posicionFueraDeRango(Coordenada destino ){
+        // ¿Muchos if? ¿Tell Don't Ask?
+        if(destino.x() > filas || destino.x() < 0){
+            return true;
+        }
+        if(destino.y() > columnas || destino.y() < 0 ){
+            return true;
+        }
+        return false;
+    }
+
+    public void obtenerPosicionJugador(){
+       return tablero.posicionJugador;
+    }
+
+    public int obtenerCostoDeAvance(Vehiculo vehiculo, Coordenada destino ){
+        if (this.posicionFueraDeRango(destino)){ return 0; }
+        return -1;
+    }
+
+    public void mover(Coordenada destino){
+        if (this.posicionFueraDeRango(destino)){ return; }
+        posicionJugador.sumar_coordenadas(destino);
+    }
+
 }

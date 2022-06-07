@@ -16,8 +16,16 @@ public class Coordenada {
         posY = y;
     }
 
-    public void sumar_coordeanadas(Coordenada coordenada){
+    public void sumar_coordenadas(Coordenada coordenada){
         posX += coordenada.posX;
         posY += coordenada.posY;
+    }
+
+    public int x(){
+        return posX;
+    }
+
+    public int y(){
+        return posY;
     }
 }
