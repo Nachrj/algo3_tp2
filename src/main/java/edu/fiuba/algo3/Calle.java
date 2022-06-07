@@ -11,9 +11,30 @@ package edu.fiuba.algo3;
 public class Calle {
     Coordenada pos_inicio;
     Coordenada pos_final;
-
-    public Calle (Coordenada c1, Coordenada c2, int c_s, int c_o) {
+    Sorpresa sorpresa;
+    Obstaculo obstaculo;
+    
+    public Calle (Coordenada c1, Coordenada c2) {
         pos_inicio = c1;
         pos_final = c2;
+    }
+    
+    public Calle (Coordenada c1, Coordenada c2, Obstaculo obs) {
+        pos_inicio = c1;
+        pos_final = c2;
+        obstaculo = obs;
+    }
+    
+    public Calle (Coordenada c1, Coordenada c2, Sorpresa sor) {
+        pos_inicio = c1;
+        pos_final = c2;
+        sorpresa = sor;
+    }
+    
+    public Calle (Coordenada c1, Coordenada c2, Obstaculo obs,Sorpresa sor) {
+        pos_inicio = c1;
+        pos_final = c2;
+        obstaculo = obs;
+        sorpresa = sor;
     }
 }

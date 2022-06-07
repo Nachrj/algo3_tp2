@@ -9,5 +9,8 @@ package edu.fiuba.algo3;
  * @author bruno
  */
 public class SorpresaFavorable extends Sorpresa{
-    
+    @Override
+    public void activar(Jugador j1){
+        /*Multiplica la cantidad de movimientos actuales del jugador * 0.8*/
+    }
 }
