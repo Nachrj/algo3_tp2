@@ -25,14 +25,11 @@ public class Tablero {
         if(destino.x() > filas || destino.x() < 0){
             return true;
         }
-        if(destino.y() > columnas || destino.y() < 0 ){
-            return true;
-        }
-        return false;
+        return destino.y() > columnas || destino.y() < 0;
     }
 
-    public void obtenerPosicionJugador(){
-       return tablero.posicionJugador;
+    public Coordenada obtenerPosicionJugador(){
+       return this.posicionJugador;
     }
 
     public int obtenerCostoDeAvance(Vehiculo vehiculo, Coordenada destino ){
