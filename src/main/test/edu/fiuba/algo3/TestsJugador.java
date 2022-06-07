@@ -31,7 +31,7 @@ public class TestsJugador {
     }
 
     @Test
-    public void test034x4ChocaConPozoYNoEsPenalizado(){
+    public void test034x4ChocaConPrimerPozoYNoEsPenalizado(){
         Jugador j = new Jugador("x", new CuatroXCuatro() );
         Coordenada posicionJugador = new Coordenada(0,0);
         Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new Pozo(), null );
@@ -54,7 +54,20 @@ public class TestsJugador {
         assertEquals( 3, j.obtenerMovimientos());
     }
 
-  /*  @Test
+    @Test
+    public void test054x4ChocaConCuartoPozoYEsPenalizado2Movimientos(){
+        Jugador j = new Jugador("x", new CuatroXCuatro() );
+        Coordenada posicionJugador = new Coordenada(0,0);
+        Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new Pozo(), null );
+        Tablero tablero = new Tablero( calle, posicionJugador );
+        for(int i = 0; i <= 3; i++){
+            j.avanzar( "derecha", tablero );
+        }
+
+        assertEquals( 6, j.obtenerMovimientos());
+    }
+
+/*    @Test
     public void test05AutoEncuentraPiqueteNoSeMueve(){
         Jugador j = new Jugador("x", new Moto() );
         Coordenada posicionJugador = new Coordenada(0,0);

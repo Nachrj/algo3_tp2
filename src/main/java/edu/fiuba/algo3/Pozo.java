@@ -27,6 +27,12 @@ public class Pozo extends Obstaculo{
         Si el vehiculo es un 4x4 y es su tercer pozo devuelvo 2
         */
         //return diccionario.get(v1);
-        return diccionario.get(v1.getClass());
+        if( CuatroXCuatro.class == v1.getClass()){
+            ((CuatroXCuatro) v1).chocarConPozo();
+           if( ((CuatroXCuatro) v1).obtenerChoquesConPozos() > 3)
+               return 2;
+           else return 0;
+        }
+        else return diccionario.get(v1.getClass());
     }
 }
