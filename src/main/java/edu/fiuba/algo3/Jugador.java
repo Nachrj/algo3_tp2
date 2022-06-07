@@ -15,13 +15,11 @@ public class Jugador {
     String nombre;
     int movimientos;
     Vehiculo vehiculo;
-    Coordenada coordenada;
     Map<String, Tupla> posiciones = new HashMap<>();
 
-    public Jugador (String n, Vehiculo v, Coordenada c) {
+    public Jugador (String n, Vehiculo v) {
         nombre = n;
         vehiculo = v;
-        coordenada = c;
         movimientos = 0;
         
         posiciones.put("Arriba", new Tupla(0,1));
@@ -30,10 +28,8 @@ public class Jugador {
         posiciones.put("Izquierda", new Tupla(-1,0));
     }
     
-    public int avanzar (String direccion, Tablero tablero) {
-        Coordenada coord_a_sumar = new Coordenada(posiciones.get(direccion).a(), posiciones.get(direccion).b());
-        
-        vehiculo.avanzar(coord_a_sumar);
+    public void avanzar (String direccion, Tablero tablero) {
+        this.movimientos += tablero.mover(this.vehiculo);
     }
 
     public int obtenerMovimientos(){

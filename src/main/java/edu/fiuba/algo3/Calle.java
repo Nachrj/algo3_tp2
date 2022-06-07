@@ -37,4 +37,8 @@ public class Calle {
         obstaculo = obs;
         sorpresa = sor;
     }
+
+    public int transitar(Vehiculo v){
+       return (1 + obstaculo.chocar(v));
+    }
 }

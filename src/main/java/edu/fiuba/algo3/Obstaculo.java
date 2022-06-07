@@ -9,11 +9,7 @@ import java.util.Map;
  * @author bruno
  */
 public abstract class Obstaculo {
-    Map diccionarioPenalizaciones;
-    
-    public Obstaculo(Map dic){
-        diccionarioPenalizaciones = dic;
-    }
-    
-    public abstract int Chocar(Vehiculo v1);
+    Map<Object, Integer> diccionario;
+
+    public abstract int chocar(Vehiculo v1);
 }
