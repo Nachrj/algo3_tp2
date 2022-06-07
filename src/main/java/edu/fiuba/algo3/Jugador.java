@@ -32,7 +32,7 @@ public class Jugador {
     
     public void avanzar (String direccion, Tablero tablero) {
         Coordenada coord_a_sumar = new Coordenada(posiciones.get(direccion).a(), posiciones.get(direccion).b());
-        coordenada.mover(coord_a_sumar);
+        coordenada.sumar_coordeanadas(coord_a_sumar);
         
     }
 }
