@@ -8,6 +8,5 @@ package edu.fiuba.algo3;
  *
  * @author bruno
  */
-public class Moto extends Vehiculo{
-    
+public class Moto implements Vehiculo{
 }

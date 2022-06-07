@@ -14,10 +14,10 @@ import java.util.Map;
 public class Jugador {
     String nombre;
     int movimientos;
-    Vehiculo vehiculo = new Vehiculo();
+    Vehiculo vehiculo;
     Coordenada coordenada;
     Map<String, Tupla> posiciones = new HashMap<>();
-    
+
     public Jugador (String n, Vehiculo v, Coordenada c) {
         nombre = n;
         vehiculo = v;
@@ -34,6 +34,9 @@ public class Jugador {
         Coordenada coord_a_sumar = new Coordenada(posiciones.get(direccion).a(), posiciones.get(direccion).b());
         
         vehiculo.avanzar(coord_a_sumar);
-        
+    }
+
+    public int obtenerMovimientos(){
+        return this.movimientos;
     }
 }

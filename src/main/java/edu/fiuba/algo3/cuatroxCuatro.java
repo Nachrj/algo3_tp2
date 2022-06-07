@@ -8,6 +8,6 @@ package edu.fiuba.algo3;
  *
  * @author bruno
  */
-public class CuatroxCuatro extends Vehiculo{
+public class CuatroxCuatro implements Vehiculo{
     
 }
