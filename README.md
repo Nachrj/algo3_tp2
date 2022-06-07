@@ -6,11 +6,10 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo {N}
 
-* **Ignacio Rodriguez Justo** - [Nachrj](https://github.com/Nachrj)
-* **Ezequiel Tosto Valenzuela** - [echitosto](https://github.com/echitosto)
-* **Juan Cruz Hernández** - [juanh2607](https://github.com/juanh2607)
-* **de la Rosa Agustín Nicolás** - [Rofertin](https://github.com/https://github.com/Rofertin)
-* **Integrante 5** - [integrante5](https://github.com/integrante5)
+* **Ignacio Rodriguez Justo** - [Nachrj](https://github.com/Nachrj) irodriguezj@fi.uba.ar
+* **Ezequiel Tosto Valenzuela** - [echitosto](https://github.com/echitosto) bpascaretta@fi.uba.ar
+* **Juan Cruz Hernández** - [juanh2607](https://github.com/juanh2607)  jchernandez@fi.uba.ar adelarosa@fi.uba.ar
+* **de la Rosa Agustín Nicolás** - [Rofertin](https://github.com/https://github.com/Rofertin) adelarosa@fi.uba.ar
 
 Corrector: **{Corrector}**
 
