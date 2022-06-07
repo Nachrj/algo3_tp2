@@ -4,6 +4,9 @@
  */
 package edu.fiuba.algo3;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author bruno
@@ -13,30 +16,23 @@ public class Jugador {
     int movimientos;
     Vehiculo vehiculo = new Vehiculo();
     Coordenada coordenada;
-
+    Map<String, Tupla> posiciones = new HashMap<>();
+    
     public Jugador (String n, Vehiculo v, Coordenada c) {
         nombre = n;
         vehiculo = v;
         coordenada = c;
         movimientos = 0;
+        
+        posiciones.put("Arriba", new Tupla(0,1));
+        posiciones.put("Abajo", new Tupla(0,-1));
+        posiciones.put("Derecha", new Tupla(1,0));
+        posiciones.put("Izquierda", new Tupla(-1,0));
     }
-
+    
     public void avanzar (String direccion, Tablero tablero) {
-        /*
-        switch (direccion) {
-            case "arriba":
-                Coordenada coord_a_sumar = new Coordenada(1,0);
-                coordenada.mover(coord_a_sumar);
-            case "abajo":
-                Coordenada coord_a_sumar = new Coordenada(1,0);
-                coordenada.mover(coord_a_sumar);
-            case "izquierda":
-                Coordenada coord_a_sumar = new Coordenada(1,0);
-                coordenada.mover(coord_a_sumar);
-            case "derecha":
-                Coordenada coord_a_sumar = new Coordenada(1,0);
-                coordenada.mover(coord_a_sumar);
-        }*/
+        Coordenada coord_a_sumar = new Coordenada(posiciones.get(direccion).a(), posiciones.get(direccion).b());
+        coordenada.mover(coord_a_sumar);
         
     }
 }
