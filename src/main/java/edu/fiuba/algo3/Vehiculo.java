@@ -7,7 +7,9 @@ package edu.fiuba.algo3;
 /**
  *
  * @author bruno
+ * Avanzable (para reemplazar coomportamiento)
  */
-public interface Vehiculo {
 
+public interface Vehiculo {
+ 
 }

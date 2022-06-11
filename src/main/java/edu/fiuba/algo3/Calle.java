@@ -15,30 +15,38 @@ public class Calle {
     Obstaculo obstaculo;
     
     public Calle (Coordenada c1, Coordenada c2) {
-        pos_inicio = c1;
-        pos_final = c2;
+        this.pos_inicio = c1;
+        this.pos_final = c2;
     }
     
     public Calle (Coordenada c1, Coordenada c2, Obstaculo obs) {
-        pos_inicio = c1;
-        pos_final = c2;
-        obstaculo = obs;
+        this.pos_inicio = c1;
+        this.pos_final = c2;
+        this.obstaculo = obs;
     }
     
     public Calle (Coordenada c1, Coordenada c2, Sorpresa sor) {
-        pos_inicio = c1;
-        pos_final = c2;
-        sorpresa = sor;
+        this.pos_inicio = c1;
+        this.pos_final = c2;
+        this.sorpresa = sor;
     }
     
     public Calle (Coordenada c1, Coordenada c2, Obstaculo obs,Sorpresa sor) {
-        pos_inicio = c1;
-        pos_final = c2;
-        obstaculo = obs;
-        sorpresa = sor;
+        this.pos_inicio = c1;
+        this.pos_final = c2;
+        this.obstaculo = obs;
+        this.sorpresa = sor;
     }
 
     public int transitar(Vehiculo v){
-       return (1 + obstaculo.chocar(v));
+       return (1 + this.obstaculo.chocar(v));
+    }
+    
+    public void agregarSopresa(Sorpresa sor){
+        this.sorpresa = sor;
+    }
+    
+    public void agregarObstaculo(Obstaculo obs){
+        this.obstaculo = obs;
     }
 }
