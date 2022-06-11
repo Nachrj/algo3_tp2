@@ -11,5 +11,7 @@ package edu.fiuba.algo3;
  */
 
 public interface Vehiculo {
- 
+    public int chocarConPozo();
+    public int chocarConPiquete();
+    public int chocarConControl();
 }
