@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestsPozo{
     Pozo p;
     @BeforeEach
-    void init() {
+    public void init() {
         this.p = new Pozo();
     }
     @Test
@@ -33,5 +33,14 @@ public class TestsPozo{
         CuatroXCuatro mocked4x4 = mock(CuatroXCuatro.class);
         when(mocked4x4.chocarConPozo()).thenReturn(0);
         assertEquals(0, p.chocar(mocked4x4));
+    }
+
+    @Test
+    public void test04Una4x4ChocaConCuartoPozoYPenalizaCon2Movimientos(){
+        CuatroXCuatro c = new CuatroXCuatro();
+        for(int i = 1; i <= 3; i++){
+            c.chocarConPozo();
+        }
+        assertEquals(2, c.chocarConPozo());
     }
 }
