@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestsPiquete {
     Piquete p;
     @BeforeEach
-    void init(){
+    public void init(){
         this.p = new Piquete();
     }
 
