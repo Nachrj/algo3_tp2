@@ -15,6 +15,10 @@ public class Moto implements Vehiculo{
 
     }
     @java.lang.Override
+    public Vehiculo cambiar(){
+        return new Auto();
+    }
+    @java.lang.Override
     public int chocarConPozo() {
         return 3;
     }

@@ -11,6 +11,6 @@ package edu.fiuba.algo3;
 public class CambioDeVehiculo extends Sorpresa{
     @Override
     public void activar(Jugador j1){
-        /*Cambia el vehiculo del jugador, (moto -> auto -> 4x4 -> moto)*/
+        j1.cambiarVehiculo();
     }
 }

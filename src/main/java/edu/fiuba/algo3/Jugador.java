@@ -13,8 +13,8 @@ import java.util.Map;
  */
 public class Jugador {
     String nombre;
-    int movimientos;
-    Vehiculo vehiculo;
+    private int movimientos;
+    private Vehiculo vehiculo;
     Map<String, Tupla> posiciones = new HashMap<>();
 
     public Jugador (String n, Vehiculo v) {
@@ -34,5 +34,15 @@ public class Jugador {
 
     public int obtenerMovimientos(){
         return this.movimientos;
+    }
+
+    public void cambiarVehiculo(){
+        this.vehiculo = this.vehiculo.cambiar();
+    }
+    public Vehiculo obtenerVehiculo(){
+        return this.vehiculo;
+    }
+    public void modificarPorcentajeMovimientos(float porcentaje){
+        this.movimientos += Math.round(this.movimientos * porcentaje);
     }
 }

@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class Auto implements Vehiculo{
     @java.lang.Override
+    public Vehiculo cambiar(){
+        return new CuatroXCuatro();
+    }
+    @java.lang.Override
     public int chocarConPozo() {
         return 3;
     }
@@ -12,7 +16,6 @@ public class Auto implements Vehiculo{
         // Dar la vuelta
         return 0;
     }
-
     @java.lang.Override
     public int chocarConControl() {
         Random random = new Random();

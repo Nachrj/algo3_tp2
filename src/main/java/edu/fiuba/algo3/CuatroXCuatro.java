@@ -12,6 +12,10 @@ import java.util.Random;
  */
 public class CuatroXCuatro implements Vehiculo{
     int choquesConPozos = 0;
+    @java.lang.Override
+    public Vehiculo cambiar(){
+        return new Moto();
+    }
 
     @java.lang.Override
     public int chocarConPozo() {
