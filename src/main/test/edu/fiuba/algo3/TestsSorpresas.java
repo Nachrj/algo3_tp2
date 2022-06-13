@@ -7,13 +7,13 @@ import static org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestsSorpresas {/*
+public class TestsSorpresas {
     @Test
     public void test01JugadorAbreSorpresaFavorableYPierdeEl20PorcientoDeSusMovimientos(){
         Moto mockedMoto = mock(Moto.class);
         Jugador j = new Jugador("x", mockedMoto);
         Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(mockedMoto)).thenReturn(10);
+        when(mockedTablero.mover(j)).thenReturn(10);
         SorpresaFavorable s = new SorpresaFavorable();
 
         j.avanzar("arriba", mockedTablero);
@@ -27,7 +27,7 @@ public class TestsSorpresas {/*
         Moto mockedMoto = mock(Moto.class);
         Jugador j = new Jugador("x", mockedMoto);
         Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(mockedMoto)).thenReturn(8);
+        when(mockedTablero.mover(j)).thenReturn(8);
         SorpresaDesfavorable s = new SorpresaDesfavorable();
 
         j.avanzar("arriba", mockedTablero);
@@ -67,5 +67,5 @@ public class TestsSorpresas {/*
         s.activar(j);
 
         assertEquals(Moto.class, j.obtenerVehiculo().getClass());
-    }*/
+    }
 }
