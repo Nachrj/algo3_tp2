@@ -29,7 +29,8 @@ public class Jugador {
     }
     
     public void avanzar (String direccion, Tablero tablero) {
-        this.movimientos += tablero.mover(this.vehiculo);
+        int suma = tablero.mover(this);
+        this.movimientos += suma;
     }
 
     public int obtenerMovimientos(){
@@ -42,7 +43,7 @@ public class Jugador {
     public Vehiculo obtenerVehiculo(){
         return this.vehiculo;
     }
-    public void modificarPorcentajeMovimientos(float porcentaje){
-        this.movimientos += Math.round(this.movimientos * porcentaje);
+    public void modificarPorcentajeMovimientos(float porcentaje) {
+        this.movimientos = (int) Math.round(this.movimientos * porcentaje);
     }
 }

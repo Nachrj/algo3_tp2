@@ -37,11 +37,11 @@ public class Tablero {
         return -1;
     }
 
-    public int mover(Vehiculo v){
+    public int mover(Jugador j){
         /*Falta agregar la direccion en que se mueve
         if (this.posicionFueraDeRango(destino)){ return 0; }
         posicionJugador.sumar_coordenadas(destino);*/
-        return calle.transitar(v);
+        return calle.transitar(j);
     }
 
 }

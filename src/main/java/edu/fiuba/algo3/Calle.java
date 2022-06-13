@@ -17,18 +17,22 @@ public class Calle {
     public Calle (Coordenada c1, Coordenada c2) {
         this.pos_inicio = c1;
         this.pos_final = c2;
+        this.sorpresa = NoSorpresa.conseguirInstancia();
+        this.obstaculo = NoObstaculo.conseguirInstancia();
     }
     
     public Calle (Coordenada c1, Coordenada c2, Obstaculo obs) {
         this.pos_inicio = c1;
         this.pos_final = c2;
         this.obstaculo = obs;
+        this.sorpresa = NoSorpresa.conseguirInstancia();
     }
     
     public Calle (Coordenada c1, Coordenada c2, Sorpresa sor) {
         this.pos_inicio = c1;
         this.pos_final = c2;
         this.sorpresa = sor;
+        this.obstaculo = NoObstaculo.conseguirInstancia();
     }
     
     public Calle (Coordenada c1, Coordenada c2, Obstaculo obs,Sorpresa sor) {
@@ -38,8 +42,9 @@ public class Calle {
         this.sorpresa = sor;
     }
 
-    public int transitar(Vehiculo v){
-       return (1 + this.obstaculo.chocar(v));
+    public int transitar(Jugador j){
+        this.sorpresa.activar(j);
+        return (1 + this.obstaculo.chocar(j.obtenerVehiculo()));
     }
     
     public void agregarSopresa(Sorpresa sor){
