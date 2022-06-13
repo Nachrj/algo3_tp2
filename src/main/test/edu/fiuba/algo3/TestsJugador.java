@@ -111,7 +111,7 @@ public class TestsJugador {
     public void test09AutoEncuentraUnPozoYUnaSorpresaFavorableEnMismaCalle() {
         Jugador j = new Jugador("x", new Auto());
         Coordenada posicionJugador = new Coordenada(0,0);
-        // Creamos una calle sin obs ni sorp para aumentar movimiento totales
+        // Creamos una calle sin obs. ni sorp. para aumentar movimiento totales
         Calle calle_vacia = new Calle( posicionJugador, new Coordenada(1, 0));
         Tablero tablero_sin_nada = new Tablero( calle_vacia, posicionJugador);
         for(int i = 0; i < 20; i++) {
@@ -122,7 +122,6 @@ public class TestsJugador {
         Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new Pozo(), new SorpresaFavorable());
         Tablero tablero = new Tablero( calle, posicionJugador );
 
-        System.out.println(j.obtenerMovimientos());
         j.avanzar("derecha", tablero);
         assertEquals((Math.round( 20 * 0.8)) + 4, j.obtenerMovimientos());
     }
