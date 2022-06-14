@@ -1,16 +1,25 @@
 package edu.fiuba.algo3;
 
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestsJugador {
+
+    Coordenada posicionJugador;
+    Coordenada c;
+    @BeforeEach
+    public void init() {
+        this.posicionJugador = new Coordenada(0, 0);
+        this.c = new Coordenada(1, 0);
+    }
+
     @Test
     public void test01MotoChocaConPozoYEsPenalizadoPor3Movimientos(){
         Jugador j = new Jugador("x", new Moto());
-        Coordenada posicionJugador = new Coordenada(0,0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new Pozo());
+        Calle calle = new Calle( posicionJugador, c, new Pozo());
         Tablero tablero = new Tablero( calle, posicionJugador );
 
         j.avanzar( "derecha", tablero );
@@ -21,8 +30,7 @@ public class TestsJugador {
     @Test
     public void test02AutoChocaConPozoYEsPenalizadoPor3Movimientos(){
         Jugador j = new Jugador("x", new Auto());
-        Coordenada posicionJugador = new Coordenada(0,0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new Pozo());
+        Calle calle = new Calle( posicionJugador, c, new Pozo());
         Tablero tablero = new Tablero( calle, posicionJugador);
 
         j.avanzar( "derecha", tablero );
@@ -33,8 +41,7 @@ public class TestsJugador {
     @Test
     public void test034x4ChocaConPrimerPozoYNoEsPenalizado(){
         Jugador j = new Jugador("x", new CuatroXCuatro() );
-        Coordenada posicionJugador = new Coordenada(0,0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new Pozo());
+        Calle calle = new Calle( posicionJugador, c, new Pozo());
         Tablero tablero = new Tablero( calle, posicionJugador );
 
         j.avanzar( "derecha", tablero );
@@ -45,8 +52,7 @@ public class TestsJugador {
     @Test
     public void test04MotoEncuentraPiquetePenalizado2Movimientos(){
         Jugador j = new Jugador("x", new Moto() );
-        Coordenada posicionJugador = new Coordenada(0,0);
-        Calle calle = new Calle( new Coordenada(0,0), new Coordenada(1,0), new Piquete());
+        Calle calle = new Calle( new Coordenada(0,0), c, new Piquete());
         Tablero tablero = new Tablero( calle, posicionJugador );
 
         j.avanzar( "derecha", tablero );
@@ -57,8 +63,7 @@ public class TestsJugador {
     @Test
     public void test054x4ChocaConCuartoPozoYEsPenalizado2Movimientos(){
         Jugador j = new Jugador("x", new CuatroXCuatro() );
-        Coordenada posicionJugador = new Coordenada(0,0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new Pozo());
+        Calle calle = new Calle( posicionJugador, c, new Pozo());
         Tablero tablero = new Tablero( calle, posicionJugador );
         for(int i = 0; i <= 3; i++){
             j.avanzar( "derecha", tablero );
@@ -83,8 +88,7 @@ public class TestsJugador {
     @Test
     public void test06AutoEncuentraSorpresaFavorable(){
         Jugador j = new Jugador("x", new Auto());
-        Coordenada posicionJugador = new Coordenada(0,0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new SorpresaFavorable());
+        Calle calle = new Calle( posicionJugador, c, new SorpresaFavorable());
         Tablero tablero = new Tablero( calle, posicionJugador );
 
         j.avanzar("derecha", tablero);
@@ -94,8 +98,7 @@ public class TestsJugador {
     @Test
     public void test07AutoEncuentraSorpresaDesfavorable(){
         Jugador j = new Jugador("x", new Auto());
-        Coordenada posicionJugador = new Coordenada(0,0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new SorpresaDesfavorable());
+        Calle calle = new Calle( posicionJugador, c, new SorpresaDesfavorable());
         Tablero tablero = new Tablero( calle, posicionJugador );
 
         j.avanzar("derecha", tablero);
@@ -104,8 +107,7 @@ public class TestsJugador {
 
     @Test
     public void test08JugadorConAutoEncuentraUnaSorpresaCambioVehiculoYPasaATenerUna4x4() {
-        Coordenada posicionJugador = new Coordenada( 0, 0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1, 0), new CambioDeVehiculo());
+        Calle calle = new Calle( posicionJugador, c, new CambioDeVehiculo());
         Tablero tablero = new Tablero( calle, posicionJugador);
         Auto m = new Auto();
         Jugador j = new Jugador("x", m);
@@ -117,8 +119,7 @@ public class TestsJugador {
 
     @Test
     public void test09JugadorConMotoEncuentraUnaSorpresaCambioVehiculoYPasaATenerUnAuto() {
-        Coordenada posicionJugador = new Coordenada( 0, 0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1, 0), new CambioDeVehiculo());
+        Calle calle = new Calle( posicionJugador, c, new CambioDeVehiculo());
         Tablero tablero = new Tablero( calle, posicionJugador);
         Moto m = new Moto();
         Jugador j = new Jugador("x", m);
@@ -130,8 +131,7 @@ public class TestsJugador {
 
     @Test
     public void test10JugadorCon4x4EncuentraUnaSorpresaCambioVehiculoYPasaATenerUnaMoto() {
-        Coordenada posicionJugador = new Coordenada( 0, 0);
-        Calle calle = new Calle( posicionJugador, new Coordenada(1, 0), new CambioDeVehiculo());
+        Calle calle = new Calle( posicionJugador, c, new CambioDeVehiculo());
         Tablero tablero = new Tablero( calle, posicionJugador);
         CuatroXCuatro v = new CuatroXCuatro();
         Jugador j = new Jugador("x", v);
@@ -145,9 +145,8 @@ public class TestsJugador {
     @Test
     public void test11AutoEncuentraUnPozoYUnaSorpresaFavorableEnMismaCalle() {
         Jugador j = new Jugador("x", new Auto());
-        Coordenada posicionJugador = new Coordenada(0,0);
         // Creamos una calle sin obs. ni sorp. para aumentar movimiento totales
-        Calle calle_vacia = new Calle( posicionJugador, new Coordenada(1, 0));
+        Calle calle_vacia = new Calle( posicionJugador, c);
         Tablero tablero_sin_nada = new Tablero( calle_vacia, posicionJugador);
         for(int i = 0; i < 20; i++) {
             j.avanzar("derecha", tablero_sin_nada);
