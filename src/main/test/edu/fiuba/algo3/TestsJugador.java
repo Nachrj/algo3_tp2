@@ -103,12 +103,47 @@ public class TestsJugador {
     }
 
     @Test
-    public void test08AutoEncuentraUnaSorpresaCambioVehiculo() {
+    public void test08JugadorConAutoEncuentraUnaSorpresaCambioVehiculoYPasaATenerUna4x4() {
+        Coordenada posicionJugador = new Coordenada( 0, 0);
+        Calle calle = new Calle( posicionJugador, new Coordenada(1, 0), new CambioDeVehiculo());
+        Tablero tablero = new Tablero( calle, posicionJugador);
+        Auto m = new Auto();
+        Jugador j = new Jugador("x", m);
 
+        j.avanzar("derecha", tablero);
+
+        assertEquals(CuatroXCuatro.class, j.obtenerVehiculo().getClass());
     }
 
     @Test
-    public void test09AutoEncuentraUnPozoYUnaSorpresaFavorableEnMismaCalle() {
+    public void test09JugadorConMotoEncuentraUnaSorpresaCambioVehiculoYPasaATenerUnAuto() {
+        Coordenada posicionJugador = new Coordenada( 0, 0);
+        Calle calle = new Calle( posicionJugador, new Coordenada(1, 0), new CambioDeVehiculo());
+        Tablero tablero = new Tablero( calle, posicionJugador);
+        Moto m = new Moto();
+        Jugador j = new Jugador("x", m);
+
+        j.avanzar("derecha", tablero);
+
+        assertEquals(Auto.class, j.obtenerVehiculo().getClass());
+    }
+
+    @Test
+    public void test10JugadorCon4x4EncuentraUnaSorpresaCambioVehiculoYPasaATenerUnaMoto() {
+        Coordenada posicionJugador = new Coordenada( 0, 0);
+        Calle calle = new Calle( posicionJugador, new Coordenada(1, 0), new CambioDeVehiculo());
+        Tablero tablero = new Tablero( calle, posicionJugador);
+        CuatroXCuatro v = new CuatroXCuatro();
+        Jugador j = new Jugador("x", v);
+
+        j.avanzar("derecha", tablero);
+
+        assertEquals(Moto.class, j.obtenerVehiculo().getClass());
+    }
+
+
+    @Test
+    public void test11AutoEncuentraUnPozoYUnaSorpresaFavorableEnMismaCalle() {
         Jugador j = new Jugador("x", new Auto());
         Coordenada posicionJugador = new Coordenada(0,0);
         // Creamos una calle sin obs. ni sorp. para aumentar movimiento totales
