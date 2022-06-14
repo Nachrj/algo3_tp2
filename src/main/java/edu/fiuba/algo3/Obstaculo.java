@@ -8,8 +8,8 @@ import java.util.Map;
  *
  * @author bruno
  */
-public abstract class Obstaculo {
-    Map<Object, Integer> diccionario;
+public interface Obstaculo {
+    //Map<Object, Integer> diccionario;
 
     public abstract int chocar(Vehiculo v1);
 }

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3;
 
-public class NoObstaculo extends Obstaculo{
+public class NoObstaculo implements Obstaculo{
 
     private static NoObstaculo no_obstaculo_instancia = null;
 

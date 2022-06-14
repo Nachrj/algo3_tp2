@@ -15,7 +15,7 @@ public class Jugador {
     String nombre;
     private int movimientos;
     private Vehiculo vehiculo;
-    Map<String, Tupla> posiciones = new HashMap<>();
+    private Map<String, Tupla> posiciones = new HashMap<>();
 
     public Jugador (String n, Vehiculo v) {
         nombre = n;

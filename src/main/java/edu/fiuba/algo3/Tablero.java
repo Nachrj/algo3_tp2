@@ -9,11 +9,11 @@ package edu.fiuba.algo3;
  * @author Agustín, putear por wpp cualquier cosa
  */
 public class Tablero {
-    int filas;
-    int columnas;
-    Jugador jugador;
-    Coordenada posicionJugador;
-    Calle calle;
+    private int filas;
+    private int columnas;
+    private Jugador jugador;
+    private Coordenada posicionJugador;
+    private Calle calle;
 
     public Tablero( Calle calleUsuario, Coordenada c){
         calle = calleUsuario;

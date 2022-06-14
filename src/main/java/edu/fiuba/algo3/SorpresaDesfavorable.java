@@ -8,7 +8,7 @@ package edu.fiuba.algo3;
  *
  * @author bruno
  */
-public class SorpresaDesfavorable extends Sorpresa{
+public class SorpresaDesfavorable implements Sorpresa{
     @Override
     public void activar(Jugador j1){
         j1.modificarPorcentajeMovimientos((float) 1.25);

@@ -8,7 +8,7 @@ import java.util.HashMap;
  *
  * @author bruno
  */
-public class Pozo extends Obstaculo{
+public class Pozo implements Obstaculo{
     public Pozo(){
 
     }

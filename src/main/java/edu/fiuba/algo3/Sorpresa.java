@@ -8,10 +8,10 @@ package edu.fiuba.algo3;
  *
  * @author bruno
  */
-public abstract class Sorpresa {
-    public Sorpresa(){
+public interface Sorpresa {
+    /*public Sorpresa(){
         
-    }
+    }*/
     
     public abstract void activar(Jugador j1);
 }

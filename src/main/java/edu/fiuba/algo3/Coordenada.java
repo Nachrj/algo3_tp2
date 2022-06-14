@@ -9,7 +9,7 @@ package edu.fiuba.algo3;
  * @author bruno
  */
 public class Coordenada {
-    int posX,posY;
+    private int posX,posY;
 
     public Coordenada(int x, int y){
         posX = x;

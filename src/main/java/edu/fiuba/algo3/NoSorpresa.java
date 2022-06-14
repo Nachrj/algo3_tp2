@@ -1,6 +1,6 @@
 package edu.fiuba.algo3;
 
-public class NoSorpresa extends Sorpresa{
+public class NoSorpresa implements Sorpresa{
 
     private static NoSorpresa no_sorpresa_instancia = null;
 
