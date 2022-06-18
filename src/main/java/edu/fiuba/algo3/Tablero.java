@@ -43,5 +43,4 @@ public class Tablero {
         posicionJugador.sumar_coordenadas(destino);*/
         return calle.transitar(j);
     }
-
 }
