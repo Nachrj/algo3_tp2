@@ -13,7 +13,10 @@ public class Calle {
     Coordenada pos_final;
     Sorpresa sorpresa;
     Obstaculo obstaculo;
-    
+
+    public Calle(){
+
+    }
     public Calle (Coordenada c1, Coordenada c2) {
         this.pos_inicio = c1;
         this.pos_final = c2;
