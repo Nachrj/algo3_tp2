@@ -44,6 +44,6 @@ public class Jugador {
         return this.vehiculo;
     }
     public void modificarPorcentajeMovimientos(float porcentaje) {
-        this.movimientos = (int) Math.round(this.movimientos * porcentaje);
+        this.movimientos = Math.round(this.movimientos * porcentaje);
     }
 }

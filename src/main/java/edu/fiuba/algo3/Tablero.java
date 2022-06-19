@@ -14,7 +14,9 @@ public class Tablero {
     private Jugador jugador;
     private Coordenada posicionJugador;
     private Calle calle;
+    private Calle[][] mapa;
 
+    //ToDo -> este constructor hay que sacarlo pero me falla el test 5 de jugador
     public Tablero( Calle calleUsuario, Coordenada c){
         calle = calleUsuario;
         posicionJugador = c;
@@ -42,5 +44,35 @@ public class Tablero {
         if (this.posicionFueraDeRango(destino)){ return 0; }
         posicionJugador.sumar_coordenadas(destino);*/
         return calle.transitar(j);
+    }
+
+    public Tablero(int fil, int col, Jugador jugador){
+        //ToDo -> ver que hacer si los parametros son 0 o negativos
+        this.filas = fil;
+        this.columnas = col;
+        this.jugador = jugador;
+        posicionJugador = new Coordenada(Math.round((float) fil/2),0);
+
+        ConstructorCalle c = new ConstructorCalle();
+        mapa = new Calle[filas][columnas];
+        for(int i = 1; i <= filas; i++ ){
+            for(int j = 1; j <= columnas; j++){
+                if(i % 2 == 0 && j % 2 == 0){
+                    mapa[i][j] = c.construirCalleAleatoria();
+                }
+            }
+        }
+    }
+    //ToDo -> ver como hacer si se choca con piquete (tiene que volver para atrás)
+    public int mover(Direccion d){
+        Coordenada coordenadaMapa = new Coordenada(2*posicionJugador.x(), 2*posicionJugador.y());
+        coordenadaMapa.sumarCoordenadas(d.mover());
+        posicionJugador.sumarCoordenadas(d.mover());
+
+        if(posicionFueraDeRango(posicionJugador)){
+            posicionJugador.sumarCoordenadas(d.direccionOpuesta().mover());
+            return 0;
+        }
+        return mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(jugador);
     }
 }
