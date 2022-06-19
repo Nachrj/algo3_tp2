@@ -2,12 +2,11 @@ package edu.fiuba.algo3;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class TestsJugador {
+public class JugadorTests {
 
     Coordenada posicionJugador;
     Coordenada c;

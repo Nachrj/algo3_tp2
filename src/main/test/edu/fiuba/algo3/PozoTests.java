@@ -2,13 +2,11 @@ package edu.fiuba.algo3;
 
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
 import static org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestsPozo{
+public class PozoTests {
     Pozo p;
     @BeforeEach
     public void init() {

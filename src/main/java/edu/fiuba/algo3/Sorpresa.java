@@ -9,9 +9,5 @@ package edu.fiuba.algo3;
  * @author bruno
  */
 public interface Sorpresa {
-    /*public Sorpresa(){
-        
-    }*/
-    
-    public abstract void activar(Jugador j1);
+    void activar(Jugador j1);
 }

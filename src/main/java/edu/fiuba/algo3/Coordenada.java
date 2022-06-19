@@ -16,7 +16,7 @@ public class Coordenada {
         posY = y;
     }
 
-    public void sumar_coordenadas(Coordenada coordenada){
+    public void sumarCoordenadas(Coordenada coordenada){
         posX += coordenada.posX;
         posY += coordenada.posY;
     }
@@ -27,5 +27,9 @@ public class Coordenada {
 
     public int y(){
         return posY;
+    }
+
+    public Boolean equals(Coordenada c){
+        return( posX == c.x() && posY == c.y() );
     }
 }
