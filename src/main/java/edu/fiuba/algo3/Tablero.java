@@ -13,14 +13,7 @@ public class Tablero {
     private int columnas;
     private Jugador jugador;
     private Coordenada posicionJugador;
-    private Calle calle;
     private Calle[][] mapa;
-
-    //ToDo -> este constructor hay que sacarlo pero me falla el test 5 de jugador
-    public Tablero( Calle calleUsuario, Coordenada c){
-        calle = calleUsuario;
-        posicionJugador = c;
-    }
 
     private boolean posicionFueraDeRango(Coordenada destino ){
         // ¿Muchos if? ¿Tell Don't Ask?
@@ -37,13 +30,6 @@ public class Tablero {
     public int obtenerCostoDeAvance(Vehiculo vehiculo, Coordenada destino ){
         if (this.posicionFueraDeRango(destino)){ return 0; }
         return -1;
-    }
-
-    public int mover(Jugador j){
-        /*Falta agregar la direccion en que se mueve
-        if (this.posicionFueraDeRango(destino)){ return 0; }
-        posicionJugador.sumar_coordenadas(destino);*/
-        return calle.transitar(j);
     }
 
     public Tablero(int fil, int col, Jugador jugador){
@@ -65,6 +51,7 @@ public class Tablero {
             }
             System.out.print('\n');
         }
+        System.out.print('\n');
     }
     //ToDo -> ver como hacer si se choca con piquete (tiene que volver para atrás)
     public int mover(Direccion d){

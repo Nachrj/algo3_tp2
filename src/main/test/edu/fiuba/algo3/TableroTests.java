@@ -1,10 +1,8 @@
 package edu.fiuba.algo3;
 
-import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class TableroTests {
     @Test
