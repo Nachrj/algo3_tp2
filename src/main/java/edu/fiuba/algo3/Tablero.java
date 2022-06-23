@@ -93,10 +93,7 @@ public class Tablero {
     public int mover(Direccion d){
         Coordenada coordenadaMapa = new Coordenada(2*posicionJugador.x(), 2*posicionJugador.y());
         coordenadaMapa.sumarCoordenadas(d.mover());
-        System.out.println("Coordenada Jugador:" + (2*obtenerPosicionJugador().x()) + " " + (2*obtenerPosicionJugador().y()) );
         posicionJugador.sumarCoordenadas(d.mover());
-        System.out.println("Me movi a " + d.getClass().getSimpleName());
-        System.out.println("Coordenada Jugador:" + (2*obtenerPosicionJugador().x()) + " " + (2*obtenerPosicionJugador().y()) );
 
         if(posicionFueraDeRango(posicionJugador)){
             posicionJugador.sumarCoordenadas(d.direccionOpuesta().mover());
