@@ -15,6 +15,18 @@ public class TableroTests {
 
         t.mover(new Izquierda());
 
-        assertEquals(posicionInicial, t.obtenerPosicionJugador() );
+        assertEquals(posicionInicial, t.obtenerPosicionJugador());
     }
+
+    @Test
+    public void test02SeCreaTableroJugadorIntentaEscaparDelTableroYNoSumaMovimientos(){
+        Jugador j = new Jugador("-", new Moto() );
+        Tablero t = new Tablero(3,3, j);
+
+        t.mover(new Izquierda());
+
+        assertEquals(0, j.obtenerMovimientos());
+    }
+
+
 }

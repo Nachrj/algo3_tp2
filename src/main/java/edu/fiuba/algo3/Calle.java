@@ -53,9 +53,11 @@ public class Calle {
     
     public void agregarSopresa(Sorpresa sor){
         this.sorpresa = sor;
+        //System.out.println("Se creo sorpresa:" + sor.getClass().getSimpleName());
     }
     
     public void agregarObstaculo(Obstaculo obs){
         this.obstaculo = obs;
+        //System.out.println("Se creo obstaculo:" + obs.getClass().getSimpleName());
     }
 }

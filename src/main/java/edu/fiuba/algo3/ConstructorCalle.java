@@ -23,27 +23,25 @@ public class ConstructorCalle {
     }
 
     private void agregarSorpresaAleatoria(){
-        sorpresas.get(obtenerNumeroAleatorio(1, 3)).run();
+        int rand = obtenerNumeroAleatorio(0, 100);
+        if(rand >= 25)
+            sorpresas.get(obtenerNumeroAleatorio(1, 4)).run();
     }
 
     private void agregarObstaculoAleatorio(){
-        obstaculos.get(obtenerNumeroAleatorio(1, 2)).run();
+        int rand = obtenerNumeroAleatorio(0, 100);
+        if(rand >= 25)
+            obstaculos.get(obtenerNumeroAleatorio(1, 3)).run();
     }
 
     public Calle construirCalleAleatoria(){
         calle = new Calle();
-        Random random = new Random();
         int max = 100, min = 0;
-        int rand = random.nextInt(max + min) + min;
+        int rand = obtenerNumeroAleatorio(min, max);
         //ToDo -> determinar las probabilidades de que se construya o no una sorpresa/obstaculo
         if( rand >= 50){
-            rand = random.nextInt(max + min) + min;
-            if( rand <= 75) {
-                agregarSorpresaAleatoria();
-            }
-            if( 25 <= rand) {
-                agregarObstaculoAleatorio();
-            }
+            agregarSorpresaAleatoria();
+            agregarObstaculoAleatorio();
         }
         return calle;
     }
