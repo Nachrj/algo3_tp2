@@ -84,6 +84,20 @@ public class JugadorTests {
         assertEquals( 6, j.obtenerMovimientos());
     }*/
 
+    @Test
+    public void test054x4ChocaConCuartoPozoYEsPenalizado2Movimientos(){
+        Jugador j = new Jugador("-", new CuatroXCuatro() );
+        Calle calle = new Calle( posicionJugador, c, new Pozo());
+        Tablero t = new Tablero(2, 2, j, calle);
+
+        j.avanzar(new Derecha(), t);
+        j.avanzar(new Arriba(), t);
+        j.avanzar(new Izquierda(), t);
+        j.avanzar(new Abajo(), t);
+
+        assertEquals( 6, j.obtenerMovimientos());
+    }
+
 /*    @Test
     public void test05AutoEncuentraPiqueteNoSeMueve(){
         Jugador j = new Jugador("x", new Moto() );

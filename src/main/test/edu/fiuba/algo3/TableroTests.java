@@ -25,6 +25,4 @@ public class TableroTests {
 
         assertEquals(0, j.obtenerMovimientos());
     }
-
-
 }
