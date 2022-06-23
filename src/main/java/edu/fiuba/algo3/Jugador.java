@@ -28,9 +28,8 @@ public class Jugador {
         posiciones.put("Izquierda", new Tupla(-1,0));
     }
     
-    public void avanzar (String direccion, Tablero tablero) {
-        int suma = tablero.mover(this);
-        this.movimientos += suma;
+    public void avanzar (String d, Tablero tablero) {
+        this.movimientos += tablero.mover(this);
     }
 
     public int obtenerMovimientos(){

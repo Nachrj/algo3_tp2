@@ -18,18 +18,16 @@ public class ConstructorCalle {
 
     }
 
+    private int obtenerNumeroAleatorio(int min, int max){
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
     private void agregarSorpresaAleatoria(){
-        Random random = new Random();
-        int min = 1, max = 3;
-        int rand = random.nextInt(max + min) + min;
-        sorpresas.get(rand).run();
+        sorpresas.get(obtenerNumeroAleatorio(1, 3)).run();
     }
 
     private void agregarObstaculoAleatorio(){
-        Random random = new Random();
-        int min = 1, max = 3;
-        int rand = random.nextInt(max + min) + min;
-        obstaculos.get(rand).run();
+        obstaculos.get(obtenerNumeroAleatorio(1, 2)).run();
     }
 
     public Calle construirCalleAleatoria(){

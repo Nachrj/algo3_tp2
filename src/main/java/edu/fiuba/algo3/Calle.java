@@ -15,7 +15,8 @@ public class Calle {
     Obstaculo obstaculo;
 
     public Calle(){
-
+        this.sorpresa = NoSorpresa.conseguirInstancia();
+        this.obstaculo = NoObstaculo.conseguirInstancia();
     }
     public Calle (Coordenada c1, Coordenada c2) {
         this.pos_inicio = c1;

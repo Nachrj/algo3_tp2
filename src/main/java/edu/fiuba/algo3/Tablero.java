@@ -54,13 +54,16 @@ public class Tablero {
         posicionJugador = new Coordenada(Math.round((float) fil/2),0);
 
         ConstructorCalle c = new ConstructorCalle();
-        mapa = new Calle[filas][columnas];
-        for(int i = 1; i <= filas; i++ ){
-            for(int j = 1; j <= columnas; j++){
-                if(i % 2 == 0 && j % 2 == 0){
+        mapa = new Calle[2*filas - 1][2*columnas -1];
+        for(int i = 0; i <= 2*(filas - 1); i++ ){
+            for(int j = 0; j <= 2*(columnas - 1); j++){
+                if( (i % 2 == 0 && j % 2 != 0) || (i % 2 != 0 && j % 2 == 0) ){
                     mapa[i][j] = c.construirCalleAleatoria();
+                    System.out.print('C');
                 }
+                else System.out.print('-');
             }
+            System.out.print('\n');
         }
     }
     //ToDo -> ver como hacer si se choca con piquete (tiene que volver para atrás)
