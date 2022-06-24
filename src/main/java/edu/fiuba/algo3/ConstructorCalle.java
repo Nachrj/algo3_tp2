@@ -1,7 +1,6 @@
 package edu.fiuba.algo3;
 
 import java.util.HashMap;
-import java.util.Random;
 
 public class ConstructorCalle {
     private Calle calle;
@@ -15,6 +14,7 @@ public class ConstructorCalle {
 
         obstaculos.put(1, () -> calle.agregarObstaculo(new Piquete()));
         obstaculos.put(2, () -> calle.agregarObstaculo(new Pozo()));
+        obstaculos.put(3, () -> calle.agregarObstaculo(new ControlPolicial()));
 
     }
 
@@ -31,7 +31,7 @@ public class ConstructorCalle {
     private void agregarObstaculoAleatorio(){
         int rand = obtenerNumeroAleatorio(0, 100);
         if(rand >= 25)
-            obstaculos.get(obtenerNumeroAleatorio(1, 3)).run();
+            obstaculos.get(obtenerNumeroAleatorio(1, 4)).run();
     }
 
     public Calle construirCalleAleatoria(){
