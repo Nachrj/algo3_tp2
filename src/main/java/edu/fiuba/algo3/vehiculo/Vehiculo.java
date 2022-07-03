@@ -2,12 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.vehiculo;
 
 /**
  *
  * @author bruno
+ * Avanzable (para reemplazar coomportamiento)
  */
-public interface Obstaculo {
-    int chocar(Vehiculo v1);
+
+public interface Vehiculo {
+    Vehiculo cambiar();
+    int chocarConPozo();
+    int chocarConPiquete();
+    int chocarConControl();
 }

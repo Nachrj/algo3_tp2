@@ -4,6 +4,10 @@
  */
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.coordenada.Coordenada;
+import edu.fiuba.algo3.coordenada.Direccion;
+import edu.fiuba.algo3.vehiculo.Vehiculo;
+
 /**
  *
  * @author Agustín, putear por wpp cualquier cosa

@@ -4,6 +4,9 @@
  */
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.coordenada.Direccion;
+import edu.fiuba.algo3.vehiculo.Vehiculo;
+
 /**
  *
  * @author bruno

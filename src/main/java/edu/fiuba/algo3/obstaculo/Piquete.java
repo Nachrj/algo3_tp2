@@ -1,8 +1,8 @@
-package edu.fiuba.algo3;
-import java.util.HashMap;
-import java.util.Map;
+package edu.fiuba.algo3.obstaculo;
 
-public class Piquete implements Obstaculo{
+import edu.fiuba.algo3.vehiculo.Vehiculo;
+
+public class Piquete implements Obstaculo {
 
     public Piquete(){
     }

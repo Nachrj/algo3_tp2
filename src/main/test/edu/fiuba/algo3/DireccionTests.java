@@ -1,5 +1,6 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.coordenada.*;
 import org.junit.jupiter.api.Test;
 
 public class DireccionTests {

@@ -4,6 +4,13 @@
  */
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.*;
+import edu.fiuba.algo3.coordenada.Coordenada;
+import edu.fiuba.algo3.obstaculo.NoObstaculo;
+import edu.fiuba.algo3.obstaculo.Obstaculo;
+import edu.fiuba.algo3.sorpresa.NoSorpresa;
+import edu.fiuba.algo3.sorpresa.Sorpresa;
+
 /**
  *
  * @author bruno

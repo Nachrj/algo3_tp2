@@ -2,15 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.obstaculo;
+
+import edu.fiuba.algo3.vehiculo.Vehiculo;
 
 /**
  *
  * @author bruno
  */
-public class SorpresaDesfavorable implements Sorpresa{
+public class Pozo implements Obstaculo {
+    public Pozo(){
+
+    }
+    
     @Override
-    public void activar(Jugador j1){
-        j1.modificarPorcentajeMovimientos((float) 1.25);
+    public int chocar(Vehiculo v1){
+        return v1.chocarConPozo();
     }
 }

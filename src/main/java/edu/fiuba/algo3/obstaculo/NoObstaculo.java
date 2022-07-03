@@ -1,6 +1,8 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.obstaculo;
 
-public class NoObstaculo implements Obstaculo{
+import edu.fiuba.algo3.vehiculo.Vehiculo;
+
+public class NoObstaculo implements Obstaculo {
 
     private static NoObstaculo no_obstaculo_instancia = null;
 

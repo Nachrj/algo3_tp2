@@ -1,6 +1,6 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.coordenada;
 
-public class Abajo implements Direccion{
+public class Abajo implements Direccion {
     @Override
     public Coordenada mover(){
         return new Coordenada(1,0 );

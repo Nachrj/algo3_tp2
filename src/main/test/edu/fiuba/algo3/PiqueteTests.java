@@ -1,5 +1,9 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.obstaculo.Piquete;
+import edu.fiuba.algo3.vehiculo.Auto;
+import edu.fiuba.algo3.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.vehiculo.Moto;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
 

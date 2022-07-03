@@ -1,5 +1,12 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.obstaculo.ControlPolicial;
+import edu.fiuba.algo3.obstaculo.Piquete;
+import edu.fiuba.algo3.obstaculo.Pozo;
+import edu.fiuba.algo3.sorpresa.CambioDeVehiculo;
+import edu.fiuba.algo3.sorpresa.SorpresaDesfavorable;
+import edu.fiuba.algo3.sorpresa.SorpresaFavorable;
+
 import java.util.HashMap;
 
 public class ConstructorCalle {
