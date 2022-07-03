@@ -10,13 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TableroTests {
     @Test
     public void test01SeCreaTableroJugadorAvanzaHaciaIzquierdaYNoEscapaDelTablero(){
-        Jugador j = new Jugador("-", new Moto() );
+        Moto moto = new Moto(new Coordenada(Math.round((float) 2/2),0));
+        Jugador j = new Jugador("-", moto);
         Tablero t = new Tablero(3,3, j);
-        Coordenada posicionInicial = t.obtenerPosicionJugador();
+        Coordenada posicionInicial = new Coordenada(Math.round((float) 2/2),0);
 
         t.mover(new Izquierda());
 
-        assertEquals(posicionInicial, t.obtenerPosicionJugador());
+        assertTrue(posicionInicial.equals(t.obtenerPosicionJugador()));
     }
 
     @Test

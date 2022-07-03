@@ -5,8 +5,6 @@
 package edu.fiuba.algo3.sorpresa;
 
 import edu.fiuba.algo3.Jugador;
-import edu.fiuba.algo3.sorpresa.Sorpresa;
-
 /**
  *
  * @author bruno

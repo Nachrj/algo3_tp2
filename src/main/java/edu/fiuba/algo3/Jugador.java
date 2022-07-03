@@ -5,6 +5,7 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.coordenada.Direccion;
+import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.vehiculo.Vehiculo;
 
 /**
@@ -30,12 +31,17 @@ public class Jugador {
         return this.movimientos;
     }
 
+    public Coordenada obtenerPosicion(){
+        return this.vehiculo.obtenerPosicion();
+    }
     public void cambiarVehiculo(){
         this.vehiculo = this.vehiculo.cambiar();
     }
+
     public Vehiculo obtenerVehiculo(){
         return this.vehiculo;
     }
+
     public void modificarPorcentajeMovimientos(float porcentaje) {
         this.movimientos = Math.round(this.movimientos * porcentaje);
     }

@@ -13,7 +13,6 @@ public class NoSorpresa implements Sorpresa {
         return no_sorpresa_instancia;
     }
     @Override
-    public void activar(Jugador j1){
-        return;
+    public void activar(Jugador ignoredJ1){
     }
 }

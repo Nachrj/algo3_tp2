@@ -4,8 +4,8 @@
  */
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.*;
 import edu.fiuba.algo3.coordenada.Coordenada;
+import edu.fiuba.algo3.coordenada.Direccion;
 import edu.fiuba.algo3.obstaculo.NoObstaculo;
 import edu.fiuba.algo3.obstaculo.Obstaculo;
 import edu.fiuba.algo3.sorpresa.NoSorpresa;
@@ -53,9 +53,9 @@ public class Calle {
         this.sorpresa = sor;
     }
 
-    public int transitar(Jugador j){
+    public int transitar(Jugador j, Direccion d){
         this.sorpresa.activar(j);
-        return (1 + this.obstaculo.chocar(j.obtenerVehiculo()));
+        return (1 + this.obstaculo.chocar(j.obtenerVehiculo(), d));
     }
     
     public void agregarSopresa(Sorpresa sor){

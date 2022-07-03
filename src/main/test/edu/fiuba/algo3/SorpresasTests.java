@@ -2,6 +2,7 @@ package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.coordenada.Derecha;
 import edu.fiuba.algo3.coordenada.Direccion;
+import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.sorpresa.CambioDeVehiculo;
 import edu.fiuba.algo3.sorpresa.SorpresaDesfavorable;
 import edu.fiuba.algo3.sorpresa.SorpresaFavorable;
@@ -46,7 +47,7 @@ public class SorpresasTests {
 
     @Test
     public void test03JugadorAbreSorpresaCambioDeVehiculoCuandoTieneMotoYPasaATenerAuto(){
-        Moto m = new Moto();
+        Moto m = new Moto(new Coordenada(0, 0));
         Jugador j = new Jugador("x", m);
         CambioDeVehiculo s = new CambioDeVehiculo();
 
@@ -57,8 +58,8 @@ public class SorpresasTests {
 
     @Test
     public void test04JugadorAbreSorpresaCambioDeVehiculoCuandoTieneAutoYPasaATener4x4(){
-        Auto m = new Auto();
-        Jugador j = new Jugador("x", m);
+        Auto a = new Auto(new Coordenada( 0, 0));
+        Jugador j = new Jugador("-", a);
         CambioDeVehiculo s = new CambioDeVehiculo();
 
         s.activar(j);
@@ -68,7 +69,7 @@ public class SorpresasTests {
 
     @Test
     public void test05JugadorAbreSorpresaCambioDeVehiculoCuandoTiene4x4YPasaATenerMoto(){
-        CuatroXCuatro m = new CuatroXCuatro();
+        CuatroXCuatro m = new CuatroXCuatro(new Coordenada(0, 0));
         Jugador j = new Jugador("x", m);
         CambioDeVehiculo s = new CambioDeVehiculo();
 

@@ -4,17 +4,28 @@
  */
 package edu.fiuba.algo3.vehiculo;
 
+import edu.fiuba.algo3.coordenada.Coordenada;
+import edu.fiuba.algo3.coordenada.Direccion;
+
 import java.util.Random;
 
 /**
  *
  * @author bruno
  */
-public class CuatroXCuatro implements Vehiculo {
-    int choquesConPozos = 0;
+public class CuatroXCuatro extends Vehiculo {
+    int choquesConPozos;
+    public CuatroXCuatro(){
+        this.posicion = new Coordenada(0,0);
+        this.choquesConPozos = 0;
+    }
+    public CuatroXCuatro(Coordenada c){
+        this.posicion = c;
+        this.choquesConPozos = 0;
+    }
     @java.lang.Override
     public Vehiculo cambiar(){
-        return new Moto();
+        return new Moto(this.posicion);
     }
 
     @java.lang.Override
@@ -25,8 +36,8 @@ public class CuatroXCuatro implements Vehiculo {
         return 0;
     }
     @java.lang.Override
-    public int chocarConPiquete() {
-        // Dar la vuelta
+    public int chocarConPiquete(Direccion d) {
+        this.posicion.sumarCoordenadas(d.direccionOpuesta().mover());
         return 0;
     }
 
