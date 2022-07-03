@@ -54,8 +54,6 @@ jobs:
     - name: Build Java code
       id: build_java_code
       uses: github/codeql-action/autobuild@v1
-      run: |
-        - mvn clean test
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
@@ -64,7 +62,8 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
 
-    #- run: |
+    - run: |
+        - mvn clean test
     #   make bootstrap
     #   make release
 
