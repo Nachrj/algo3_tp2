@@ -1,9 +1,5 @@
 package edu.fiuba.algo3.coordenada;
 
-import edu.fiuba.algo3.coordenada.Coordenada;
-import edu.fiuba.algo3.coordenada.Derecha;
-import edu.fiuba.algo3.coordenada.Direccion;
-
 public class Izquierda implements Direccion {
     @Override
     public Coordenada mover(){

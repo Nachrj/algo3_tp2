@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.obstaculo;
 
 import edu.fiuba.algo3.coordenada.Direccion;
-import edu.fiuba.algo3.vehiculo.Vehiculo;
+import edu.fiuba.algo3.vehiculo.*;
 
 public class NoObstaculo implements Obstaculo {
 
@@ -15,7 +15,19 @@ public class NoObstaculo implements Obstaculo {
     }
 
     @Override
-    public int chocar(Vehiculo ignoredV1, Direccion d){
+    public int chocar(Vehiculo vehiculo, Direccion d){
+        return 0;
+    }
+    @Override
+    public int chocar(Auto auto, Direccion d){
+        return 0;
+    }
+    @Override
+    public int chocar(CuatroXCuatro cuatroXCuatro, Direccion d){
+        return 0;
+    }
+    @Override
+    public int chocar(Moto moto, Direccion d){
         return 0;
     }
 }

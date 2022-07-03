@@ -5,10 +5,7 @@
 package edu.fiuba.algo3.sorpresa;
 
 import edu.fiuba.algo3.Jugador;
-/**
- *
- * @author bruno
- */
+
 public class SorpresaFavorable implements Sorpresa {
     @Override
     public void activar(Jugador j1){

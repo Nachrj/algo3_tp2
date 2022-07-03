@@ -5,12 +5,17 @@
 package edu.fiuba.algo3.obstaculo;
 
 import edu.fiuba.algo3.coordenada.Direccion;
-import edu.fiuba.algo3.vehiculo.Vehiculo;
+import edu.fiuba.algo3.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.vehiculo.*;
 
-/**
- *
- * @author bruno
- */
 public interface Obstaculo {
-    int chocar(Vehiculo v1, Direccion d);
+    int chocar(Vehiculo vehiculo, Direccion d);
+
+    int chocar(Auto auto, Direccion d);
+
+    int chocar(CuatroXCuatro cuatroXCuatro, Direccion d);
+
+    int chocar(Moto moto, Direccion d);
+
+
 }

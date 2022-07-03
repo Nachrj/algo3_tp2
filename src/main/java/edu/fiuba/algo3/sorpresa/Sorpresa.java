@@ -6,10 +6,6 @@ package edu.fiuba.algo3.sorpresa;
 
 import edu.fiuba.algo3.Jugador;
 
-/**
- *
- * @author bruno
- */
 public interface Sorpresa {
     void activar(Jugador j1);
 }

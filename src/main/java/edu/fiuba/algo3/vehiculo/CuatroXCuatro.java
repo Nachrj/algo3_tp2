@@ -6,13 +6,8 @@ package edu.fiuba.algo3.vehiculo;
 
 import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.coordenada.Direccion;
+import edu.fiuba.algo3.obstaculo.Obstaculo;
 
-import java.util.Random;
-
-/**
- *
- * @author bruno
- */
 public class CuatroXCuatro extends Vehiculo {
     int choquesConPozos;
     public CuatroXCuatro(){
@@ -28,28 +23,16 @@ public class CuatroXCuatro extends Vehiculo {
         return new Moto(this.posicion);
     }
 
-    @java.lang.Override
-    public int chocarConPozo() {
+    public void chocarConPozo() {
         this.choquesConPozos++;
-        if (this.choquesConPozos > 3)
-            return 2;
-        return 0;
-    }
-    @java.lang.Override
-    public int chocarConPiquete(Direccion d) {
-        this.posicion.sumarCoordenadas(d.direccionOpuesta().mover());
-        return 0;
     }
 
-    @java.lang.Override
-    public int chocarConControl() {
-        Random random = new Random();
-        int max = 11;
-        int min = 1;
-        int rand = random.nextInt(max + min) + min;
-        if(rand > 3){
-            return 3;
-        }
-        return 0;
+    public int choquesConPozos(){
+        return this.choquesConPozos;
+    }
+
+    @Override
+    public int chocarObstaculo(Obstaculo obstaculo, Direccion d){
+        return obstaculo.chocar(this, d);
     }
 }

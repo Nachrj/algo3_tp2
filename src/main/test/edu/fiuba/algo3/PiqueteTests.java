@@ -23,7 +23,6 @@ public class PiqueteTests {
     public void test01MotoChocaConPiqueteYPenalizaCon2Movimientos(){
         Derecha d = new Derecha();
         Moto mockedMoto = mock(Moto.class);
-        when(mockedMoto.chocarConPiquete(d)).thenReturn(2);
 
         assertEquals(2, p.chocar(mockedMoto, d));
     }

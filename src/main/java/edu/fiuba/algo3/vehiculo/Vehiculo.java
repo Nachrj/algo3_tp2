@@ -6,6 +6,7 @@ package edu.fiuba.algo3.vehiculo;
 
 import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.coordenada.Direccion;
+import edu.fiuba.algo3.obstaculo.Obstaculo;
 
 /**
  *
@@ -22,7 +23,6 @@ public abstract class Vehiculo {
         return this.posicion;
     }
     public abstract Vehiculo cambiar();
-    public abstract int chocarConPozo();
-    public abstract int chocarConPiquete(Direccion d);
-    public abstract int chocarConControl();
+
+    public abstract int chocarObstaculo(Obstaculo obstaculo, Direccion d);
 }

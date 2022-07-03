@@ -10,9 +10,9 @@ import edu.fiuba.algo3.coordenada.Direccion;
 public class Tablero {
     private final int filas;
     private final int columnas;
-    private Jugador jugador;
-    private Calle[][] mapa;
-    private char[][] mapaPrueba;
+    private final Jugador jugador;
+    private final Calle[][] mapa;
+    private final char[][] mapaPrueba;
 
     private boolean posicionFueraDeRango(Coordenada destino ){
         if(destino.x() > filas || destino.x() < 0){
@@ -63,10 +63,10 @@ public class Tablero {
         this.filas = fil;
         this.columnas = col;
         this.jugador = jugador;
-        //this.posicionJugador = jugador.obtenerPosicion();
         // ToDo -> lanzar excepción si el tablero recibe el vehículo con una posición inválida
-        //this.posicionJugador = new Coordenada(Math.round((float) fil/2),0);
-
+        /* this.posicionJugador = jugador.obtenerPosicion();
+         * this.posicionJugador = new Coordenada(Math.round((float) fil/2),0);
+        */
         mapa = new Calle[2*filas - 1][2*columnas -1];
         mapaPrueba = new char[2*filas - 1][2*columnas -1];
         for(int i = 0; i <= 2*(filas - 1); i++ ){
