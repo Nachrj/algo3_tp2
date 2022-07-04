@@ -45,8 +45,14 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     private int filas = 0;
     private int anchoUnidad;
     private int altoUnidad;
+
+    private double posXJugador;
+
+    private double posYJugador;
     private String nombreVehiculo;
     private Vehiculo vehiculo;
+
+    private Pane juego;
     private Map<String, Direccion> direcciones = new HashMap<String,Direccion>();
     @Override
     public void start(Stage stage) throws Exception {
@@ -73,6 +79,33 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     @Override
     public void handle(KeyEvent event){
         String tecla = event.getCode().toString();
+        mover_jugador(tecla);
+    }
+
+    public void mover_jugador(String tecla) {
+        ImageView jugador = (ImageView)juego.getChildren().get(0);
+        int newX = 0;
+        int newY = 0;
+        switch(tecla) {
+            case "W":
+                newY -= altoUnidad;
+                posYJugador += (newY*(1.5));
+                break;
+            case "A":
+                newX -= anchoUnidad;
+                posXJugador += (newX*(1.5));
+                break;
+            case "D":
+                newX += anchoUnidad;
+                posXJugador += (newX*(1.5));
+                break;
+            case "S":
+                newY += anchoUnidad;
+                posYJugador += (newY*(1.5));
+                break;
+        }
+        jugador.setTranslateX(posXJugador);
+        jugador.setTranslateY(posYJugador);
         tablero.mover(direcciones.get(tecla));
     }
 
@@ -104,9 +137,10 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
 
     public Pane crearEscenaPrincipal(int columnas, int filas){
-        Pane juego = new Pane();
-        anchoUnidad = (int)(600/(columnas*1.5 + 0.5));
-        altoUnidad = (int) (600/(filas*1.5 + 0.5));
+        juego = new Pane();
+        anchoUnidad = (int)(600/(columnas*1.5+0.5));
+        altoUnidad = (int)(600/(filas*1.5+0.5));
+        dibujarPersonaje(juego);
         for(int i = 0; i < filas; i++) {
             for(int j = 0; j < columnas; j++) {
                 Rectangle rectangle = new Rectangle(anchoUnidad, altoUnidad, Color.GREY);
@@ -116,7 +150,6 @@ public class Main extends Application implements EventHandler<KeyEvent>{
             }
         }
 
-        dibujarPersonaje(juego);
         return juego;
     }
     public void dibujarPersonaje(Pane pane){
@@ -126,7 +159,9 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         rutas.put("4x4","4x4.png");
         String url = "auto.png";
         String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(nombreVehiculo);
-        Image imagen = new Image(path, 600/(columnas+1),600/(filas+1), true, true);
+        Image imagen = new Image(path, 200/(columnas+1),200/(filas+1), true, true);
+        posXJugador = 0;
+        posYJugador = 0;
         pane.getChildren().add(new ImageView(imagen));
     }
     public Button crearBoton(Pane pane, int posx, int posy, String texto){
