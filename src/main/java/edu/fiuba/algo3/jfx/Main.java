@@ -56,8 +56,19 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 
         Scene escenaJuego = this.crearScreenInicial();
         stage.setScene(escenaJuego);
-        escenaJuego.setOnKeyPressed(this);
+        escenaJuego.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                String tecla = event.getCode().toString();
+                mover_personaje(direcciones.get(tecla));
+            }
+        });
         stage.show();
+    }
+
+    public void mover_personaje(Direccion direccion) {
+        tablero.mover(direccion);
+        // Mover con setTranslateX y setTranslateY el jugador
     }
 
     public void crearDirecciones(){
@@ -69,11 +80,6 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         direcciones.put("RIGHT", new Derecha());
         direcciones.put("UP", new Arriba());
         direcciones.put("DOWN", new Abajo());
-    }
-    @Override
-    public void handle(KeyEvent event){
-        String tecla = event.getCode().toString();
-        tablero.mover(direcciones.get(tecla));
     }
 
     public Scene crearScreenInicial(){
