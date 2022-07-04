@@ -127,19 +127,13 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         String url = "auto.png";
         String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(nombreVehiculo);
         Image imagen = new Image(path, 600/(columnas+1),600/(filas+1), true, true);
-
         pane.getChildren().add(new ImageView(imagen));
-        System.out.println("Vehiculo creado");
-
-
     }
     public Button crearBoton(Pane pane, int posx, int posy, String texto){
         Button button = new Button(texto);
         button.setTranslateX(posx);
         button.setTranslateY(posy);
         pane.getChildren().add(button);
-
-
         return button;
     }
 
@@ -206,6 +200,5 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         escena.setRoot(crearEscenaPrincipal(columnas, filas));
         Jugador j = new Jugador("-", this.vehiculo);
         tablero = new Tablero(filas,columnas, j);
-        System.out.println(vehiculo.getClass());
     }
 }
