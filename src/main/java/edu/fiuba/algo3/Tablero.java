@@ -65,7 +65,7 @@ public class Tablero {
         this.jugador = jugador;
         // ToDo -> lanzar excepción si el tablero recibe el vehículo con una posición inválida
         /* this.posicionJugador = jugador.obtenerPosicion();
-         * this.posicionJugador = new Coordenada(Math.round((float) fil/2),0);
+         *this.posicionJugador = new Coordenada(Math.round((float) fil/2),0);
         */
         mapa = new Calle[2*filas - 1][2*columnas -1];
         mapaPrueba = new char[2*filas - 1][2*columnas -1];

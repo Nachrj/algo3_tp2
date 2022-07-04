@@ -2,40 +2,44 @@ package edu.fiuba.algo3.obstaculo;
 
 import edu.fiuba.algo3.coordenada.Direccion;
 import edu.fiuba.algo3.vehiculo.*;
-
-import java.util.Random;
+import edu.fiuba.algo3.GeneradorNumeros;
 
 public class ControlPolicial implements Obstaculo {
+    private final GeneradorNumeros generador;
+    public ControlPolicial(){
+        this.generador = new GeneradorNumeros();
+    }
+    public ControlPolicial(GeneradorNumeros generador){
+        this.generador = generador;
+    }
+
     @Override
     public int chocar(Vehiculo vehiculo, Direccion d){
         return vehiculo.chocarObstaculo(this, d);
     }
     @Override
     public int chocar(Auto auto, Direccion d){
-        Random random = new Random();
-        int min = 1, max = 11;
-        int rand = random.nextInt(max + min) + min;
-        if(rand > 5){
+        int min = 1, max = 10;
+        int rand = generador.obtenerNumeroAleatorio(min, max);
+        if(rand <= 5){
             return 3;
         }
         return 0;
     }
     @Override
     public int chocar(CuatroXCuatro cuatroXCuatro, Direccion d){
-        Random random = new Random();
-        int min = 1, max = 11;
-        int rand = random.nextInt(max + min) + min;
-        if(rand > 3){
+        int min = 1, max = 10;
+        int rand = generador.obtenerNumeroAleatorio(min, max);
+        if(rand <= 3){
             return 3;
         }
         return 0;
     }
     @Override
     public int chocar(Moto moto, Direccion d){
-        Random random = new Random();
-        int min = 1, max = 11;
-        int rand = random.nextInt(max + min) + min;
-        if(rand > 8){
+        int min = 1, max = 10;
+        int rand = generador.obtenerNumeroAleatorio(min, max);
+        if(rand <= 8){
             return 3;
         }
         return 0;

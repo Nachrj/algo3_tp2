@@ -4,9 +4,7 @@ package edu.fiuba.algo3;
 import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.coordenada.Derecha;
 import edu.fiuba.algo3.obstaculo.Pozo;
-import edu.fiuba.algo3.vehiculo.Auto;
-import edu.fiuba.algo3.vehiculo.CuatroXCuatro;
-import edu.fiuba.algo3.vehiculo.Moto;
+import edu.fiuba.algo3.vehiculo.*;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
 
