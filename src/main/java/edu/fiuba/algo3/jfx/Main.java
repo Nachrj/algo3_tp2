@@ -84,26 +84,24 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 
     public void mover_jugador(String tecla) {
         ImageView jugador = (ImageView)juego.getChildren().get(0);
-        int newX = 0;
-        int newY = 0;
+        double newX = 0;
+        double newY = 0;
         switch(tecla) {
             case "W":
-                newY -= altoUnidad;
-                posYJugador += (newY*(1.5));
+                newY -= altoUnidad*1.5;
                 break;
             case "A":
-                newX -= anchoUnidad;
-                posXJugador += (newX*(1.5));
+                newX -= anchoUnidad*1.5;
                 break;
             case "D":
-                newX += anchoUnidad;
-                posXJugador += (newX*(1.5));
+                newX += anchoUnidad*1.5;
                 break;
             case "S":
-                newY += anchoUnidad;
-                posYJugador += (newY*(1.5));
+                newY += anchoUnidad *1.5;
                 break;
         }
+        posXJugador+=newX;
+        posYJugador+=newY;
         jugador.setTranslateX(posXJugador);
         jugador.setTranslateY(posYJugador);
         tablero.mover(direcciones.get(tecla));
@@ -159,10 +157,12 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         rutas.put("4x4","4x4.png");
         String url = "auto.png";
         String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(nombreVehiculo);
-        Image imagen = new Image(path, 200/(columnas+1),200/(filas+1), true, true);
+        Image imagen = new Image(path, 300/(columnas),300/(filas), true, true);
         posXJugador = 0;
-        posYJugador = 0;
-        pane.getChildren().add(new ImageView(imagen));
+        posYJugador = altoUnidad*columnas/30;
+        ImageView personaje = new ImageView(imagen);
+        personaje.setTranslateY(posYJugador);
+        pane.getChildren().add(personaje);
     }
     public Button crearBoton(Pane pane, int posx, int posy, String texto){
         Button button = new Button(texto);
