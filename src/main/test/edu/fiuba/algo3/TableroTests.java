@@ -2,7 +2,9 @@ package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.coordenada.Izquierda;
-import edu.fiuba.algo3.vehiculo.Moto;
+import edu.fiuba.algo3.model.Jugador;
+import edu.fiuba.algo3.model.Tablero;
+import edu.fiuba.algo3.model.vehiculo.Moto;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

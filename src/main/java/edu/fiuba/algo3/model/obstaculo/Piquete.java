@@ -1,7 +1,7 @@
-package edu.fiuba.algo3.obstaculo;
+package edu.fiuba.algo3.model.obstaculo;
 
 import edu.fiuba.algo3.coordenada.Direccion;
-import edu.fiuba.algo3.vehiculo.*;
+import edu.fiuba.algo3.model.vehiculo.*;
 
 public class Piquete implements Obstaculo {
     @Override

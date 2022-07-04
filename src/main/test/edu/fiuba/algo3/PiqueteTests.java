@@ -3,10 +3,13 @@ package edu.fiuba.algo3;
 import edu.fiuba.algo3.coordenada.Arriba;
 import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.coordenada.Derecha;
-import edu.fiuba.algo3.obstaculo.Piquete;
-import edu.fiuba.algo3.vehiculo.Auto;
-import edu.fiuba.algo3.vehiculo.CuatroXCuatro;
-import edu.fiuba.algo3.vehiculo.Moto;
+import edu.fiuba.algo3.model.Calle;
+import edu.fiuba.algo3.model.Jugador;
+import edu.fiuba.algo3.model.Tablero;
+import edu.fiuba.algo3.model.obstaculo.Piquete;
+import edu.fiuba.algo3.model.vehiculo.Auto;
+import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.model.vehiculo.Moto;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
 

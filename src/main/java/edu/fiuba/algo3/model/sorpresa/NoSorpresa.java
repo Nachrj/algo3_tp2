@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.sorpresa;
+package edu.fiuba.algo3.model.sorpresa;
 
-import edu.fiuba.algo3.Jugador;
+import edu.fiuba.algo3.model.Jugador;
 
 public class NoSorpresa implements Sorpresa {
 

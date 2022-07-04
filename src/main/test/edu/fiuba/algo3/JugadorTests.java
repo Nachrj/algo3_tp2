@@ -1,14 +1,17 @@
 package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.coordenada.*;
-import edu.fiuba.algo3.obstaculo.Piquete;
-import edu.fiuba.algo3.obstaculo.Pozo;
-import edu.fiuba.algo3.sorpresa.CambioDeVehiculo;
-import edu.fiuba.algo3.sorpresa.SorpresaDesfavorable;
-import edu.fiuba.algo3.sorpresa.SorpresaFavorable;
-import edu.fiuba.algo3.vehiculo.Auto;
-import edu.fiuba.algo3.vehiculo.CuatroXCuatro;
-import edu.fiuba.algo3.vehiculo.Moto;
+import edu.fiuba.algo3.model.Calle;
+import edu.fiuba.algo3.model.Jugador;
+import edu.fiuba.algo3.model.Tablero;
+import edu.fiuba.algo3.model.obstaculo.Piquete;
+import edu.fiuba.algo3.model.obstaculo.Pozo;
+import edu.fiuba.algo3.model.sorpresa.CambioDeVehiculo;
+import edu.fiuba.algo3.model.sorpresa.SorpresaDesfavorable;
+import edu.fiuba.algo3.model.sorpresa.SorpresaFavorable;
+import edu.fiuba.algo3.model.vehiculo.Auto;
+import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.model.vehiculo.Moto;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 

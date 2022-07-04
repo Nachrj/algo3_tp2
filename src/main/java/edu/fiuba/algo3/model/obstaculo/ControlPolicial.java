@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.obstaculo;
+package edu.fiuba.algo3.model.obstaculo;
 
 import edu.fiuba.algo3.coordenada.Direccion;
-import edu.fiuba.algo3.vehiculo.*;
-import edu.fiuba.algo3.GeneradorNumeros;
+import edu.fiuba.algo3.model.vehiculo.*;
+import edu.fiuba.algo3.model.GeneradorNumeros;
 
 public class ControlPolicial implements Obstaculo {
     private final GeneradorNumeros generador;
