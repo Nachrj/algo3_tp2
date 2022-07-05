@@ -15,4 +15,7 @@ public class NoSorpresa implements Sorpresa {
     @Override
     public void activar(Jugador ignoredJ1){
     }
+    public String obtenerNombre(){
+        return "";
+    }
 }

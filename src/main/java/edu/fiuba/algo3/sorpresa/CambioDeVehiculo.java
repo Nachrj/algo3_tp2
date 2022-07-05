@@ -11,4 +11,7 @@ public class CambioDeVehiculo implements Sorpresa {
     public void activar(Jugador j1){
         j1.cambiarVehiculo();
     }
+    public String obtenerNombre(){
+        return "CambioDeVehiculo";
+    }
 }

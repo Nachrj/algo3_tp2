@@ -44,4 +44,8 @@ public class ControlPolicial implements Obstaculo {
         }
         return 0;
     }
+
+    public String obtenerNombre(){
+        return "Control";
+    }
 }

@@ -27,4 +27,9 @@ public class Pozo implements Obstaculo {
     public int chocar(Moto moto, Direccion d){
         return 3;
     }
+
+
+    public String obtenerNombre(){
+        return "Pozo";
+    }
 }

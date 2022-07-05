@@ -11,4 +11,7 @@ public class SorpresaDesfavorable implements Sorpresa {
     public void activar(Jugador j1){
         j1.modificarPorcentajeMovimientos((float) 1.25);
     }
+    public String obtenerNombre(){
+        return "SorpresaDesfavorable";
+    }
 }

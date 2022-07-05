@@ -78,7 +78,7 @@ public class Tablero {
                 else mapaPrueba[i][j] = '-';
             }
         }
-        mostrarMapaPrueba();
+        //mostrarMapaPrueba();
     }
 
     public int mover(Direccion d){
@@ -92,5 +92,9 @@ public class Tablero {
         }
         mostrarMapaPrueba();
         return mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(this.jugador, d);
+    }
+
+    public Calle[][] obtenerMapa(){
+        return this.mapa;
     }
 }

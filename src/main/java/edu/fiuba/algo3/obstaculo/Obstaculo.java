@@ -17,5 +17,6 @@ public interface Obstaculo {
 
     int chocar(Moto moto, Direccion d);
 
+    String obtenerNombre();
 
 }

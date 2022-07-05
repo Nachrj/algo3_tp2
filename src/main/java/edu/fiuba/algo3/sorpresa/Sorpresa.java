@@ -8,4 +8,5 @@ import edu.fiuba.algo3.Jugador;
 
 public interface Sorpresa {
     void activar(Jugador j1);
+    String obtenerNombre();
 }

@@ -22,4 +22,8 @@ public class Piquete implements Obstaculo {
     public int chocar(Moto moto, Direccion d){
         return 2;
     }
+
+    public String obtenerNombre(){
+        return "Piquete";
+    }
 }

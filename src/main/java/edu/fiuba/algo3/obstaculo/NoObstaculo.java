@@ -30,4 +30,9 @@ public class NoObstaculo implements Obstaculo {
     public int chocar(Moto moto, Direccion d){
         return 0;
     }
+
+
+    public String obtenerNombre(){
+        return "";
+    }
 }

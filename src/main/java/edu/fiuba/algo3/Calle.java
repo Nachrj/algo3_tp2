@@ -67,4 +67,11 @@ public class Calle {
         this.obstaculo = obs;
         //System.out.println("Se creo obstaculo:" + obs.getClass().getSimpleName());
     }
+
+    public Obstaculo obtenerObstaculo(){
+        return this.obstaculo;
+    }
+    public Sorpresa obtenerSorpresa(){
+        return this.sorpresa;
+    }
 }

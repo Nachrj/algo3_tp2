@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.jfx;
+import edu.fiuba.algo3.Calle;
 import edu.fiuba.algo3.Jugador;
 import edu.fiuba.algo3.Tablero;
 import edu.fiuba.algo3.coordenada.*;
+import edu.fiuba.algo3.sorpresa.Sorpresa;
 import edu.fiuba.algo3.vehiculo.Auto;
 import edu.fiuba.algo3.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.vehiculo.Moto;
@@ -39,6 +41,9 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     public static void main(String[] args) {
         launch(args);
     }
+
+    private int tamanoImagenFondoNegro = 4000;
+
     Tablero tablero;
     private String nombre = "";
     private int columnas = 0;
@@ -54,10 +59,13 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 
     private Pane juego;
     private Map<String, Direccion> direcciones = new HashMap<String,Direccion>();
+    private Map<String, String> rutas = new HashMap<String,String>();
+
     @Override
     public void start(Stage stage) throws Exception {
 
         this.crearDirecciones();
+        this.rutasImagenes();
         stage.setTitle("Prueba");
 
         Scene escenaJuego = this.crearScreenInicial();
@@ -76,14 +84,26 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         direcciones.put("UP", new Arriba());
         direcciones.put("DOWN", new Abajo());
     }
+
+    public void rutasImagenes(){
+        rutas.put("SorpresaFavorable", "sopresaFavorable.png");
+        rutas.put("SorpresaDesfavorable", "sorpresaDesfavorable.png");
+        rutas.put("CambioDeVehiculo", "cambioDeVehiculo.png");
+        rutas.put("Pozo", "pozo.png");
+        rutas.put("Piquete", "piquete.png");
+        rutas.put("Control", "control.png");
+        rutas.put("Meta", "meta.png");
+    }
     @Override
     public void handle(KeyEvent event){
         String tecla = event.getCode().toString();
-        mover_jugador(tecla);
+        moverJugadoryFondo(tecla);
     }
 
-    public void mover_jugador(String tecla) {
+    public void moverJugadoryFondo(String tecla) {
         ImageView jugador = (ImageView)juego.getChildren().get(0);
+        int len = juego.getChildren().size();
+        ImageView fondo = (ImageView)juego.getChildren().get(len-1);
         double newX = 0;
         double newY = 0;
         switch(tecla) {
@@ -104,6 +124,8 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         posYJugador+=newY;
         jugador.setTranslateX(posXJugador);
         jugador.setTranslateY(posYJugador);
+        fondo.setTranslateX(posXJugador-(tamanoImagenFondoNegro/2));
+        fondo.setTranslateY(posYJugador-(tamanoImagenFondoNegro/2));
         tablero.mover(direcciones.get(tecla));
     }
 
@@ -131,6 +153,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
             pasarPantalla(inicio, escena);
         });
         inicio.getChildren().add(label);
+
         return escena;
     }
 
@@ -151,13 +174,11 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         return juego;
     }
     public void dibujarPersonaje(Pane pane){
-        Map<String, String> rutas = new HashMap<String,String>();
         rutas.put("Moto", "moto.png");
         rutas.put("Auto", "auto.png");
         rutas.put("4x4","4x4.png");
-        String url = "auto.png";
         String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(nombreVehiculo);
-        Image imagen = new Image(path, 300/(columnas),300/(filas), true, true);
+        Image imagen = new Image(path, 300/(columnas*1.25),300/(filas*1.25), true, true);
         posXJugador = 0;
         posYJugador = altoUnidad*columnas/30;
         ImageView personaje = new ImageView(imagen);
@@ -208,6 +229,17 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         pane.getChildren().add(desplegable);
     }
 
+    public void dibujar(Pane pane, int posx, int posy, String ruta){
+
+        System.out.println("Quiero dibujar" + posx + posy + ruta);
+        ImageView dibujo = new ImageView(new Image(ruta));
+        dibujo.setFitHeight(50);
+        dibujo.setFitWidth(50);
+        dibujo.setTranslateX(posx);
+        dibujo.setTranslateY(posy);
+        pane.getChildren().add(dibujo);
+    }
+
     public void pasarPantalla(Pane pane, Scene escena){
         TextField inputNombre = (TextField)pane.getChildren().get(0);
         TextField inputColumnas = (TextField)pane.getChildren().get(1);
@@ -233,7 +265,38 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         columnas = Integer.valueOf(inputColumnas.getText());
         filas = Integer.valueOf(inputFilas.getText());
         escena.setRoot(crearEscenaPrincipal(columnas, filas));
-        Jugador j = new Jugador("-", this.vehiculo);
-        tablero = new Tablero(filas,columnas, j);
+        Jugador jugador = new Jugador("-", this.vehiculo);
+        tablero = new Tablero(filas, columnas, jugador);
+        Calle[][] calle = tablero.obtenerMapa();
+
+        String path = "file:"+System.getProperty("user.dir")+"/sprites/";
+        for(int i = 0; i <= 2*(filas - 1); i++ ){
+            for(int j = 0; j <= 2*(columnas - 1); j++){
+                if( (i % 2 == 0 && j % 2 != 0) || (i % 2 != 0 && j % 2 == 0) ){
+                    if(calle[i][j].obtenerObstaculo() != null){
+                        String nombre = calle[i][j].obtenerObstaculo().obtenerNombre();
+                        dibujar(juego, j*altoUnidad,i*anchoUnidad, path+rutas.get(nombre));
+
+                    }
+                    if(calle[i][j].obtenerSorpresa() != null){
+                        String nombre = calle[i][j].obtenerSorpresa().obtenerNombre();
+                        System.out.println(nombre);
+                        dibujar(juego, j*altoUnidad,i*anchoUnidad, path+rutas.get(nombre));
+                        System.out.println("Hay una sorpresa en la calle " + i + j);
+                    }
+                }
+            }
+        }
+        path = "file:"+System.getProperty("user.dir") + "/sprites/fondo_negro_circulo.png";
+        Image fondoNegroConCirculo = new Image(path, tamanoImagenFondoNegro,tamanoImagenFondoNegro, true, true);
+        juego.getChildren().add(new ImageView(fondoNegroConCirculo));
+
+        int len = juego.getChildren().size();
+        ImageView fondo = (ImageView)juego.getChildren().get(len-1);
+        fondo.setTranslateX(-(tamanoImagenFondoNegro/2));
+        fondo.setTranslateY(-(tamanoImagenFondoNegro/2));
+
+
+
     }
 }
