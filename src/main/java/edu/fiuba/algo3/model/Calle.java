@@ -4,8 +4,8 @@
  */
 package edu.fiuba.algo3.model;
 
-import edu.fiuba.algo3.coordenada.Coordenada;
-import edu.fiuba.algo3.coordenada.Direccion;
+import edu.fiuba.algo3.model.coordenada.Coordenada;
+import edu.fiuba.algo3.model.coordenada.Direccion;
 import edu.fiuba.algo3.model.obstaculo.NoObstaculo;
 import edu.fiuba.algo3.model.obstaculo.Obstaculo;
 import edu.fiuba.algo3.model.sorpresa.NoSorpresa;

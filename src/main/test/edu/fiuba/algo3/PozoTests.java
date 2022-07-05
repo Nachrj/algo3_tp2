@@ -1,8 +1,8 @@
 package edu.fiuba.algo3;
 
 
-import edu.fiuba.algo3.coordenada.Coordenada;
-import edu.fiuba.algo3.coordenada.Derecha;
+import edu.fiuba.algo3.model.coordenada.Coordenada;
+import edu.fiuba.algo3.model.coordenada.Derecha;
 import edu.fiuba.algo3.model.obstaculo.Pozo;
 import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;

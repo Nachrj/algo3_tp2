@@ -2,7 +2,7 @@ package edu.fiuba.algo3.jfx;
 
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
-import edu.fiuba.algo3.coordenada.*;
+import edu.fiuba.algo3.model.coordenada.*;
 import edu.fiuba.algo3.model.vehiculo.*;
 import edu.fiuba.algo3.view.PantallaInicio;
 import edu.fiuba.algo3.view.TableroGrafico;
@@ -68,26 +68,24 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
 
     public void mover_jugador(String tecla) {
-        int newX = 0;
-        int newY = 0;
+        double newX = 0;
+        double newY = 0;
         switch(tecla) {
             case "W":
-                newY -= altoUnidad;
-                posYJugador += (newY*(1.5));
+                newY -= altoUnidad*1.5;
                 break;
             case "A":
-                newX -= anchoUnidad;
-                posXJugador += (newX*(1.5));
+                newX -= anchoUnidad*1.5;
                 break;
             case "D":
-                newX += anchoUnidad;
-                posXJugador += (newX*(1.5));
+                newX += anchoUnidad*1.5;
                 break;
             case "S":
-                newY += anchoUnidad;
-                posYJugador += (newY*(1.5));
+                newY += anchoUnidad *1.5;
                 break;
         }
+        posXJugador+=newX;
+        posYJugador+=newY;
         tableroGrafico.setearPosicionesJugador(posXJugador,posYJugador);
         tablero.mover(direcciones.get(tecla));
     }

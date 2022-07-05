@@ -19,7 +19,7 @@ public class TableroGrafico extends Pane{
         altoUnidad = (int)(600/(filas*1.5+0.5));
 
         jugador = new JugadorGrafico();
-        Image imagen = jugador.dibujarPersonaje(this, nombreVehiculo , columnas, filas);
+        Image imagen = jugador.dibujarPersonaje(juego, nombreVehiculo , columnas, filas, altoUnidad, anchoUnidad);
 
         for(int i = 0; i < filas; i++) {
             for(int j = 0; j < columnas; j++) {
@@ -29,7 +29,7 @@ public class TableroGrafico extends Pane{
                 juego.getChildren().add(rectangle);
             }
         }
-        this.getChildren().add(new ImageView(imagen));
+        juego.getChildren().add(new ImageView(imagen));
         return juego;
     }
 

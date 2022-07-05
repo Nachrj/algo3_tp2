@@ -1,6 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.coordenada.Derecha;
+import edu.fiuba.algo3.model.coordenada.Derecha;
 import edu.fiuba.algo3.model.GeneradorNumeros;
 import edu.fiuba.algo3.model.obstaculo.ControlPolicial;
 import edu.fiuba.algo3.model.vehiculo.Auto;

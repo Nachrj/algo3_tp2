@@ -1,9 +1,9 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.coordenada.*;
 import edu.fiuba.algo3.model.Calle;
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
+import edu.fiuba.algo3.model.coordenada.*;
 import edu.fiuba.algo3.model.obstaculo.Piquete;
 import edu.fiuba.algo3.model.obstaculo.Pozo;
 import edu.fiuba.algo3.model.sorpresa.CambioDeVehiculo;
