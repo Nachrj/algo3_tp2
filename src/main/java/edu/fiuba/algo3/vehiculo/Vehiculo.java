@@ -16,9 +16,19 @@ import edu.fiuba.algo3.obstaculo.Obstaculo;
 
 public abstract class Vehiculo {
     protected Coordenada posicion;
+
+    protected Direccion ultimoMovimiento = null;
+
     public void mover(Direccion d){
         posicion.sumarCoordenadas(d.mover());
     }
+
+    public void reversa(){
+        if(ultimoMovimiento != null){
+            posicion.sumarCoordenadas(ultimoMovimiento.direccionOpuesta());
+        }
+    }
+
     public Coordenada obtenerPosicion(){
         return this.posicion;
     }

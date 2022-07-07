@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.obstaculo;
 
-import edu.fiuba.algo3.coordenada.Direccion;
 import edu.fiuba.algo3.vehiculo.*;
 import edu.fiuba.algo3.GeneradorNumeros;
 
@@ -13,7 +12,7 @@ public class ControlPolicial implements Obstaculo {
         this.generador = generador;
     }
     @Override
-    public int chocar(Auto auto, Direccion d){
+    public int chocar(Auto auto){
         int min = 1, max = 10;
         int rand = generador.obtenerNumeroAleatorio(min, max);
         if(rand <= 5){
@@ -22,7 +21,7 @@ public class ControlPolicial implements Obstaculo {
         return 0;
     }
     @Override
-    public int chocar(CuatroXCuatro cuatroXCuatro, Direccion d){
+    public int chocar(CuatroXCuatro cuatroXCuatro){
         int min = 1, max = 10;
         int rand = generador.obtenerNumeroAleatorio(min, max);
         if(rand <= 3){
@@ -31,7 +30,7 @@ public class ControlPolicial implements Obstaculo {
         return 0;
     }
     @Override
-    public int chocar(Moto moto, Direccion d){
+    public int chocar(Moto moto){
         int min = 1, max = 10;
         int rand = generador.obtenerNumeroAleatorio(min, max);
         if(rand <= 8){

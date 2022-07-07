@@ -16,8 +16,6 @@ import edu.fiuba.algo3.sorpresa.Sorpresa;
  * @author bruno
  */
 public class Calle {
-    Coordenada pos_inicio;
-    Coordenada pos_final;
     Sorpresa sorpresa;
     Obstaculo obstaculo;
 
@@ -25,30 +23,17 @@ public class Calle {
         this.sorpresa = NoSorpresa.conseguirInstancia();
         this.obstaculo = NoObstaculo.conseguirInstancia();
     }
-    public Calle (Coordenada c1, Coordenada c2) {
-        this.pos_inicio = c1;
-        this.pos_final = c2;
-        this.sorpresa = NoSorpresa.conseguirInstancia();
-        this.obstaculo = NoObstaculo.conseguirInstancia();
-    }
-    
-    public Calle (Coordenada c1, Coordenada c2, Obstaculo obs) {
-        this.pos_inicio = c1;
-        this.pos_final = c2;
+    public Calle (Obstaculo obs) {
         this.obstaculo = obs;
         this.sorpresa = NoSorpresa.conseguirInstancia();
     }
     
-    public Calle (Coordenada c1, Coordenada c2, Sorpresa sor) {
-        this.pos_inicio = c1;
-        this.pos_final = c2;
+    public Calle (Sorpresa sor) {
         this.sorpresa = sor;
         this.obstaculo = NoObstaculo.conseguirInstancia();
     }
     
-    public Calle (Coordenada c1, Coordenada c2, Obstaculo obs,Sorpresa sor) {
-        this.pos_inicio = c1;
-        this.pos_final = c2;
+    public Calle (Obstaculo obs,Sorpresa sor) {
         this.obstaculo = obs;
         this.sorpresa = sor;
     }

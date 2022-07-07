@@ -1,21 +1,20 @@
 package edu.fiuba.algo3.obstaculo;
 
-import edu.fiuba.algo3.coordenada.Direccion;
 import edu.fiuba.algo3.vehiculo.*;
 
 public class Piquete implements Obstaculo {
     @Override
-    public int chocar(Auto auto, Direccion d){
-        auto.mover(d.direccionOpuesta());
+    public int chocar(Auto auto){
+        auto.reversa();
         return 0;
     }
     @Override
-    public int chocar(CuatroXCuatro cuatroXCuatro, Direccion d){
-        cuatroXCuatro.mover(d.direccionOpuesta());
+    public int chocar(CuatroXCuatro cuatroXCuatro){
+        cuatroXCuatro.reversa();
         return 0;
     }
     @Override
-    public int chocar(Moto moto, Direccion d){
+    public int chocar(Moto moto){
         return 2;
     }
 

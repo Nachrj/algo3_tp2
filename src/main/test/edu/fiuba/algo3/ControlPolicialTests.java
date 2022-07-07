@@ -1,6 +1,5 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.coordenada.Derecha;
 import edu.fiuba.algo3.obstaculo.ControlPolicial;
 import edu.fiuba.algo3.vehiculo.*;
 import org.junit.jupiter.api.*;
@@ -12,8 +11,6 @@ public class ControlPolicialTests {
     GeneradorNumeros mockedGenerador = mock(GeneradorNumeros.class);
     ControlPolicial control = new ControlPolicial(mockedGenerador);
 
-    Derecha d = new Derecha();
-
     @Test
     public void test01MotoChocaConControlPolicialYSeGeneranNumerosEntre1y8YSuma3MovimientosPorCadaChoque(){
         when(mockedGenerador.obtenerNumeroAleatorio(1, 10)).thenReturn(1,2, 3, 4, 5, 6, 7, 8 );
@@ -21,7 +18,7 @@ public class ControlPolicialTests {
         int contador = 0;
 
         for(int i = 1; i <= 8; i++){
-            contador += control.chocar(moto, d );
+            contador += control.chocar(moto);
         }
 
         assertEquals(contador, 8*3);
@@ -34,7 +31,7 @@ public class ControlPolicialTests {
         int contador = 0;
 
         for(int i = 9; i <= 10; i++){
-            contador += control.chocar(moto, d );
+            contador += control.chocar(moto);
         }
 
         assertEquals(contador, 0);
@@ -47,7 +44,7 @@ public class ControlPolicialTests {
         int contador = 0;
 
         for(int i = 1; i <= 5; i++){
-            contador += control.chocar(auto, d );
+            contador += control.chocar(auto);
         }
 
         assertEquals(contador, 5*3);
@@ -60,7 +57,7 @@ public class ControlPolicialTests {
         int contador = 0;
 
         for(int i = 6; i <= 10; i++){
-            contador += control.chocar(auto, d );
+            contador += control.chocar(auto);
         }
 
         assertEquals(contador, 0);
@@ -73,7 +70,7 @@ public class ControlPolicialTests {
         int contador = 0;
 
         for(int i = 1; i <= 3; i++){
-            contador += control.chocar(camioneta, d );
+            contador += control.chocar(camioneta);
         }
 
         assertEquals(contador, 3*3);
@@ -86,7 +83,7 @@ public class ControlPolicialTests {
         int contador = 0;
 
         for(int i = 4; i <= 10; i++){
-            contador += control.chocar(camioneta, d );
+            contador += control.chocar(camioneta);
         }
 
         assertEquals(contador, 0);

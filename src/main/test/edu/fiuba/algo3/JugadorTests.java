@@ -9,27 +9,16 @@ import edu.fiuba.algo3.sorpresa.SorpresaFavorable;
 import edu.fiuba.algo3.vehiculo.Auto;
 import edu.fiuba.algo3.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.vehiculo.Moto;
-import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class JugadorTests {
-
-    Coordenada posicionJugador;
-    Coordenada c;
-    @BeforeEach
-    public void init() {
-        this.posicionJugador = new Coordenada(0, 0);
-        this.c = new Coordenada(1, 0);
-    }
-
     @Test
     public void test01MotoChocaConPozoYEsPenalizadoPor3Movimientos(){
         Jugador j = new Jugador("-", new Moto(new Coordenada(0, 0)));
-        Calle calle = new Calle();
-        calle.agregarObstaculo(new Pozo());
+        Calle calle = new Calle(new Pozo());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -41,8 +30,7 @@ public class JugadorTests {
     @Test
     public void test02AutoChocaConPozoYEsPenalizadoPor3Movimientos(){
         Jugador j = new Jugador("-", new Auto(new Coordenada(0, 0)));
-        Calle calle = new Calle();
-        calle.agregarObstaculo(new Pozo());
+        Calle calle = new Calle(new Pozo());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -54,8 +42,7 @@ public class JugadorTests {
     @Test
     public void test034x4ChocaConPrimerPozoYNoEsPenalizado(){
         Jugador j = new Jugador("-", new CuatroXCuatro(new Coordenada(0, 0)));
-        Calle calle = new Calle();
-        calle.agregarObstaculo(new Pozo());
+        Calle calle = new Calle(new Pozo());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -67,8 +54,7 @@ public class JugadorTests {
     @Test
     public void test04MotoEncuentraPiquetePenalizado2Movimientos(){
         Jugador j = new Jugador("x", new Moto(new Coordenada(0, 0)) );
-        Calle calle = new Calle();
-        calle.agregarObstaculo(new Piquete());
+        Calle calle = new Calle(new Piquete());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -80,7 +66,7 @@ public class JugadorTests {
     public void test054x4ChocaConCuartoPozoYEsPenalizado2Movimientos(){
         CuatroXCuatro camioneta = new CuatroXCuatro(new Coordenada(Math.round((float) 2/2),0));
         Jugador j = new Jugador("-", camioneta );
-        Calle calle = new Calle( posicionJugador, c, new Pozo());
+        Calle calle = new Calle(new Pozo());
         Tablero t = new Tablero(2, 2, j, calle);
 
         j.avanzar(new Derecha(), t);
@@ -93,8 +79,7 @@ public class JugadorTests {
     @Test
     public void test06AutoEncuentraSorpresaFavorable(){
         Jugador j = new Jugador("x", new Auto(new Coordenada(0, 0)));
-        Calle calle = new Calle();
-        calle.agregarSopresa(new SorpresaFavorable());
+        Calle calle = new Calle(new SorpresaFavorable());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -106,8 +91,7 @@ public class JugadorTests {
     @Test
     public void test07AutoEncuentraSorpresaDesfavorable(){
         Jugador j = new Jugador("-", new Auto(new Coordenada(0, 0)));
-        Calle calle = new Calle();
-        calle.agregarSopresa(new SorpresaDesfavorable());
+        Calle calle = new Calle(new SorpresaDesfavorable());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -119,8 +103,7 @@ public class JugadorTests {
     @Test
     public void test08JugadorConAutoEncuentraUnaSorpresaCambioVehiculoYPasaATenerUna4x4() {
         Jugador j = new Jugador("-", new Auto(new Coordenada(0, 0)));
-        Calle calle = new Calle();
-        calle.agregarSopresa(new CambioDeVehiculo());
+        Calle calle = new Calle(new CambioDeVehiculo());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -132,8 +115,7 @@ public class JugadorTests {
     @Test
     public void test09JugadorConMotoEncuentraUnaSorpresaCambioVehiculoYPasaATenerUnAuto() {
         Jugador j = new Jugador("-", new Moto(new Coordenada(0, 0)));
-        Calle calle = new Calle();
-        calle.agregarSopresa(new CambioDeVehiculo());
+        Calle calle = new Calle(new CambioDeVehiculo());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -145,8 +127,7 @@ public class JugadorTests {
     @Test
     public void test10JugadorCon4x4EncuentraUnaSorpresaCambioVehiculoYPasaATenerUnaMoto() {
         Jugador j = new Jugador("-", new CuatroXCuatro(new Coordenada(0, 0)));
-        Calle calle = new Calle();
-        calle.agregarSopresa(new CambioDeVehiculo());
+        Calle calle = new Calle(new CambioDeVehiculo());
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
@@ -162,9 +143,7 @@ public class JugadorTests {
         Direccion d = new Derecha();
         Tablero mockedTablero = mock(Tablero.class);
         when(mockedTablero.mover(d)).thenReturn(1);
-        Calle calle = new Calle();
-        calle.agregarObstaculo(new Pozo());
-        calle.agregarSopresa(new SorpresaFavorable());
+        Calle calle = new Calle(new Pozo(), new SorpresaFavorable());
         Tablero tablero = new Tablero(1, 2, j, calle);
 
         for(int i = 0; i < 20; i++) {

@@ -8,6 +8,8 @@ import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.coordenada.Direccion;
 
 public class Tablero {
+    static final int NO_AVANZO = 0;
+    static final int AVANZO = 1;
     private final int filas;
     private final int columnas;
     private final Jugador jugador;
@@ -77,22 +79,21 @@ public class Tablero {
         }
     }
 
-    // Devuelve 0 si choca contra el borde, 1 si se pudo mover
-    public int mover(Direccion d){
+    public int mover(Direccion direc){
         Coordenada coordenadaMapa = new Coordenada(2* jugador.obtenerPosicion().x(), 2* jugador.obtenerPosicion().y());
-        coordenadaMapa.sumarCoordenadas(d.mover());
+        coordenadaMapa.sumarCoordenadas(direc);
 
         mapaPrueba[2* jugador.obtenerPosicion().x()][2* jugador.obtenerPosicion().y()] = '-';
-        jugador.obtenerPosicion().sumarCoordenadas(d.mover());
+        jugador.obtenerPosicion().sumarCoordenadas(direc);
 
         if(posicionFueraDeRango(jugador.obtenerPosicion())){
-            jugador.obtenerPosicion().sumarCoordenadas(d.direccionOpuesta().mover());
-            return 0;
+            jugador.obtenerPosicion().sumarCoordenadas(direc.direccionOpuesta());
+            return NO_AVANZO;
         }
         mapaPrueba[2* jugador.obtenerPosicion().x()][2* jugador.obtenerPosicion().y()] = 'J';
         mostrarMapaPrueba();
-        mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(this.jugador, d);
-        return 1;
+        mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(this.jugador, direc);
+        return AVANZO;
     }
 
     public Calle[][] obtenerMapa(){

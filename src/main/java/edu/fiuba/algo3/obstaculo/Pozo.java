@@ -4,23 +4,22 @@
  */
 package edu.fiuba.algo3.obstaculo;
 
-import edu.fiuba.algo3.coordenada.Direccion;
 import edu.fiuba.algo3.vehiculo.*;
 
 public class Pozo implements Obstaculo {
     @Override
-    public int chocar(Auto auto, Direccion d){
+    public int chocar(Auto auto){
         return 3;
     }
     @Override
-    public int chocar(CuatroXCuatro cuatroXCuatro, Direccion d){
+    public int chocar(CuatroXCuatro cuatroXCuatro){
         cuatroXCuatro.chocarConPozo();
         if (cuatroXCuatro.choquesConPozos() > 3)
             return 2;
         return 0;
     }
     @Override
-    public int chocar(Moto moto, Direccion d){
+    public int chocar(Moto moto){
         return 3;
     }
 

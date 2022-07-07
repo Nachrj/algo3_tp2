@@ -33,6 +33,7 @@ public class CuatroXCuatro extends Vehiculo {
 
     @Override
     public int chocarObstaculo(Obstaculo obstaculo, Direccion d){
-        return obstaculo.chocar(this, d);
+        this.ultimoMovimiento = d;
+        return obstaculo.chocar(this);
     }
 }

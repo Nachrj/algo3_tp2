@@ -21,6 +21,11 @@ public class Coordenada {
         posY += coordenada.posY;
     }
 
+    public void sumarCoordenadas(Direccion direccion){
+        this.sumarCoordenadas(direccion.mover());
+    }
+
+
     public int x(){
         return posX;
     }

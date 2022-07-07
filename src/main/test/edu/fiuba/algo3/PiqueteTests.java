@@ -24,7 +24,7 @@ public class PiqueteTests {
         Derecha d = new Derecha();
         Moto mockedMoto = mock(Moto.class);
 
-        assertEquals(2, p.chocar(mockedMoto, d));
+        assertEquals(2, p.chocar(mockedMoto));
     }
 
     @Test
