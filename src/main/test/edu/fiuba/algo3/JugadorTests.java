@@ -28,12 +28,12 @@ public class JugadorTests {
     @Test
     public void test01MotoChocaConPozoYEsPenalizadoPor3Movimientos(){
         Jugador j = new Jugador("-", new Moto(new Coordenada(0, 0)));
-        Calle calle = new Calle( posicionJugador, c, new Pozo());
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Calle calle = new Calle();
+        calle.agregarObstaculo(new Pozo());
 
-        j.avanzar(d, mockedTablero );
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
 
         assertEquals( 4, j.obtenerMovimientos());
     }
@@ -41,12 +41,12 @@ public class JugadorTests {
     @Test
     public void test02AutoChocaConPozoYEsPenalizadoPor3Movimientos(){
         Jugador j = new Jugador("-", new Auto(new Coordenada(0, 0)));
-        Calle calle = new Calle( posicionJugador, c, new Pozo());
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Calle calle = new Calle();
+        calle.agregarObstaculo(new Pozo());
 
-        j.avanzar( d, mockedTablero );
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
 
         assertEquals( 4, j.obtenerMovimientos());
     }
@@ -54,12 +54,12 @@ public class JugadorTests {
     @Test
     public void test034x4ChocaConPrimerPozoYNoEsPenalizado(){
         Jugador j = new Jugador("-", new CuatroXCuatro(new Coordenada(0, 0)));
-        Calle calle = new Calle( posicionJugador, c, new Pozo());
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Calle calle = new Calle();
+        calle.agregarObstaculo(new Pozo());
 
-        j.avanzar( d, mockedTablero );
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
 
         assertEquals( 1, j.obtenerMovimientos());
     }
@@ -67,12 +67,12 @@ public class JugadorTests {
     @Test
     public void test04MotoEncuentraPiquetePenalizado2Movimientos(){
         Jugador j = new Jugador("x", new Moto(new Coordenada(0, 0)) );
-        Calle calle = new Calle( new Coordenada(0,0), c, new Piquete());
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Calle calle = new Calle();
+        calle.agregarObstaculo(new Piquete());
 
-        j.avanzar( d, mockedTablero );
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
 
         assertEquals( 3, j.obtenerMovimientos());
     }
@@ -93,65 +93,64 @@ public class JugadorTests {
     @Test
     public void test06AutoEncuentraSorpresaFavorable(){
         Jugador j = new Jugador("x", new Auto(new Coordenada(0, 0)));
-        Calle calle = new Calle( posicionJugador, c, new SorpresaFavorable());
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Calle calle = new Calle();
+        calle.agregarSopresa(new SorpresaFavorable());
 
-        j.avanzar(d, mockedTablero);
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
+
         assertEquals(Math.round(1 * 0.8), j.obtenerMovimientos());
     }
 
     @Test
     public void test07AutoEncuentraSorpresaDesfavorable(){
         Jugador j = new Jugador("-", new Auto(new Coordenada(0, 0)));
-        Calle calle = new Calle( posicionJugador, c, new SorpresaDesfavorable());
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Calle calle = new Calle();
+        calle.agregarSopresa(new SorpresaDesfavorable());
 
-        j.avanzar(d, mockedTablero);
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
+
         assertEquals(Math.round(1 * 1.25), j.obtenerMovimientos());
     }
 
     @Test
     public void test08JugadorConAutoEncuentraUnaSorpresaCambioVehiculoYPasaATenerUna4x4() {
-        Calle calle = new Calle( posicionJugador, c, new CambioDeVehiculo());
-        Auto m = new Auto(new Coordenada(0, 0));
-        Jugador j = new Jugador("-", m);
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Jugador j = new Jugador("-", new Auto(new Coordenada(0, 0)));
+        Calle calle = new Calle();
+        calle.agregarSopresa(new CambioDeVehiculo());
 
-        j.avanzar(d, mockedTablero);
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
 
         assertEquals(CuatroXCuatro.class, j.obtenerVehiculo().getClass());
     }
 
     @Test
     public void test09JugadorConMotoEncuentraUnaSorpresaCambioVehiculoYPasaATenerUnAuto() {
-        Calle calle = new Calle( posicionJugador, c, new CambioDeVehiculo());
-        Moto m = new Moto(new Coordenada(0, 0));
-        Jugador j = new Jugador("-", m);
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Jugador j = new Jugador("-", new Moto(new Coordenada(0, 0)));
+        Calle calle = new Calle();
+        calle.agregarSopresa(new CambioDeVehiculo());
 
-        j.avanzar(d, mockedTablero);
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
 
         assertEquals(Auto.class, j.obtenerVehiculo().getClass());
     }
 
     @Test
     public void test10JugadorCon4x4EncuentraUnaSorpresaCambioVehiculoYPasaATenerUnaMoto() {
-        Calle calle = new Calle( posicionJugador, c, new CambioDeVehiculo());
-        CuatroXCuatro v = new CuatroXCuatro(new Coordenada(0, 0));
-        Direccion d = new Derecha();
-        Jugador j = new Jugador("-", v);
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        Jugador j = new Jugador("-", new CuatroXCuatro(new Coordenada(0, 0)));
+        Calle calle = new Calle();
+        calle.agregarSopresa(new CambioDeVehiculo());
 
-        j.avanzar(d, mockedTablero);
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
+        j.avanzar(new Derecha(), tablero );
 
         assertEquals(Moto.class, j.obtenerVehiculo().getClass());
     }
@@ -161,18 +160,18 @@ public class JugadorTests {
     public void test11AutoEncuentraUnPozoYUnaSorpresaFavorableEnMismaCalle() {
         Jugador j = new Jugador("-", new Auto(new Coordenada(0, 0)));
         Direccion d = new Derecha();
-        // Creamos una calle sin obs. ni sorp. para aumentar movimiento totales
-        Calle calleVacia = new Calle( posicionJugador, c);
         Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(calleVacia.transitar(j, d));
+        when(mockedTablero.mover(d)).thenReturn(1);
+        Calle calle = new Calle();
+        calle.agregarObstaculo(new Pozo());
+        calle.agregarSopresa(new SorpresaFavorable());
+        Tablero tablero = new Tablero(1, 2, j, calle);
+
         for(int i = 0; i < 20; i++) {
             j.avanzar(d, mockedTablero);
-            // Como no verificamos sentido, podemos hacer 5 a la derecha con una calle
         }
-        Calle calle = new Calle( posicionJugador, new Coordenada(1,0), new Pozo(), new SorpresaFavorable());
-        when(mockedTablero.mover(d)).thenReturn(calle.transitar(j, d));
+        j.avanzar(d, tablero);
 
-        j.avanzar(d, mockedTablero);
         assertEquals((Math.round( 20 * 0.8)) + 4, j.obtenerMovimientos());
     }
 }

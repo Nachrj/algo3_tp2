@@ -53,19 +53,17 @@ public class Calle {
         this.sorpresa = sor;
     }
 
-    public int transitar(Jugador j, Direccion d){
+    public void transitar(Jugador j, Direccion d){
         this.sorpresa.activar(j);
-        return (1 + this.obstaculo.chocar(j.obtenerVehiculo(), d));
+        j.chocar(this.obstaculo, d);
     }
     
     public void agregarSopresa(Sorpresa sor){
         this.sorpresa = sor;
-        //System.out.println("Se creo sorpresa:" + sor.getClass().getSimpleName());
     }
     
     public void agregarObstaculo(Obstaculo obs){
         this.obstaculo = obs;
-        //System.out.println("Se creo obstaculo:" + obs.getClass().getSimpleName());
     }
 
     public Obstaculo obtenerObstaculo(){

@@ -12,11 +12,6 @@ public class ControlPolicial implements Obstaculo {
     public ControlPolicial(GeneradorNumeros generador){
         this.generador = generador;
     }
-
-    @Override
-    public int chocar(Vehiculo vehiculo, Direccion d){
-        return vehiculo.chocarObstaculo(this, d);
-    }
     @Override
     public int chocar(Auto auto, Direccion d){
         int min = 1, max = 10;

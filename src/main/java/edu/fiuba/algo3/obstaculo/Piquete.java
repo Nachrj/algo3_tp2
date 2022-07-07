@@ -5,10 +5,6 @@ import edu.fiuba.algo3.vehiculo.*;
 
 public class Piquete implements Obstaculo {
     @Override
-    public int chocar(Vehiculo vehiculo, Direccion d){
-        return vehiculo.chocarObstaculo(this, d);
-    }
-    @Override
     public int chocar(Auto auto, Direccion d){
         auto.mover(d.direccionOpuesta());
         return 0;

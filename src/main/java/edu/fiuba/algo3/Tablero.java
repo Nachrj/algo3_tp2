@@ -15,10 +15,7 @@ public class Tablero {
     private final char[][] mapaPrueba;
 
     private boolean posicionFueraDeRango(Coordenada destino ){
-        if(destino.x() > filas || destino.x() < 0){
-            return true;
-        }
-        return destino.y() > columnas || destino.y() < 0;
+        return (destino.x() >= filas || destino.x() < 0) || (destino.y() >= columnas || destino.y() < 0);
     }
 
     public Coordenada obtenerPosicionJugador(){
@@ -41,11 +38,11 @@ public class Tablero {
         this.filas = fil;
         this.columnas = col;
         this.jugador = jugador;
-        //posicionJugador = new Coordenada(Math.round((float) fil/2),0);
 
         ConstructorCalle c = new ConstructorCalle();
         mapa = new Calle[2*filas - 1][2*columnas -1];
         mapaPrueba = new char[2*filas - 1][2*columnas -1];
+
         for(int i = 0; i <= 2*(filas - 1); i++ ){
             for(int j = 0; j <= 2*(columnas - 1); j++){
                 if( (i % 2 == 0 && j % 2 != 0) || (i % 2 != 0 && j % 2 == 0) ){
@@ -78,20 +75,24 @@ public class Tablero {
                 else mapaPrueba[i][j] = '-';
             }
         }
-        //mostrarMapaPrueba();
     }
 
+    // Devuelve 0 si choca contra el borde, 1 si se pudo mover
     public int mover(Direccion d){
         Coordenada coordenadaMapa = new Coordenada(2* jugador.obtenerPosicion().x(), 2* jugador.obtenerPosicion().y());
         coordenadaMapa.sumarCoordenadas(d.mover());
+
+        mapaPrueba[2* jugador.obtenerPosicion().x()][2* jugador.obtenerPosicion().y()] = '-';
         jugador.obtenerPosicion().sumarCoordenadas(d.mover());
 
         if(posicionFueraDeRango(jugador.obtenerPosicion())){
             jugador.obtenerPosicion().sumarCoordenadas(d.direccionOpuesta().mover());
             return 0;
         }
+        mapaPrueba[2* jugador.obtenerPosicion().x()][2* jugador.obtenerPosicion().y()] = 'J';
         mostrarMapaPrueba();
-        return mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(this.jugador, d);
+        mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(this.jugador, d);
+        return 1;
     }
 
     public Calle[][] obtenerMapa(){

@@ -9,10 +9,6 @@ import edu.fiuba.algo3.vehiculo.*;
 
 public class Pozo implements Obstaculo {
     @Override
-    public int chocar(Vehiculo vehiculo, Direccion d){
-        return vehiculo.chocarObstaculo(this, d);
-    }
-    @Override
     public int chocar(Auto auto, Direccion d){
         return 3;
     }

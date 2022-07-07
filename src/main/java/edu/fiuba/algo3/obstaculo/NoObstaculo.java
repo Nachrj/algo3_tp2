@@ -13,11 +13,6 @@ public class NoObstaculo implements Obstaculo {
         }
         return no_obstaculo_instancia;
     }
-
-    @Override
-    public int chocar(Vehiculo vehiculo, Direccion d){
-        return 0;
-    }
     @Override
     public int chocar(Auto auto, Direccion d){
         return 0;

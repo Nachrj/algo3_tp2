@@ -6,6 +6,7 @@ package edu.fiuba.algo3;
 
 import edu.fiuba.algo3.coordenada.Direccion;
 import edu.fiuba.algo3.coordenada.Coordenada;
+import edu.fiuba.algo3.obstaculo.Obstaculo;
 import edu.fiuba.algo3.vehiculo.Vehiculo;
 
 /**
@@ -24,7 +25,8 @@ public class Jugador {
     }
     
     public void avanzar (Direccion d, Tablero tablero) {
-        this.movimientos += tablero.mover(d);
+        int valor = tablero.mover(d);
+        movimientos += valor;
     }
 
     public int obtenerMovimientos(){
@@ -34,12 +36,17 @@ public class Jugador {
     public Coordenada obtenerPosicion(){
         return this.vehiculo.obtenerPosicion();
     }
+
     public void cambiarVehiculo(){
         this.vehiculo = this.vehiculo.cambiar();
     }
 
     public Vehiculo obtenerVehiculo(){
         return this.vehiculo;
+    }
+
+    public void chocar(Obstaculo obs, Direccion d){
+        movimientos += vehiculo.chocarObstaculo(obs, d);
     }
 
     public void modificarPorcentajeMovimientos(float porcentaje) {
