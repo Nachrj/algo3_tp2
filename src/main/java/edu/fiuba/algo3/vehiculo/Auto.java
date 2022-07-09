@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.vehiculo;
 
 import edu.fiuba.algo3.coordenada.Coordenada;
-import edu.fiuba.algo3.coordenada.Direccion;
 import edu.fiuba.algo3.obstaculo.Obstaculo;
 
 public class Auto extends Vehiculo {
@@ -16,8 +15,7 @@ public class Auto extends Vehiculo {
         return new CuatroXCuatro(this.posicion);
     }
     @Override
-    public int chocarObstaculo(Obstaculo obstaculo, Direccion d){
-        this.ultimoMovimiento = d;
+    public int chocarObstaculo(Obstaculo obstaculo){
         return obstaculo.chocar(this);
     }
 }

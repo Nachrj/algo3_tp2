@@ -126,7 +126,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         jugador.setTranslateY(posYJugador);
         fondo.setTranslateX(posXJugador-(tamanoImagenFondoNegro/2));
         fondo.setTranslateY(posYJugador-(tamanoImagenFondoNegro/2));
-        tablero.mover(direcciones.get(tecla));
+        tablero.moverJugador(direcciones.get(tecla));
     }
 
     public Scene crearScreenInicial(){

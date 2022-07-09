@@ -19,13 +19,10 @@ public class SorpresasTests {
     public void test01JugadorAbreSorpresaFavorableYPierdeEl20PorcientoDeSusMovimientos(){
         Moto mockedMoto = mock(Moto.class);
         Jugador j = new Jugador("-", mockedMoto);
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(1);
         SorpresaFavorable s = new SorpresaFavorable();
 
         for(int i = 0; i < 10; i++) {
-            j.avanzar(d, mockedTablero);
+            j.sumarMovimiento();
         }
 
         s.activar(j);
@@ -37,13 +34,10 @@ public class SorpresasTests {
     public void test02JugadorAbreSorpresaDesfavorableYSumaEl25PorcientoDeSusMovimientos(){
         Moto mockedMoto = mock(Moto.class);
         Jugador j = new Jugador("-", mockedMoto);
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(1);
         SorpresaDesfavorable s = new SorpresaDesfavorable();
 
         for(int i = 0; i < 8; i++) {
-            j.avanzar(d, mockedTablero);
+            j.sumarMovimiento();
         }
 
         s.activar(j);

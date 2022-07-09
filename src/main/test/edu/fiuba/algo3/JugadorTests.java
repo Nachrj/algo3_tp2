@@ -22,7 +22,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals( 4, j.obtenerMovimientos());
     }
@@ -34,7 +34,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals( 4, j.obtenerMovimientos());
     }
@@ -46,7 +46,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals( 1, j.obtenerMovimientos());
     }
@@ -58,7 +58,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals( 3, j.obtenerMovimientos());
     }
@@ -67,12 +67,12 @@ public class JugadorTests {
         CuatroXCuatro camioneta = new CuatroXCuatro(new Coordenada(Math.round((float) 2/2),0));
         Jugador j = new Jugador("-", camioneta );
         Calle calle = new Calle(new Pozo());
-        Tablero t = new Tablero(2, 2, j, calle);
+        Tablero tablero = new Tablero(2, 2, j, calle);
 
-        j.avanzar(new Derecha(), t);
-        j.avanzar(new Arriba(), t);
-        j.avanzar(new Izquierda(), t);
-        j.avanzar(new Abajo(), t);
+        tablero.moverJugador(new Derecha());
+        tablero.moverJugador(new Arriba());
+        tablero.moverJugador(new Izquierda());
+        tablero.moverJugador(new Abajo());
 
         assertEquals( 6, j.obtenerMovimientos());
     }
@@ -83,7 +83,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals(Math.round(1 * 0.8), j.obtenerMovimientos());
     }
@@ -95,7 +95,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals(Math.round(1 * 1.25), j.obtenerMovimientos());
     }
@@ -107,7 +107,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals(CuatroXCuatro.class, j.obtenerVehiculo().getClass());
     }
@@ -119,7 +119,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals(Auto.class, j.obtenerVehiculo().getClass());
     }
@@ -131,7 +131,7 @@ public class JugadorTests {
 
         Tablero tablero = new Tablero(1, 2, j, calle);
 
-        j.avanzar(new Derecha(), tablero );
+        tablero.moverJugador(new Derecha());
 
         assertEquals(Moto.class, j.obtenerVehiculo().getClass());
     }
@@ -140,16 +140,13 @@ public class JugadorTests {
     @Test
     public void test11AutoEncuentraUnPozoYUnaSorpresaFavorableEnMismaCalle() {
         Jugador j = new Jugador("-", new Auto(new Coordenada(0, 0)));
-        Direccion d = new Derecha();
-        Tablero mockedTablero = mock(Tablero.class);
-        when(mockedTablero.mover(d)).thenReturn(1);
         Calle calle = new Calle(new Pozo(), new SorpresaFavorable());
         Tablero tablero = new Tablero(1, 2, j, calle);
 
         for(int i = 0; i < 20; i++) {
-            j.avanzar(d, mockedTablero);
+            j.sumarMovimiento();
         }
-        j.avanzar(d, tablero);
+        tablero.moverJugador(new Derecha());
 
         assertEquals((Math.round( 20 * 0.8)) + 4, j.obtenerMovimientos());
     }

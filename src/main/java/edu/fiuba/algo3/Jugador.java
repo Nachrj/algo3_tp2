@@ -23,16 +23,15 @@ public class Jugador {
         vehiculo = v;
         movimientos = 0;
     }
-    
-    public void avanzar (Direccion d, Tablero tablero) {
-        int valor = tablero.mover(d);
-        movimientos += valor;
+    public void avanzar(Direccion d){
+        this.vehiculo.mover(d);
     }
-
-    public int obtenerMovimientos(){
-        return this.movimientos;
+    public void reversa(){
+        this.vehiculo.reversa();
     }
-
+    public void sumarMovimiento(){
+        movimientos++;
+    }
     public Coordenada obtenerPosicion(){
         return this.vehiculo.obtenerPosicion();
     }
@@ -40,16 +39,16 @@ public class Jugador {
     public void cambiarVehiculo(){
         this.vehiculo = this.vehiculo.cambiar();
     }
-
-    public Vehiculo obtenerVehiculo(){
-        return this.vehiculo;
+    public void chocar(Obstaculo obs){
+        movimientos += vehiculo.chocarObstaculo(obs);
     }
-
-    public void chocar(Obstaculo obs, Direccion d){
-        movimientos += vehiculo.chocarObstaculo(obs, d);
-    }
-
     public void modificarPorcentajeMovimientos(float porcentaje) {
         this.movimientos = Math.round(this.movimientos * porcentaje);
+    }
+    public int obtenerMovimientos(){
+        return this.movimientos;
+    }
+    public Vehiculo obtenerVehiculo(){
+        return this.vehiculo;
     }
 }

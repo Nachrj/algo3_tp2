@@ -21,7 +21,6 @@ public class PiqueteTests {
 
     @Test
     public void test01MotoChocaConPiqueteYPenalizaCon2Movimientos(){
-        Derecha d = new Derecha();
         Moto mockedMoto = mock(Moto.class);
 
         assertEquals(2, p.chocar(mockedMoto));
@@ -33,12 +32,12 @@ public class PiqueteTests {
         Jugador j = new Jugador("-", auto);
         Calle c = new Calle();
         c.agregarObstaculo(new Piquete());
-        Tablero t = new Tablero(2, 2, j, c);
+        Tablero tablero = new Tablero(2, 2, j, c);
 
         Coordenada posicionFinalEsperada = new Coordenada(Math.round((float) 2/2),0);
 
-        j.avanzar(new Derecha(), t);
-        j.avanzar(new Arriba(), t);
+        tablero.moverJugador(new Derecha());
+        tablero.moverJugador(new Arriba());
 
         assertTrue(j.obtenerPosicion().equals(posicionFinalEsperada));
     }
@@ -47,14 +46,13 @@ public class PiqueteTests {
     public void test034x4ChocaConPiqueteYNoPuedeAvanzar(){
         CuatroXCuatro camioneta = new CuatroXCuatro(new Coordenada(Math.round((float) 2/2),0));
         Jugador j = new Jugador("-", camioneta);
-        Calle c = new Calle();
-        c.agregarObstaculo(new Piquete());
-        Tablero t = new Tablero(2, 2, j, c);
+        Calle c = new Calle(new Piquete());
+        Tablero tablero = new Tablero(2, 2, j, c);
 
         Coordenada posicionFinalEsperada = new Coordenada(Math.round((float) 2/2),0);
 
-        j.avanzar(new Derecha(), t);
-        j.avanzar(new Arriba(), t);
+        tablero.moverJugador(new Derecha());
+        tablero.moverJugador(new Arriba());
 
         assertTrue(j.obtenerPosicion().equals(posicionFinalEsperada));
     }
@@ -63,16 +61,15 @@ public class PiqueteTests {
     public void test04MotoChocaConPiqueteYPuedeAvanzar(){
         Moto moto = new Moto(new Coordenada(Math.round((float) 2/2),0));
         Jugador j = new Jugador("-", moto);
-        Calle c = new Calle();
-        c.agregarObstaculo(new Piquete());
-        Tablero t = new Tablero(2, 2, j, c);
+        Calle c = new Calle(new Piquete());
+        Tablero tablero = new Tablero(2, 2, j, c);
 
         Coordenada posicionFinalEsperada = new Coordenada(Math.round((float) 2/2),0);
 
-        j.avanzar(new Derecha(), t);
+        tablero.moverJugador(new Derecha());
         posicionFinalEsperada.sumarCoordenadas(new Derecha().mover());
 
-        j.avanzar(new Arriba(), t);
+        tablero.moverJugador(new Arriba());
         posicionFinalEsperada.sumarCoordenadas(new Arriba().mover());
 
         assertTrue(j.obtenerPosicion().equals(posicionFinalEsperada));
@@ -82,12 +79,11 @@ public class PiqueteTests {
     public void test05AutoChocaConPiquete2vecesYJugadorSuma2Movimientos(){
         Auto auto = new Auto(new Coordenada(Math.round((float) 2/2),0));
         Jugador j = new Jugador("-", auto);
-        Calle c = new Calle();
-        c.agregarObstaculo(new Piquete());
-        Tablero t = new Tablero(2, 2, j, c);
+        Calle c = new Calle(new Piquete());
+        Tablero tablero = new Tablero(2, 2, j, c);
 
-        j.avanzar(new Derecha(), t);
-        j.avanzar(new Arriba(), t);
+        tablero.moverJugador(new Derecha());
+        tablero.moverJugador(new Arriba());
 
         assertEquals(2, j.obtenerMovimientos());
     }
@@ -96,12 +92,11 @@ public class PiqueteTests {
     public void test064x4ChocaConPiquete2vecesYJugadorSuma2Movimientos(){
         CuatroXCuatro camioneta = new CuatroXCuatro(new Coordenada(Math.round((float) 2/2),0));
         Jugador j = new Jugador("-", camioneta);
-        Calle c = new Calle();
-        c.agregarObstaculo(new Piquete());
-        Tablero t = new Tablero(2, 2, j, c);
+        Calle c = new Calle(new Piquete());
+        Tablero tablero = new Tablero(2, 2, j, c);
 
-        j.avanzar(new Derecha(), t);
-        j.avanzar(new Arriba(), t);
+        tablero.moverJugador(new Derecha());
+        tablero.moverJugador(new Arriba());
 
         assertEquals(2, j.obtenerMovimientos());
     }

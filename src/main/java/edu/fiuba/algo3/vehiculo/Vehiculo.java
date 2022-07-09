@@ -8,18 +8,13 @@ import edu.fiuba.algo3.coordenada.Coordenada;
 import edu.fiuba.algo3.coordenada.Direccion;
 import edu.fiuba.algo3.obstaculo.Obstaculo;
 
-/**
- *
- * @author bruno
- * Avanzable (para reemplazar coomportamiento)
- */
-
 public abstract class Vehiculo {
     protected Coordenada posicion;
 
     protected Direccion ultimoMovimiento = null;
 
     public void mover(Direccion d){
+        ultimoMovimiento = d;
         posicion.sumarCoordenadas(d.mover());
     }
 
@@ -32,7 +27,8 @@ public abstract class Vehiculo {
     public Coordenada obtenerPosicion(){
         return this.posicion;
     }
+
     public abstract Vehiculo cambiar();
 
-    public abstract int chocarObstaculo(Obstaculo obstaculo, Direccion d);
+    public abstract int chocarObstaculo(Obstaculo obstaculo);
 }
