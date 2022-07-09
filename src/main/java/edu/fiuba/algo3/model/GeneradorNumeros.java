@@ -1,4 +1,4 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.model;
 
 public class GeneradorNumeros {
     // incluye a los valores min y max

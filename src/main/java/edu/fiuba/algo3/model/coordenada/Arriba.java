@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.coordenada;
+package edu.fiuba.algo3.model.coordenada;
 
 public class Arriba implements Direccion {
 

@@ -1,7 +1,10 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.obstaculo.ControlPolicial;
-import edu.fiuba.algo3.vehiculo.*;
+import edu.fiuba.algo3.model.GeneradorNumeros;
+import edu.fiuba.algo3.model.obstaculo.ControlPolicial;
+import edu.fiuba.algo3.model.vehiculo.Auto;
+import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.model.vehiculo.Moto;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
 

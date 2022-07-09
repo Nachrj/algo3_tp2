@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.model;
 
-import edu.fiuba.algo3.coordenada.Direccion;
-import edu.fiuba.algo3.obstaculo.NoObstaculo;
-import edu.fiuba.algo3.obstaculo.Obstaculo;
-import edu.fiuba.algo3.sorpresa.NoSorpresa;
-import edu.fiuba.algo3.sorpresa.Sorpresa;
+import edu.fiuba.algo3.model.coordenada.Direccion;
+import edu.fiuba.algo3.model.obstaculo.NoObstaculo;
+import edu.fiuba.algo3.model.obstaculo.Obstaculo;
+import edu.fiuba.algo3.model.sorpresa.NoSorpresa;
+import edu.fiuba.algo3.model.sorpresa.Sorpresa;
 
 public class Calle {
     Sorpresa sorpresa;

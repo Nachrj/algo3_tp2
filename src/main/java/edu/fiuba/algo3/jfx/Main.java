@@ -1,28 +1,23 @@
 package edu.fiuba.algo3.jfx;
-import edu.fiuba.algo3.Calle;
-import edu.fiuba.algo3.Jugador;
-import edu.fiuba.algo3.Tablero;
-import edu.fiuba.algo3.coordenada.*;
-import edu.fiuba.algo3.sorpresa.Sorpresa;
-import edu.fiuba.algo3.vehiculo.Auto;
-import edu.fiuba.algo3.vehiculo.CuatroXCuatro;
-import edu.fiuba.algo3.vehiculo.Moto;
-import edu.fiuba.algo3.vehiculo.Vehiculo;
+import edu.fiuba.algo3.model.Calle;
+import edu.fiuba.algo3.model.Jugador;
+import edu.fiuba.algo3.model.Tablero;
+import edu.fiuba.algo3.model.coordenada.*;
+import edu.fiuba.algo3.model.vehiculo.Auto;
+import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
+import edu.fiuba.algo3.model.vehiculo.Moto;
+import edu.fiuba.algo3.model.vehiculo.Vehiculo;
 import javafx.application.Application;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -31,11 +26,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
-import java.util.function.Function;
 
 public class Main extends Application implements EventHandler<KeyEvent>{
     public static void main(String[] args) {

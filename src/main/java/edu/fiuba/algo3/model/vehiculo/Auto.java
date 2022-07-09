@@ -1,7 +1,7 @@
-package edu.fiuba.algo3.vehiculo;
+package edu.fiuba.algo3.model.vehiculo;
 
-import edu.fiuba.algo3.coordenada.Coordenada;
-import edu.fiuba.algo3.obstaculo.Obstaculo;
+import edu.fiuba.algo3.model.coordenada.Coordenada;
+import edu.fiuba.algo3.model.obstaculo.Obstaculo;
 
 public class Auto extends Vehiculo {
     public Auto(){

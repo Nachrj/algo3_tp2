@@ -1,11 +1,11 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.model;
 
-import edu.fiuba.algo3.obstaculo.ControlPolicial;
-import edu.fiuba.algo3.obstaculo.Piquete;
-import edu.fiuba.algo3.obstaculo.Pozo;
-import edu.fiuba.algo3.sorpresa.CambioDeVehiculo;
-import edu.fiuba.algo3.sorpresa.SorpresaDesfavorable;
-import edu.fiuba.algo3.sorpresa.SorpresaFavorable;
+import edu.fiuba.algo3.model.obstaculo.ControlPolicial;
+import edu.fiuba.algo3.model.obstaculo.Piquete;
+import edu.fiuba.algo3.model.obstaculo.Pozo;
+import edu.fiuba.algo3.model.sorpresa.CambioDeVehiculo;
+import edu.fiuba.algo3.model.sorpresa.SorpresaDesfavorable;
+import edu.fiuba.algo3.model.sorpresa.SorpresaFavorable;
 
 import java.util.HashMap;
 
