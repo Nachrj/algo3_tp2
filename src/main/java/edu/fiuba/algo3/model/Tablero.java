@@ -42,12 +42,12 @@ public class Tablero {
         mapa = new Mapa(filas, columnas, calle);
     }
 
-    public void moverJugador(Direccion direc){
+    public boolean moverJugador(Direccion direc){
         jugador.avanzar(direc);
 
         if(posicionFueraDeRango(jugador.obtenerPosicion())){
             jugador.reversa();
-            return;
+            return false;
         }
 
         jugador.reversa();
@@ -55,6 +55,7 @@ public class Tablero {
         jugador.avanzar(direc);
 
         jugador.sumarMovimiento();
+        return true;
     }
 
     public Calle[][] obtenerMapa(){

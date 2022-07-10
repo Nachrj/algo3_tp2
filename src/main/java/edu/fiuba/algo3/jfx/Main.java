@@ -79,9 +79,10 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
 
     public void moverJugadoryFondo(String tecla) {
-        //ImageView jugador = (ImageView)juego.getChildren().get(0);
-        //int len = juego.getChildren().size();
-        //ImageView fondo = (ImageView)juego.getChildren().get(len-1);
+        Direccion dir = direcciones.get(tecla);
+        if(!tablero.moverJugador(dir)){
+            return;
+        }
         int altoUnidad = tableroGrafico.obtenerMetricasTableroAlto();
         int anchoUnidad = tableroGrafico.obtenerMetricasTableroAncho();
 
@@ -98,10 +99,10 @@ public class Main extends Application implements EventHandler<KeyEvent>{
                 newX += anchoUnidad*1.5;
                 break;
             case "S":
-                newY += anchoUnidad *1.5;
+                newY += anchoUnidad*1.5;
                 break;
         }
-        tablero.moverJugador(direcciones.get(tecla));
+        tablero.moverJugador(dir);
         posXJugador+=newX;
         posYJugador+=newY;
         tableroGrafico.actualizarPosicionesJugador(posXJugador, posYJugador);
