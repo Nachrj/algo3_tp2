@@ -18,15 +18,15 @@ public class TableroFalso {
     int calleActual = 0;
     int filas;
     int columnas;
-    public TableroFalso(int unasFilas, int unasColumnas, Jugador jugador){
 
+    Coordenada posMapa = new Coordenada(0,3);
+    public TableroFalso(int unasFilas, int unasColumnas, Jugador jugador){
         filas = unasFilas;
         columnas = unasColumnas;
         this.jugador = jugador;
         calles[0] = crearCalle(new Pozo(), new SorpresaFavorable());
         calles[1] = crearCalle(new ControlPolicial(), new SorpresaDesfavorable());
         calles[2] = crearCalle(new Piquete(), new CambioDeVehiculo());
-        calles[3] = new Calle(new Meta());
     }
 
     public Calle crearCalle(Obstaculo obs, Sorpresa sor){
@@ -39,13 +39,20 @@ public class TableroFalso {
 
     public boolean moverJugador(Direccion direc){
         jugador.avanzar(direc);
-
         if(posicionFueraDeRango(jugador.obtenerPosicion())){
             jugador.reversa();
             return false;
         }
+        jugador.reversa();
+        calles[calleActual].transitar(jugador, direc);
+        jugador.avanzar(direc);
 
-        if(calles[calleActual].transitar(jugador, direc)){
+        jugador.sumarMovimiento();
+
+
+        System.out.println(jugador.obtenerMovimientos());
+        if(jugador.estaEnMeta(posMapa)){
+            System.out.println(jugador.obtenerMovimientos());
             return true;
         }
         calleActual+=1;

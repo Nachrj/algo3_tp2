@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.view;
 
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -35,6 +32,9 @@ public class TableroGrafico extends Pane{
         return juego;
     }
 
+    public void cambiarImagen(){
+        jugador.cambiarImagen();
+    }
     public void dibujarFondoNegro(){
         jugador.dibujarFondo(juego);
     }
@@ -42,7 +42,6 @@ public class TableroGrafico extends Pane{
     public void dibujarObstaculoNuevo(double posX, double posY, String ruta){
         ObstaculoGrafico obstaculo = new ObstaculoGrafico();
         obstaculo.dibujar(juego, posX, posY, ruta, anchoUnidad, altoUnidad);
-        //System.out.println("Dibuje un obstaculo en i: " + posX + " j: " + posY);
     }
     public void actualizarPosicionesJugador(double unaPosXJugador, double unaPosYJugador){
         jugador.actualizarPersonaje(unaPosXJugador, unaPosYJugador);

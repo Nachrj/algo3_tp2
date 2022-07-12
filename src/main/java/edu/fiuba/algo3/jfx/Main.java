@@ -3,13 +3,11 @@ import edu.fiuba.algo3.model.Calle;
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
 import edu.fiuba.algo3.model.coordenada.*;
-import edu.fiuba.algo3.model.obstaculo.ControlPolicial;
-import edu.fiuba.algo3.model.obstaculo.Pozo;
-import edu.fiuba.algo3.model.sorpresa.SorpresaFavorable;
 import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
+import edu.fiuba.algo3.view.JugadorGrafico;
 import edu.fiuba.algo3.view.MarcadorGrafico;
 import edu.fiuba.algo3.view.PantallaInicio;
 import edu.fiuba.algo3.view.TableroGrafico;
@@ -22,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +33,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     private String nombre = "";
     private int columnas = 0;
     private int filas = 0;
+
     private double posXJugador;
     private TableroGrafico tableroGrafico;
     private MarcadorGrafico marcadorGrafico = new MarcadorGrafico();
@@ -46,7 +46,6 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 
     @Override
     public void start(Stage stage) throws Exception {
-
         this.crearDirecciones();
         this.rutasImagenes();
         stage.setTitle("TP2 ALGO3 GPS");
@@ -77,6 +76,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         rutas.put("Piquete", "piquete.png");
         rutas.put("Control", "control.png");
         rutas.put("Meta", "meta.png");
+
     }
     @Override
     public void handle(KeyEvent event){
@@ -87,10 +87,18 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     public void moverJugadoryFondo(String tecla) {
         // Conseguir movimientos y los dibujamos
         marcadorGrafico.actualizarMarcador(jugador.obtenerMovimientos());
-
+        int posAntx = jugador.obtenerPosicion().x();
+        int posAnty = jugador.obtenerPosicion().y();
         Direccion dir = direcciones.get(tecla);
+        Vehiculo vehiculoAnterior = jugador.obtenerVehiculo();
         if(!tablero.moverJugador(dir)){
             return;
+        }
+        if(posAntx == jugador.obtenerPosicion().x() && posAnty == jugador.obtenerPosicion().y()){
+            return;
+        }
+        if(!vehiculoAnterior.equals(jugador.obtenerVehiculo())){
+            tableroGrafico.cambiarImagen();
         }
         int altoUnidad = tableroGrafico.obtenerMetricasTableroAlto();
         int anchoUnidad = tableroGrafico.obtenerMetricasTableroAncho();
@@ -110,8 +118,19 @@ public class Main extends Application implements EventHandler<KeyEvent>{
             case "S":
                 newY += anchoUnidad*1.5;
                 break;
+            case "UP":
+                newY -= altoUnidad*1.5;
+                break;
+            case "LEFT":
+                newX -= anchoUnidad*1.5;
+                break;
+            case "RIGHT":
+                newX += anchoUnidad*1.5;
+                break;
+            case "DOWN":
+                newY += anchoUnidad*1.5;
+                break;
         }
-        //tablero.moverJugador(dir);
         tableroGrafico.actualizarPosicionesJugador(newX, newY);
     }
 
@@ -146,38 +165,82 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         int altoUnidad = tableroGrafico.obtenerMetricasTableroAlto();
 
         jugador = new Jugador("-", this.vehiculo);
-        Calle callePrueba = new Calle(new ControlPolicial(), new SorpresaFavorable());
         tablero = new Tablero(filas, columnas, jugador);
         Calle[][] calle = tablero.obtenerMapa();
 
-        // ToDo -> que mapa tenga una funcion para obtener el nombre de la calle directamente y busca la forma en que no necesite
-        // ToDo -> saber la logica del for (sacar el 2*fila - 1)
         String path = "file:" + System.getProperty("user.dir") + "/sprites/";
 
-        for(int fila = 0; fila <= 2*(filas - 1); fila++ ){
+        /*for(int fila = 0; fila <= 2*(filas - 1); fila++ ){
             for(int columna = 0; columna <= 2*(columnas - 1); columna++){
                 //filas par
                 if( (fila % 2 == 0 && columna % 2 != 0) ){
                     System.out.println("Fila par");
 
-                    String nombre = calle[fila][columna].obtenerObstaculo().obtenerNombre();
-                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad/6*5,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombre));
+                    String nombre = calle[fila][columna].obtenerNombreObstaculo();
+                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*5/6,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombre));
 
-                    String nombreSorpresa = calle[fila][columna].obtenerSorpresa().obtenerNombre();
-                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad/6*9,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombreSorpresa));
+                    String nombreSorpresa = calle[fila][columna].obtenerNombreSorpresa();
+                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*3/2,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombreSorpresa));
                 }
                 //filas impar
                 if(fila % 2 != 0 && columna % 2 == 0){
                     System.out.println("Fila impar");
-                    String nombre = calle[fila][columna].obtenerObstaculo().obtenerNombre();
+                    String nombre = calle[fila][columna].obtenerNombreObstaculo();
                     tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*2/5,anchoUnidad/4+(fila/2)*(anchoUnidad*3/2)+ altoUnidad*3/4, path+rutas.get(nombre));
 
-                    String nombreSorpresa = calle[fila][columna].obtenerSorpresa().obtenerNombre();
+                    String nombreSorpresa = calle[fila][columna].obtenerNombreSorpresa();
                     tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*2/5,anchoUnidad/4+(fila/2)*(anchoUnidad*3/2)+ altoUnidad*5/4, path+rutas.get(nombreSorpresa));
                     System.out.println("Hay una sorpresa en la calle fila: " + fila + " columna: " + columna);
                 }
             }
+        }*/
+        ArrayList<String> nombreObstaculos = new ArrayList<>();
+        ArrayList<String> nombreSorpresas = new ArrayList<>();
+        ArrayList<Coordenada> posiciones = new ArrayList<>();
+        ArrayList<Boolean> esHorizontal = new ArrayList<>();
+
+        tablero.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
+        Coordenada posicionElemento;
+
+        for(int i = 0; i < posiciones.size(); i++){
+            if(esHorizontal.get(i)){
+                posicionElemento = obtenerPosicionObstaculoCalleHorizontal(posiciones.get(i), altoUnidad, anchoUnidad);
+                tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(), path + rutas.get(nombreObstaculos.get(i)));
+
+                posicionElemento = obtenerPosicionSorpresaCalleHorizontal(posiciones.get(i), altoUnidad, anchoUnidad);
+                tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(), path+rutas.get(nombreSorpresas.get(i)));
+            }
+            else {
+                posicionElemento = obtenerPosicionObstaculoCalleVertical(posiciones.get(i), altoUnidad, anchoUnidad);
+                tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(), path+rutas.get(nombreObstaculos.get(i)));
+
+                posicionElemento = obtenerPosicionSorpresaCalleVertical(posiciones.get(i), altoUnidad, anchoUnidad);
+                tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(), path+rutas.get(nombreSorpresas.get(i)));
+            }
         }
-        //tableroGrafico.dibujarFondoNegro(); //esto va ultimo para que la imagen quede arriba de todo
+        tableroGrafico.dibujarFondoNegro(); //esto va ultimo para que la imagen quede arriba de todo
+
+    }
+    private Coordenada obtenerPosicionSorpresaCalleHorizontal(Coordenada posicion, int altoUnidad, int anchoUnidad) {
+        int posX = posicion.y()/2*altoUnidad*3/2 + anchoUnidad*5/6;
+        int posY = anchoUnidad/3+(posicion.x()/2)*(anchoUnidad*3/2);
+        return new Coordenada(posX, posY);
+    }
+
+    private Coordenada obtenerPosicionObstaculoCalleHorizontal(Coordenada posicion, int altoUnidad, int anchoUnidad) {
+        int posX = posicion.y()/2 * (altoUnidad*3/2) + anchoUnidad*3/2;
+        int posY = anchoUnidad/3 + (posicion.x()/2) * (anchoUnidad*3/2);
+        return new Coordenada(posX, posY);
+    }
+    private Coordenada obtenerPosicionSorpresaCalleVertical(Coordenada posicion, int altoUnidad, int anchoUnidad) {
+        int posX = (posicion.y()/2)*(altoUnidad*3/2) + anchoUnidad*2/5;
+        int posY = anchoUnidad/4+(posicion.x()/2)*(anchoUnidad*3/2)+ altoUnidad*3/4;
+        return new Coordenada(posX, posY);
+    }
+
+    private Coordenada obtenerPosicionObstaculoCalleVertical(Coordenada posicion, int altoUnidad, int anchoUnidad) {
+        int posX = (posicion.y()/2)*(altoUnidad*3/2) + anchoUnidad*2/5;
+        int posY = anchoUnidad/4+(posicion.x()/2)*(anchoUnidad*3/2)+ altoUnidad*5/4;
+        return new Coordenada(posX, posY);
     }
 }

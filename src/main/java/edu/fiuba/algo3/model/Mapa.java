@@ -3,6 +3,8 @@ package edu.fiuba.algo3.model;
 import edu.fiuba.algo3.model.coordenada.Coordenada;
 import edu.fiuba.algo3.model.coordenada.Direccion;
 
+import java.util.ArrayList;
+
 public class Mapa {
     int filas;
     int columnas;
@@ -74,4 +76,24 @@ public class Mapa {
         return mapa;
     }
 
+    private boolean posicionTieneCalleHorizontal(int fila, int columna){
+        return (fila % 2 == 0 && columna % 2 != 0);
+    }
+
+    private boolean posicionTieneCalleVertical(int fila, int columna){
+        return (fila % 2 != 0 && columna % 2 == 0);
+    }
+    public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas, ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){
+        for(int fila = 0; fila <= 2*(filas - 1); fila++ ){
+            for(int columna = 0; columna <= 2*(columnas - 1); columna++){
+
+                if(posicionTieneCalleHorizontal(fila, columna) || posicionTieneCalleVertical(fila, columna)){
+                    nombreObstaculos.add(mapa[fila][columna].obtenerNombreObstaculo());
+                    nombreSorpresas.add(mapa[fila][columna].obtenerNombreSorpresa());
+                    posiciones.add(new Coordenada(fila, columna));
+                    esHorizontal.add(posicionTieneCalleHorizontal(fila,columna));
+                }
+            }
+        }
+    }
 }
