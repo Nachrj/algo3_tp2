@@ -3,6 +3,9 @@ import edu.fiuba.algo3.model.Calle;
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
 import edu.fiuba.algo3.model.coordenada.*;
+import edu.fiuba.algo3.model.obstaculo.ControlPolicial;
+import edu.fiuba.algo3.model.obstaculo.Pozo;
+import edu.fiuba.algo3.model.sorpresa.SorpresaFavorable;
 import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
@@ -64,9 +67,9 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
 
     public void rutasImagenes(){
-        rutas.put("SorpresaFavorable", "sopresaFavorable.png");
-        rutas.put("SorpresaDesfavorable", "sorpresaDesfavorable.png");
-        rutas.put("CambioDeVehiculo", "cambioDeVehiculo.png");
+        rutas.put("SorpresaFavorable", "sorpresa.png");
+        rutas.put("SorpresaDesfavorable", "sorpresa.png");
+        rutas.put("CambioDeVehiculo", "sorpresa.png");
         rutas.put("Pozo", "pozo.png");
         rutas.put("Piquete", "piquete.png");
         rutas.put("Control", "control.png");
@@ -137,22 +140,35 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         int altoUnidad = tableroGrafico.obtenerMetricasTableroAlto();
 
         Jugador jugador = new Jugador("-", this.vehiculo);
-        tablero = new Tablero(filas, columnas, jugador);
+        Calle callePrueba = new Calle(new ControlPolicial(), new SorpresaFavorable());
+        tablero = new Tablero(filas, columnas, jugador, callePrueba);
         Calle[][] calle = tablero.obtenerMapa();
 
-        String path = "file:"+System.getProperty("user.dir")+"/sprites/";
-        for(int i = 0; i <= 2*(filas - 1); i++ ){
-            for(int j = 0; j <= 2*(columnas - 1); j++){
-                if( (i % 2 == 0 && j % 2 != 0) || (i % 2 != 0 && j % 2 == 0) ){
-                    if(calle[i][j].obtenerObstaculo() != null){ // no deberia devolver un bool para no romper TDA¿?
-                        String nombre = calle[j][i].obtenerObstaculo().obtenerNombre();
-                        tableroGrafico.dibujarObstaculoNuevo((j/2+1)*(altoUnidad*3/2),anchoUnidad/4+(i/2+1)*(anchoUnidad*3/2), path+rutas.get(nombre));
-                    }
-                    if(calle[i][j].obtenerSorpresa() != null){
-                        String nombre = calle[i][j].obtenerSorpresa().obtenerNombre();
-                        tableroGrafico.dibujarObstaculoNuevo(j*altoUnidad*3/2,i*anchoUnidad*3/2, path+rutas.get(nombre));
-                        //System.out.println("Hay una sorpresa en la calle " + i + j);
-                    }
+        // ToDo -> que mapa tenga una funcion para obtener el nombre de la calle directamente y busca la forma en que no necesite
+        // ToDo -> saber la logica del for (sacar el 2*fila - 1)
+        String path = "file:" + System.getProperty("user.dir") + "/sprites/";
+
+        for(int fila = 0; fila <= 2*(filas - 1); fila++ ){
+            for(int columna = 0; columna <= 2*(columnas - 1); columna++){
+                //filas par
+                if( (fila % 2 == 0 && columna % 2 != 0) ){
+                    System.out.println("Fila par");
+
+                    String nombre = calle[columna][fila].obtenerObstaculo().obtenerNombre();
+                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad/6*5,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombre));
+
+                    String nombreSorpresa = calle[fila][columna].obtenerSorpresa().obtenerNombre();
+                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad/6*9,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombreSorpresa));
+                }
+                //filas impar
+                if(fila % 2 != 0 && columna % 2 == 0){
+                    System.out.println("Fila impar");
+                    String nombre = calle[columna][fila].obtenerObstaculo().obtenerNombre();
+                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*2/5,anchoUnidad/4+(fila/2)*(anchoUnidad*3/2)+ altoUnidad*3/4, path+rutas.get(nombre));
+
+                    String nombreSorpresa = calle[fila][columna].obtenerSorpresa().obtenerNombre();
+                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*2/5,anchoUnidad/4+(fila/2)*(anchoUnidad*3/2)+ altoUnidad*5/4, path+rutas.get(nombreSorpresa));
+                    System.out.println("Hay una sorpresa en la calle fila: " + fila + " columna: " + columna);
                 }
             }
         }

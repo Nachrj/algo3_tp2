@@ -26,8 +26,8 @@ public class TableroGrafico extends Pane{
         for(int i = 0; i < (filas-1); i++) {
             for(int j = 0; j < (columnas-1); j++) {
                 Rectangle rectangle = new Rectangle(anchoUnidad, altoUnidad, Color.GREY);
-                rectangle.setTranslateX((anchoUnidad+(int)(anchoUnidad/2))*j+30);
-                rectangle.setTranslateY((altoUnidad+(int)(altoUnidad/2))*i+30);
+                rectangle.setTranslateX((anchoUnidad+(anchoUnidad/2))*j + anchoUnidad*3/4);
+                rectangle.setTranslateY((altoUnidad + (altoUnidad/2))*i + altoUnidad*3/4);
                 juego.getChildren().add(rectangle);
             }
         }
@@ -38,9 +38,10 @@ public class TableroGrafico extends Pane{
         jugador.dibujarFondo(juego);
     }
 
-    public void dibujarObstaculoNuevo(int posx, int posy, String ruta){
+    public void dibujarObstaculoNuevo(double posX, double posY, String ruta){
         ObstaculoGrafico obstaculo = new ObstaculoGrafico();
-        obstaculo.dibujar(juego, posx, posy, ruta);
+        obstaculo.dibujar(juego, posX, posY, ruta, anchoUnidad, altoUnidad);
+        //System.out.println("Dibuje un obstaculo en i: " + posX + " j: " + posY);
     }
     public void actualizarPosicionesJugador(double unaPosXJugador, double unaPosYJugador){
         jugador.actualizarPersonaje(unaPosXJugador, unaPosYJugador);

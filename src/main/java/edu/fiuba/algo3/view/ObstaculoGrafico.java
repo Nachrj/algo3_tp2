@@ -5,13 +5,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class ObstaculoGrafico {
-    public void dibujar(Pane juego, int posx, int posy, String ruta){
+    public void dibujar(Pane juego, double posX, double posY, String ruta, int anchuraUnidad, int alturaUnidad ){
         //System.out.println("Quiero dibujar" + posx + posy + ruta);
         ImageView dibujo = new ImageView(new Image(ruta));
-        dibujo.setFitHeight(25);
-        dibujo.setFitWidth(25);
-        dibujo.setTranslateX(posx);
-        dibujo.setTranslateY(posy);
+        dibujo.setFitHeight(alturaUnidad/3);
+        dibujo.setFitWidth(anchuraUnidad/3);
+        dibujo.relocate(posX, posY);
         juego.getChildren().add(dibujo);
     }
 }
