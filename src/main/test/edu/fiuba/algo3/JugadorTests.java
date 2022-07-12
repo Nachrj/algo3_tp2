@@ -150,6 +150,6 @@ public class JugadorTests {
         }
         tablero.moverJugador(new Derecha());
 
-        assertEquals((Math.round( 20 * 0.8)) + 4, j.obtenerMovimientos());
+        assertEquals((Math.round( 24 * 0.8)), j.obtenerMovimientos());
     }
 }

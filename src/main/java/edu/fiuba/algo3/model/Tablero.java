@@ -33,7 +33,7 @@ public class Tablero {
         this.filas = fil;
         this.columnas = col;
         this.jugador = jugador;
-        posMeta = new Coordenada((2*fil)-2,(2*col)-2);
+        posMeta = new Coordenada((fil/2),col-1);
         this.mapa = new Mapa(filas, columnas);
     }
 
@@ -62,6 +62,10 @@ public class Tablero {
             // Ganar
         }
         return true;
+    }
+
+    public boolean terminoJuego(){
+        return jugador.estaEnMeta(posMeta);
     }
 
     public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas, ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){

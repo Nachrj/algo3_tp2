@@ -7,10 +7,7 @@ import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
-import edu.fiuba.algo3.view.JugadorGrafico;
-import edu.fiuba.algo3.view.MarcadorGrafico;
-import edu.fiuba.algo3.view.PantallaInicio;
-import edu.fiuba.algo3.view.TableroGrafico;
+import edu.fiuba.algo3.view.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -44,6 +41,8 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     private Map<String, String> rutas = new HashMap<String,String>();
     private Jugador jugador;
 
+    private Stage stage;
+
     @Override
     public void start(Stage stage) throws Exception {
         this.crearDirecciones();
@@ -55,6 +54,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         stage.setScene(escenaJuego);
         escenaJuego.setOnKeyPressed(this);
         stage.show();
+        this.stage = stage;
     }
 
     public void crearDirecciones(){
@@ -94,6 +94,14 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         }
         // Conseguir movimientos y los dibujamos
         marcadorGrafico.actualizarMarcador(jugador.obtenerMovimientos());
+
+        if(tablero.terminoJuego()){
+            PantallaFinal pantallaFinal = new PantallaFinal();
+            Scene escenaJuego = pantallaFinal.crearPantallaFinal(jugador.obtenerMovimientos());
+            stage.setScene(escenaJuego);
+            escenaJuego.setOnKeyPressed(this);
+            stage.show();
+        }
 
         if(posAntx == jugador.obtenerPosicion().x() && posAnty == jugador.obtenerPosicion().y()){
             return;
