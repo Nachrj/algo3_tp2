@@ -160,7 +160,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
                 if( (fila % 2 == 0 && columna % 2 != 0) ){
                     System.out.println("Fila par");
 
-                    String nombre = calle[columna][fila].obtenerObstaculo().obtenerNombre();
+                    String nombre = calle[fila][columna].obtenerObstaculo().obtenerNombre();
                     tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad/6*5,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombre));
 
                     String nombreSorpresa = calle[fila][columna].obtenerSorpresa().obtenerNombre();
@@ -169,7 +169,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
                 //filas impar
                 if(fila % 2 != 0 && columna % 2 == 0){
                     System.out.println("Fila impar");
-                    String nombre = calle[columna][fila].obtenerObstaculo().obtenerNombre();
+                    String nombre = calle[fila][columna].obtenerObstaculo().obtenerNombre();
                     tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*2/5,anchoUnidad/4+(fila/2)*(anchoUnidad*3/2)+ altoUnidad*3/4, path+rutas.get(nombre));
 
                     String nombreSorpresa = calle[fila][columna].obtenerSorpresa().obtenerNombre();
