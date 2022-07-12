@@ -7,6 +7,7 @@ import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
+import edu.fiuba.algo3.view.JugadorGrafico;
 import edu.fiuba.algo3.view.MarcadorGrafico;
 import edu.fiuba.algo3.view.PantallaInicio;
 import edu.fiuba.algo3.view.TableroGrafico;
@@ -75,6 +76,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         rutas.put("Piquete", "piquete.png");
         rutas.put("Control", "control.png");
         rutas.put("Meta", "meta.png");
+
     }
     @Override
     public void handle(KeyEvent event){
@@ -85,10 +87,18 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     public void moverJugadoryFondo(String tecla) {
         // Conseguir movimientos y los dibujamos
         marcadorGrafico.actualizarMarcador(jugador.obtenerMovimientos());
-
+        int posAntx = jugador.obtenerPosicion().x();
+        int posAnty = jugador.obtenerPosicion().y();
         Direccion dir = direcciones.get(tecla);
+        Vehiculo vehiculoAnterior = jugador.obtenerVehiculo();
         if(!tablero.moverJugador(dir)){
             return;
+        }
+        if(posAntx == jugador.obtenerPosicion().x() && posAnty == jugador.obtenerPosicion().y()){
+            return;
+        }
+        if(!vehiculoAnterior.equals(jugador.obtenerVehiculo())){
+            tableroGrafico.cambiarImagen();
         }
         int altoUnidad = tableroGrafico.obtenerMetricasTableroAlto();
         int anchoUnidad = tableroGrafico.obtenerMetricasTableroAncho();
@@ -121,7 +131,6 @@ public class Main extends Application implements EventHandler<KeyEvent>{
                 newY += anchoUnidad*1.5;
                 break;
         }
-        //tablero.moverJugador(dir);
         tableroGrafico.actualizarPosicionesJugador(newX, newY);
     }
 
@@ -209,8 +218,8 @@ public class Main extends Application implements EventHandler<KeyEvent>{
                 tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(), path+rutas.get(nombreSorpresas.get(i)));
             }
         }
+        tableroGrafico.dibujarFondoNegro(); //esto va ultimo para que la imagen quede arriba de todo
 
-        //tableroGrafico.dibujarFondoNegro(); //esto va ultimo para que la imagen quede arriba de todo
     }
     private Coordenada obtenerPosicionSorpresaCalleHorizontal(Coordenada posicion, int altoUnidad, int anchoUnidad) {
         int posX = posicion.y()/2*altoUnidad*3/2 + anchoUnidad*5/6;

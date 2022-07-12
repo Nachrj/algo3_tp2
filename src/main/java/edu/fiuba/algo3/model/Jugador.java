@@ -36,6 +36,12 @@ public class Jugador {
         return this.vehiculo.obtenerPosicion();
     }
 
+    public boolean estaEnMeta(Coordenada pos){
+        if (pos.equals(vehiculo.obtenerPosicion())){
+            return true;
+        }
+        return false;
+    }
     public void cambiarVehiculo(){
         this.vehiculo = this.vehiculo.cambiar();
     }

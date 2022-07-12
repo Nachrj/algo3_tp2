@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,15 +18,25 @@ public class JugadorGrafico {
     private ImageView personaje;
     private ImageView fondoNegroDePersonaje;
     private int tamanoImagenFondoNegro = 4000;
+    private int vehiculoActual = 0;
+    private String[] vehiculos = new String[3];
+    ArrayList<String> arr = new ArrayList<String>(3);
 
-    public void dibujarPersonaje(Pane juego, String nombreVehiculo, int columnas, int filas, int altoUnidad, int anchoUnidad){
+    Map<String, String> rutas = new HashMap<String,String>();
+    private int columnas;
+    private int filas;
 
-        Map<String, String> rutas = new HashMap<String,String>();
+    public void dibujarPersonaje(Pane juego, String nombreVehiculo, int col, int fil, int altoUnidad, int anchoUnidad){
         rutas.put("Moto", "moto.png");
         rutas.put("Auto", "auto.png");
         rutas.put("4x4","4x4.png");
+        arr.add("Moto");
+        arr.add("Auto");
+        arr.add("4x4");
+        vehiculoActual = arr.indexOf(nombreVehiculo);
         tipo = nombreVehiculo;
-
+        columnas = col;
+        filas = fil;
         String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(nombreVehiculo);
 
         Image imagen = new Image(path, 300/(columnas),300/(filas), true, true);
@@ -49,9 +60,18 @@ public class JugadorGrafico {
         juego.getChildren().add(fondoNegroDePersonaje);
     }
 
+    public void cambiarImagen(){
+        System.out.println("Entro");
+        vehiculoActual = (vehiculoActual+1)%3;
+        String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(arr.get(vehiculoActual));
+        System.out.println(vehiculoActual);
+        Image imagen = new Image(path, 300/(columnas),300/(filas), true, true);
+        personaje.setImage(imagen);
+    }
+
     public void actualizarPersonaje(double unaPosXJugador, double unaPosYJugador){
-        //fondoNegroDePersonaje.setTranslateX(unaPosXJugador-(tamanoImagenFondoNegro/2));
-        //fondoNegroDePersonaje.setTranslateY(unaPosYJugador-(tamanoImagenFondoNegro/2));
+        fondoNegroDePersonaje.setTranslateX(posXJugador-(tamanoImagenFondoNegro/2));
+        fondoNegroDePersonaje.setTranslateY(posYJugador-(tamanoImagenFondoNegro/2));
         posXJugador += unaPosXJugador;
         posYJugador += unaPosYJugador;
         personaje.setTranslateX(posXJugador);

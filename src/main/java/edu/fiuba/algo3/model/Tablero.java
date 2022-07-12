@@ -15,6 +15,8 @@ public class Tablero {
     private final Jugador jugador;
     private final Mapa mapa;
 
+    private Coordenada posMeta;
+
     private boolean posicionFueraDeRango(Coordenada destino ){
         return (destino.x() >= filas || destino.x() < 0) || (destino.y() >= columnas || destino.y() < 0);
     }
@@ -31,7 +33,7 @@ public class Tablero {
         this.filas = fil;
         this.columnas = col;
         this.jugador = jugador;
-
+        posMeta = new Coordenada(fil-1,col);
         this.mapa = new Mapa(filas, columnas);
     }
 
@@ -40,7 +42,6 @@ public class Tablero {
         this.filas = fil;
         this.columnas = col;
         this.jugador = jugador;
-
         mapa = new Mapa(filas, columnas, calle);
     }
 
@@ -58,6 +59,9 @@ public class Tablero {
 
         jugador.sumarMovimiento();
         mostrarMapaPrueba();
+        if(jugador.estaEnMeta(posMeta)){
+            // Ganar
+        }
         return true;
     }
 
