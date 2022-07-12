@@ -85,8 +85,6 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
 
     public void moverJugadoryFondo(String tecla) {
-        // Conseguir movimientos y los dibujamos
-        marcadorGrafico.actualizarMarcador(jugador.obtenerMovimientos());
         int posAntx = jugador.obtenerPosicion().x();
         int posAnty = jugador.obtenerPosicion().y();
         Direccion dir = direcciones.get(tecla);
@@ -94,6 +92,9 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         if(!tablero.moverJugador(dir)){
             return;
         }
+        // Conseguir movimientos y los dibujamos
+        marcadorGrafico.actualizarMarcador(jugador.obtenerMovimientos());
+
         if(posAntx == jugador.obtenerPosicion().x() && posAnty == jugador.obtenerPosicion().y()){
             return;
         }
