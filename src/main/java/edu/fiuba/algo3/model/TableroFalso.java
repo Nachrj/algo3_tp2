@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.model;
 
+import edu.fiuba.algo3.model.coordenada.Coordenada;
 import edu.fiuba.algo3.model.coordenada.Direccion;
-import edu.fiuba.algo3.model.meta.Final;
 import edu.fiuba.algo3.model.meta.Meta;
 import edu.fiuba.algo3.model.obstaculo.ControlPolicial;
 import edu.fiuba.algo3.model.obstaculo.Obstaculo;
@@ -14,10 +14,15 @@ import edu.fiuba.algo3.model.sorpresa.SorpresaFavorable;
 
 public class TableroFalso {
     Calle[] calles = new Calle[4];
+    Jugador jugador;
     int calleActual = 0;
-    Jugador jug;
-    public TableroFalso(int filas, int columnas, Jugador jugador){
-        jug = jugador;
+    int filas;
+    int columnas;
+    public TableroFalso(int unasFilas, int unasColumnas, Jugador jugador){
+
+        filas = unasFilas;
+        columnas = unasColumnas;
+        this.jugador = jugador;
         calles[0] = crearCalle(new Pozo(), new SorpresaFavorable());
         calles[1] = crearCalle(new ControlPolicial(), new SorpresaDesfavorable());
         calles[2] = crearCalle(new Piquete(), new CambioDeVehiculo());
@@ -28,8 +33,19 @@ public class TableroFalso {
         return new Calle(obs, sor);
     }
 
+    private boolean posicionFueraDeRango(Coordenada destino ){
+        return (destino.x() >= filas || destino.x() < 0) || (destino.y() >= columnas || destino.y() < 0);
+    }
+
     public boolean moverJugador(Direccion direc){
-        if(calles[calleActual].transitar(jug, direc)){
+        jugador.avanzar(direc);
+
+        if(posicionFueraDeRango(jugador.obtenerPosicion())){
+            jugador.reversa();
+            return false;
+        }
+
+        if(calles[calleActual].transitar(jugador, direc)){
             return true;
         }
         calleActual+=1;
@@ -37,4 +53,7 @@ public class TableroFalso {
     }
 
 
+    public Coordenada obtenerPosicionJugador() {
+        return jugador.obtenerPosicion();
+    }
 }
