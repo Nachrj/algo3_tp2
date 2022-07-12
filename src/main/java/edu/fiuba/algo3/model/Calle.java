@@ -67,10 +67,10 @@ public class Calle {
         this.obstaculo = obs;
     }
 
-    public Obstaculo obtenerObstaculo(){
-        return this.obstaculo;
+    public String obtenerNombreObstaculo(){
+        return obstaculo.obtenerNombre();
     }
-    public Sorpresa obtenerSorpresa(){
-        return this.sorpresa;
+    public String obtenerNombreSorpresa(){
+        return sorpresa.obtenerNombre();
     }
 }

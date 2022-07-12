@@ -7,6 +7,8 @@ package edu.fiuba.algo3.model;
 import edu.fiuba.algo3.model.coordenada.Coordenada;
 import edu.fiuba.algo3.model.coordenada.Direccion;
 
+import java.util.ArrayList;
+
 public class Tablero {
     private final int filas;
     private final int columnas;
@@ -59,6 +61,9 @@ public class Tablero {
         return true;
     }
 
+    public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas, ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){
+        mapa.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
+    }
     public Calle[][] obtenerMapa(){
         return this.mapa.obtenerMapa();
     }
