@@ -55,6 +55,7 @@ public class Tablero {
         jugador.avanzar(direc);
 
         jugador.sumarMovimiento();
+        mostrarMapaPrueba();
         return true;
     }
 

@@ -48,6 +48,8 @@ public class Calle {
     }
 
     public boolean transitar(Jugador j, Direccion d){
+        System.out.println(this.obstaculo.getClass());
+        System.out.println(this.sorpresa.getClass());
         this.sorpresa.activar(j);
         j.chocar(this.obstaculo);
         if(meta.meta()){

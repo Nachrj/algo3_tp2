@@ -31,7 +31,7 @@ public class JugadorGrafico {
         Image imagen = new Image(path, 300/(columnas),300/(filas), true, true);
 
         posXJugador = 0;
-        posYJugador = altoUnidad*columnas/30;
+        posYJugador = altoUnidad*columnas/30+altoUnidad*3/2;
         personaje = new ImageView(imagen);
         personaje.setTranslateX(posXJugador);
         personaje.setTranslateY(posYJugador);
@@ -50,11 +50,11 @@ public class JugadorGrafico {
     }
 
     public void actualizarPersonaje(double unaPosXJugador, double unaPosYJugador){
-        personaje.setTranslateX(unaPosXJugador);
-        personaje.setTranslateY(unaPosYJugador);
-        fondoNegroDePersonaje.setTranslateX(unaPosXJugador-(tamanoImagenFondoNegro/2));
-        fondoNegroDePersonaje.setTranslateY(unaPosYJugador-(tamanoImagenFondoNegro/2));
-        posYJugador= unaPosYJugador;
-        posYJugador = unaPosXJugador;
+        //fondoNegroDePersonaje.setTranslateX(unaPosXJugador-(tamanoImagenFondoNegro/2));
+        //fondoNegroDePersonaje.setTranslateY(unaPosYJugador-(tamanoImagenFondoNegro/2));
+        posXJugador += unaPosXJugador;
+        posYJugador += unaPosYJugador;
+        personaje.setTranslateX(posXJugador);
+        personaje.setTranslateY(posYJugador);
     }
 }

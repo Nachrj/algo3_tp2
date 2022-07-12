@@ -51,7 +51,7 @@ public class Mapa {
     }
 
     public void mostrarMapaPrueba(Coordenada posicionJugador){
-        mapaPrueba[posicionJugador.x()][posicionJugador.y()] = 'J';
+        mapaPrueba[posicionJugador.x()*2][posicionJugador.y()*2] = 'J';
 
         for(int i = 0; i <= 2*(filas - 1); i++ ) {
             for (int j = 0; j <= 2 * (columnas - 1); j++) {
@@ -60,7 +60,7 @@ public class Mapa {
             System.out.print('\n');
         }
         System.out.print('\n');
-        mapaPrueba[posicionJugador.x()][posicionJugador.y()] = '-';
+        mapaPrueba[posicionJugador.x()*2][posicionJugador.y()*2] = '-';
     }
 
     public void transitarCalle(Jugador jugador, Coordenada posicion, Direccion direc){

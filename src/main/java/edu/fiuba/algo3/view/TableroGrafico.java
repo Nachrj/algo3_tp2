@@ -23,8 +23,8 @@ public class TableroGrafico extends Pane{
         jugador = new JugadorGrafico();
         jugador.dibujarPersonaje(juego ,nombreVehiculo , columnas, filas, altoUnidad, anchoUnidad);
 
-        for(int i = 0; i < filas; i++) {
-            for(int j = 0; j < columnas; j++) {
+        for(int i = 0; i < (filas-1); i++) {
+            for(int j = 0; j < (columnas-1); j++) {
                 Rectangle rectangle = new Rectangle(anchoUnidad, altoUnidad, Color.GREY);
                 rectangle.setTranslateX((anchoUnidad+(int)(anchoUnidad/2))*j+30);
                 rectangle.setTranslateY((altoUnidad+(int)(altoUnidad/2))*i+30);

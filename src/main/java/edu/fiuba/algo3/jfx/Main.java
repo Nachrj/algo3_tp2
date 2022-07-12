@@ -102,10 +102,8 @@ public class Main extends Application implements EventHandler<KeyEvent>{
                 newY += anchoUnidad*1.5;
                 break;
         }
-        tablero.moverJugador(dir);
-        posXJugador+=newX;
-        posYJugador+=newY;
-        tableroGrafico.actualizarPosicionesJugador(posXJugador, posYJugador);
+        //tablero.moverJugador(dir);
+        tableroGrafico.actualizarPosicionesJugador(newX, newY);
     }
 
     public void pasarPantalla(Pane pane, Scene escena){
@@ -147,17 +145,17 @@ public class Main extends Application implements EventHandler<KeyEvent>{
             for(int j = 0; j <= 2*(columnas - 1); j++){
                 if( (i % 2 == 0 && j % 2 != 0) || (i % 2 != 0 && j % 2 == 0) ){
                     if(calle[i][j].obtenerObstaculo() != null){ // no deberia devolver un bool para no romper TDA¿?
-                        String nombre = calle[i][j].obtenerObstaculo().obtenerNombre();
-                        tableroGrafico.dibujarObstaculoNuevo(j*altoUnidad,i*anchoUnidad, path+rutas.get(nombre));
+                        String nombre = calle[j][i].obtenerObstaculo().obtenerNombre();
+                        tableroGrafico.dibujarObstaculoNuevo((j/2+1)*(altoUnidad*3/2),anchoUnidad/4+(i/2+1)*(anchoUnidad*3/2), path+rutas.get(nombre));
                     }
                     if(calle[i][j].obtenerSorpresa() != null){
                         String nombre = calle[i][j].obtenerSorpresa().obtenerNombre();
-                        tableroGrafico.dibujarObstaculoNuevo(j*altoUnidad,i*anchoUnidad, path+rutas.get(nombre));
-                        System.out.println("Hay una sorpresa en la calle " + i + j);
+                        tableroGrafico.dibujarObstaculoNuevo(j*altoUnidad*3/2,i*anchoUnidad*3/2, path+rutas.get(nombre));
+                        //System.out.println("Hay una sorpresa en la calle " + i + j);
                     }
                 }
             }
         }
-        tableroGrafico.dibujarFondoNegro(); //esto va ultimo para que la imagen quede arriba de todo
+        //tableroGrafico.dibujarFondoNegro(); //esto va ultimo para que la imagen quede arriba de todo
     }
 }
