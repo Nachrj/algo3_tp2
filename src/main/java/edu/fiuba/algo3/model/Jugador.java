@@ -37,6 +37,9 @@ public class Jugador {
     }
 
     public boolean estaEnMeta(Coordenada pos){
+        if(pos==null){
+            return false;
+        }
         if (pos.equals(vehiculo.obtenerPosicion())){
             return true;
         }

@@ -167,34 +167,8 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 
         jugador = new Jugador("-", this.vehiculo);
         tablero = new Tablero(filas, columnas, jugador);
-        Calle[][] calle = tablero.obtenerMapa();
 
         String path = "file:" + System.getProperty("user.dir") + "/sprites/";
-
-        /*for(int fila = 0; fila <= 2*(filas - 1); fila++ ){
-            for(int columna = 0; columna <= 2*(columnas - 1); columna++){
-                //filas par
-                if( (fila % 2 == 0 && columna % 2 != 0) ){
-                    System.out.println("Fila par");
-
-                    String nombre = calle[fila][columna].obtenerNombreObstaculo();
-                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*5/6,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombre));
-
-                    String nombreSorpresa = calle[fila][columna].obtenerNombreSorpresa();
-                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*3/2,anchoUnidad/3+(fila/2)*(anchoUnidad*3/2), path+rutas.get(nombreSorpresa));
-                }
-                //filas impar
-                if(fila % 2 != 0 && columna % 2 == 0){
-                    System.out.println("Fila impar");
-                    String nombre = calle[fila][columna].obtenerNombreObstaculo();
-                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*2/5,anchoUnidad/4+(fila/2)*(anchoUnidad*3/2)+ altoUnidad*3/4, path+rutas.get(nombre));
-
-                    String nombreSorpresa = calle[fila][columna].obtenerNombreSorpresa();
-                    tableroGrafico.dibujarObstaculoNuevo((columna/2)*(altoUnidad*3/2) + anchoUnidad*2/5,anchoUnidad/4+(fila/2)*(anchoUnidad*3/2)+ altoUnidad*5/4, path+rutas.get(nombreSorpresa));
-                    System.out.println("Hay una sorpresa en la calle fila: " + fila + " columna: " + columna);
-                }
-            }
-        }*/
         ArrayList<String> nombreObstaculos = new ArrayList<>();
         ArrayList<String> nombreSorpresas = new ArrayList<>();
         ArrayList<Coordenada> posiciones = new ArrayList<>();
@@ -219,7 +193,9 @@ public class Main extends Application implements EventHandler<KeyEvent>{
                 tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(), path+rutas.get(nombreSorpresas.get(i)));
             }
         }
-        tableroGrafico.dibujarFondoNegro(); //esto va ultimo para que la imagen quede arriba de todo
+        posicionElemento = obtenerPosicionSorpresaCalleVertical(tablero.obtenerPosicionMeta(), altoUnidad, anchoUnidad);
+        tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(),path+rutas.get("Meta"));
+        tableroGrafico.dibujarFondoNegro();
 
     }
     private Coordenada obtenerPosicionSorpresaCalleHorizontal(Coordenada posicion, int altoUnidad, int anchoUnidad) {

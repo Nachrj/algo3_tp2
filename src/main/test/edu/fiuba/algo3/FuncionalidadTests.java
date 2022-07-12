@@ -48,7 +48,7 @@ public class FuncionalidadTests {
             }
         }
         assertTrue(gano);
-        assertEquals(10, j.obtenerMovimientos());
+        assertEquals(7, j.obtenerMovimientos());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class FuncionalidadTests {
             }
         }
         assertTrue(gano);
-        assertEquals(10, j.obtenerMovimientos());
+        assertEquals(7, j.obtenerMovimientos());
     }
 
     @Test
@@ -78,6 +78,6 @@ public class FuncionalidadTests {
             }
         }
         assertTrue(gano);
-        assertEquals(8, j.obtenerMovimientos());
+        assertEquals(5, j.obtenerMovimientos());
     }
 }

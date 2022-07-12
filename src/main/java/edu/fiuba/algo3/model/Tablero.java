@@ -33,11 +33,10 @@ public class Tablero {
         this.filas = fil;
         this.columnas = col;
         this.jugador = jugador;
-        posMeta = new Coordenada(fil-1,col);
+        posMeta = new Coordenada((2*fil)-2,(2*col)-2);
         this.mapa = new Mapa(filas, columnas);
     }
 
-    //Crea al tablero con todas las calles iguales para hacer tests
     public Tablero(int fil, int col, Jugador jugador, Calle calle){
         this.filas = fil;
         this.columnas = col;
@@ -67,6 +66,10 @@ public class Tablero {
 
     public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas, ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){
         mapa.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
+    }
+
+    public Coordenada obtenerPosicionMeta(){
+        return posMeta;
     }
     public Calle[][] obtenerMapa(){
         return this.mapa.obtenerMapa();
