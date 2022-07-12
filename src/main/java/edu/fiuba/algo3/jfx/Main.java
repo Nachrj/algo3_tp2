@@ -10,6 +10,7 @@ import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
+import edu.fiuba.algo3.view.MarcadorGrafico;
 import edu.fiuba.algo3.view.PantallaInicio;
 import edu.fiuba.algo3.view.TableroGrafico;
 import javafx.application.Application;
@@ -35,11 +36,13 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     private int filas = 0;
     private double posXJugador;
     private TableroGrafico tableroGrafico;
+    private MarcadorGrafico marcadorGrafico = new MarcadorGrafico();
     private double posYJugador;
     private String nombreVehiculo;
     private Vehiculo vehiculo;
     private Map<String, Direccion> direcciones = new HashMap<String,Direccion>();
     private Map<String, String> rutas = new HashMap<String,String>();
+    private Jugador jugador;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -82,6 +85,9 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
 
     public void moverJugadoryFondo(String tecla) {
+        // Conseguir movimientos y los dibujamos
+        marcadorGrafico.actualizarMarcador(jugador.obtenerMovimientos());
+
         Direccion dir = direcciones.get(tecla);
         if(!tablero.moverJugador(dir)){
             return;
@@ -135,11 +141,11 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         nombre = inputNombre.getText();
         columnas = Integer.valueOf(inputColumnas.getText());
         filas = Integer.valueOf(inputFilas.getText());
-        escena.setRoot(tableroGrafico.crearEscena(columnas, filas, nombreVehiculo));
+        escena.setRoot(tableroGrafico.crearEscena(columnas, filas, nombreVehiculo, marcadorGrafico));
         int anchoUnidad = tableroGrafico.obtenerMetricasTableroAncho();
         int altoUnidad = tableroGrafico.obtenerMetricasTableroAlto();
 
-        Jugador jugador = new Jugador("-", this.vehiculo);
+        jugador = new Jugador("-", this.vehiculo);
         Calle callePrueba = new Calle(new ControlPolicial(), new SorpresaFavorable());
         tablero = new Tablero(filas, columnas, jugador);
         Calle[][] calle = tablero.obtenerMapa();

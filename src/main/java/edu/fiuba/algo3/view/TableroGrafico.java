@@ -15,11 +15,12 @@ public class TableroGrafico extends Pane{
     private Pane juego;
 
 
-    public Pane crearEscena(int columnas, int filas, String nombreVehiculo){
+    public Pane crearEscena(int columnas, int filas, String nombreVehiculo, MarcadorGrafico marcador){
         juego = new Pane();
         anchoUnidad = (int)(600/(columnas*1.5+0.5));
         altoUnidad = (int)(600/(filas*1.5+0.5));
 
+        marcador.dibujarMarcador(juego);
         jugador = new JugadorGrafico();
         jugador.dibujarPersonaje(juego ,nombreVehiculo , columnas, filas, altoUnidad, anchoUnidad);
 
