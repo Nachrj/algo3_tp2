@@ -141,7 +141,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
 
         Jugador jugador = new Jugador("-", this.vehiculo);
         Calle callePrueba = new Calle(new ControlPolicial(), new SorpresaFavorable());
-        tablero = new Tablero(filas, columnas, jugador, callePrueba);
+        tablero = new Tablero(filas, columnas, jugador);
         Calle[][] calle = tablero.obtenerMapa();
 
         // ToDo -> que mapa tenga una funcion para obtener el nombre de la calle directamente y busca la forma en que no necesite
