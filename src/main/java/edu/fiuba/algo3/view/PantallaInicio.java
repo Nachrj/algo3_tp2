@@ -15,73 +15,62 @@ import javafx.scene.layout.Pane;
 public class PantallaInicio extends Pane {
 
     public Scene crearPantallaInicial(Main controlador){
-        // Creamos el diseño del inicio
         Pane inicio = new Pane();
 
-        // Titulo
-        Label label = new Label("GPS Challenge");
-        label.setTranslateX(210);
-        label.setTranslateY(150);
+        Label titulo = new Label("GPS Challenge");
+        titulo.relocate(210, 150);
+
         Scene escena = new Scene(inicio, 600, 600);
         crearInput(inicio, 210, 200, "Ingresa tu nombre");
         crearInputNumerico(inicio, 210, 250, "Elegir cantidad columnas");
         crearInputNumerico(inicio, 210, 300, "Elegir cantidad filas");
         Button continuar = crearBoton(inicio,210,350,"Iniciar juego");
-        ObservableList<String> opciones =
-                FXCollections.observableArrayList(
-                        "Moto",
-                        "Auto",
-                        "4x4"
-                );
+
+        ObservableList<String> opciones = FXCollections.observableArrayList("Moto", "Auto", "4x4");
         desplegable(inicio, 210, 400, opciones);
+
         continuar.setOnAction(e->{
             controlador.pasarPantalla(inicio, escena);
         });
-        inicio.getChildren().add(label);
+        inicio.getChildren().add(titulo);
         return escena;
     }
 
-    public void crearInput(Pane pane, int posx, int posy, String placeholder){
-        TextField field = new TextField();
-        field.setTranslateX(posx);
-        field.setTranslateY(posy);
-        // Seteamos placeholder
-        field.setPromptText(placeholder);
-        field.setFocusTraversable(false);
-        pane.getChildren().add(field);
+    public void crearInput(Pane pane, int posX, int posY, String promptText){
+        TextField textField = new TextField();
+        textField.relocate(posX, posY);
+        textField.setPromptText(promptText);
+        textField.setFocusTraversable(false);
+        pane.getChildren().add(textField);
     }
 
-    public void crearInputNumerico(Pane pane, int posx, int posy, String placeholder){
-        TextField field = new TextField();
-        field.setTranslateX(posx);
-        field.setTranslateY(posy);
-        // Seteamos placeholder
-        field.setPromptText(placeholder);
-        field.setFocusTraversable(false);
-        field.textProperty().addListener(new ChangeListener<String>() {
+    public void crearInputNumerico(Pane pane, int posX, int posY, String promptText){
+        TextField textField = new TextField();
+        textField.relocate(posX, posY);
+        textField.setPromptText(promptText);
+        textField.setFocusTraversable(false);
+        textField.textProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
                                 String newValue) {
                 if (!newValue.matches("\\d*")) {
-                    field.setText(newValue.replaceAll("[^\\d]", ""));
+                    textField.setText(newValue.replaceAll("\\D", ""));
                 }
             }
         });
-        pane.getChildren().add(field);
+        pane.getChildren().add(textField);
     }
 
-    public Button crearBoton(Pane pane, int posx, int posy, String texto){
+    public Button crearBoton(Pane pane, int posX, int posY, String texto){
         Button button = new Button(texto);
-        button.setTranslateX(posx);
-        button.setTranslateY(posy);
+        button.relocate(posX, posY);
         pane.getChildren().add(button);
         return button;
     }
 
-    public void desplegable(Pane pane, int posx, int posy, ObservableList<String> opciones){
-        ComboBox desplegable = new ComboBox(opciones);
-        desplegable.setTranslateX(posx);
-        desplegable.setTranslateY(posy);
+    public void desplegable(Pane pane, int posX, int posY, ObservableList<String> opciones){
+        ComboBox<String> desplegable = new ComboBox<>(opciones);
+        desplegable.relocate(posX, posY);
         pane.getChildren().add(desplegable);
     }
 }

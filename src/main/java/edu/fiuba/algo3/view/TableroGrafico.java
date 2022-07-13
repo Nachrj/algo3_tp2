@@ -19,7 +19,7 @@ public class TableroGrafico extends Pane{
 
         marcador.dibujarMarcador(juego);
         jugador = new JugadorGrafico();
-        jugador.dibujarPersonaje(juego ,nombreVehiculo , columnas, filas, altoUnidad, anchoUnidad);
+        jugador.dibujarPersonaje(juego ,nombreVehiculo , columnas, filas, altoUnidad);
 
         for(int i = 0; i < (filas-1); i++) {
             for(int j = 0; j < (columnas-1); j++) {
@@ -43,6 +43,7 @@ public class TableroGrafico extends Pane{
         ObstaculoGrafico obstaculo = new ObstaculoGrafico();
         obstaculo.dibujar(juego, posX, posY, ruta, anchoUnidad, altoUnidad);
     }
+    // ToDo -> la posicion del personaje se debería actualizar siempre con la posición que devuelva el tablero, mismo con la del fondo negro
     public void actualizarPosicionesJugador(double unaPosXJugador, double unaPosYJugador){
         jugador.actualizarPersonaje(unaPosXJugador, unaPosYJugador);
     }

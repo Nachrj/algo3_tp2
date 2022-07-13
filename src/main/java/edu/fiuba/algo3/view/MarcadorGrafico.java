@@ -1,16 +1,12 @@
 package edu.fiuba.algo3.view;
 
-import edu.fiuba.algo3.model.Jugador;
-import javafx.beans.binding.Bindings;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 
 public class MarcadorGrafico {
-    private Label marcador = new Label();
+    private final Label marcador = new Label();
     private int numero_movimientos = 0;
 
     public void dibujarMarcador(Pane juego) {

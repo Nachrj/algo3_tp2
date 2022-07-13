@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.jfx;
-import edu.fiuba.algo3.model.Calle;
+
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
 import edu.fiuba.algo3.model.coordenada.*;
@@ -7,15 +7,18 @@ import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
-import edu.fiuba.algo3.view.*;
+import edu.fiuba.algo3.view.MarcadorGrafico;
+import edu.fiuba.algo3.view.PantallaFinal;
+import edu.fiuba.algo3.view.PantallaInicio;
+import edu.fiuba.algo3.view.TableroGrafico;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
-import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,18 +30,11 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
 
     Tablero tablero;
-    private String nombre = "";
-    private int columnas = 0;
     private int filas = 0;
-
-    private double posXJugador;
     private TableroGrafico tableroGrafico;
-    private MarcadorGrafico marcadorGrafico = new MarcadorGrafico();
-    private double posYJugador;
-    private String nombreVehiculo;
-    private Vehiculo vehiculo;
-    private Map<String, Direccion> direcciones = new HashMap<String,Direccion>();
-    private Map<String, String> rutas = new HashMap<String,String>();
+    private final MarcadorGrafico marcadorGrafico = new MarcadorGrafico();
+    private final Map<String, Direccion> direcciones = new HashMap<>();
+    private final Map<String, String> rutas = new HashMap<>();
     private Jugador jugador;
 
     private Stage stage;
@@ -84,6 +80,9 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         moverJugadoryFondo(tecla);
     }
 
+
+    // ToDo -> la posicion del personaje se debería actualizar siempre con la posición que devuelva el tablero, mismo con la del fondo negro
+    // ToDo -> esto debería ser responsabilidad del controlador
     public void moverJugadoryFondo(String tecla) {
         int posAntx = jugador.obtenerPosicion().x();
         int posAnty = jugador.obtenerPosicion().y();
@@ -116,26 +115,18 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         double newY = 0;
         switch(tecla) {
             case "W":
-                newY -= altoUnidad*1.5;
-                break;
-            case "A":
-                newX -= anchoUnidad*1.5;
-                break;
-            case "D":
-                newX += anchoUnidad*1.5;
-                break;
-            case "S":
-                newY += anchoUnidad*1.5;
-                break;
             case "UP":
                 newY -= altoUnidad*1.5;
                 break;
+            case "A":
             case "LEFT":
                 newX -= anchoUnidad*1.5;
                 break;
+            case "D":
             case "RIGHT":
                 newX += anchoUnidad*1.5;
                 break;
+            case "S":
             case "DOWN":
                 newY += anchoUnidad*1.5;
                 break;
@@ -147,13 +138,13 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         TextField inputNombre = (TextField)pane.getChildren().get(0);
         TextField inputColumnas = (TextField)pane.getChildren().get(1);
         TextField inputFilas = (TextField)pane.getChildren().get(2);
-        ComboBox inputVehiculo = (ComboBox)pane.getChildren().get(4);
-        nombreVehiculo = inputVehiculo.getValue().toString();
+        ComboBox<String> inputVehiculo = (ComboBox<String>) pane.getChildren().get(4);
+        String nombreVehiculo = inputVehiculo.getValue();
 
         tableroGrafico = new TableroGrafico();
 
         //Temporal
-        vehiculo = new Moto(new Coordenada(Math.round((float) 2/2),0));
+        Vehiculo vehiculo = new Moto(new Coordenada(Math.round((float) 2 / 2), 0));
         if(nombreVehiculo.equals("Moto")){
             vehiculo = new Moto(new Coordenada(Math.round((float) 2/2),0));
         }
@@ -166,14 +157,14 @@ public class Main extends Application implements EventHandler<KeyEvent>{
             vehiculo = new CuatroXCuatro(new Coordenada(Math.round((float) 2/2),0));
         }
 
-        nombre = inputNombre.getText();
-        columnas = Integer.valueOf(inputColumnas.getText());
-        filas = Integer.valueOf(inputFilas.getText());
+        String nombre = inputNombre.getText();
+        int columnas = Integer.parseInt(inputColumnas.getText());
+        filas = Integer.parseInt(inputFilas.getText());
         escena.setRoot(tableroGrafico.crearEscena(columnas, filas, nombreVehiculo, marcadorGrafico));
         int anchoUnidad = tableroGrafico.obtenerMetricasTableroAncho();
         int altoUnidad = tableroGrafico.obtenerMetricasTableroAlto();
 
-        jugador = new Jugador("-", this.vehiculo);
+        jugador = new Jugador("-", vehiculo);
         tablero = new Tablero(filas, columnas, jugador);
 
         String path = "file:" + System.getProperty("user.dir") + "/sprites/";
@@ -216,8 +207,8 @@ public class Main extends Application implements EventHandler<KeyEvent>{
     }
 
     private Coordenada obtenerPosicionMeta(Coordenada posicion, int altoUnidad, int anchoUnidad) {
-        int posY = (posicion.y()*(anchoUnidad*3/2)+anchoUnidad/4);
         int posX = (altoUnidad*filas/30+altoUnidad*3/2)+((posicion.x())*(altoUnidad*3/2));
+        int posY = (posicion.y()*(anchoUnidad*3/2)+anchoUnidad/4);
         return new Coordenada(posY,posX);
     }
 

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.view;
 
-import edu.fiuba.algo3.jfx.Main;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;

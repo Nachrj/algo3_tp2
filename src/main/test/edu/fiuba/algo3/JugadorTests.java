@@ -152,4 +152,37 @@ public class JugadorTests {
 
         assertEquals((Math.round( 24 * 0.8)), j.obtenerMovimientos());
     }
+
+    @Test
+    public void test12JugadorConMotoTransitaCalleConPiqueteYCambioDeVehiculoYLaPuedeTransitarPeroNoPuedeVolverAtrasCuandoCambiaVehiculo() {
+        Jugador jugador = new Jugador("-", new Moto(new Coordenada(0, 0)));
+        Calle calle = new Calle(new Piquete(), new CambioDeVehiculo());
+        Tablero tablero = new Tablero(1, 2, jugador, calle);
+        Coordenada posicionFinalEsperada = new Coordenada(0, 1);
+
+        tablero.mostrarMapaPrueba();
+        tablero.moverJugador(new Derecha());
+        tablero.mostrarMapaPrueba();
+        tablero.moverJugador(new Izquierda());
+        tablero.moverJugador(new Izquierda());
+
+        assertTrue(jugador.obtenerPosicion().equals(posicionFinalEsperada));
+    }
+
+    @Test
+    public void test13JugadorConMotoTransitaCalleConPiqueteYCambioDeVehiculoYLaPuedeTransitarYPuedeVolverCuandoEsDevueltaUnaMoto() {
+        Jugador jugador = new Jugador("-", new Moto(new Coordenada(0, 0)));
+        Calle calle = new Calle(new Piquete(), new CambioDeVehiculo());
+        Tablero tablero = new Tablero(2, 1, jugador, calle);
+        Coordenada posicionFinalEsperada = new Coordenada(0, 0);
+
+        tablero.mostrarMapaPrueba();
+        tablero.moverJugador(new Abajo());
+
+        tablero.moverJugador(new Arriba());
+        tablero.moverJugador(new Arriba());
+        tablero.moverJugador(new Arriba());
+
+        assertTrue(jugador.obtenerPosicion().equals(posicionFinalEsperada));
+    }
 }

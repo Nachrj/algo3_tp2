@@ -8,8 +8,8 @@ public class ObstaculoGrafico {
     public void dibujar(Pane juego, double posX, double posY, String ruta, int anchuraUnidad, int alturaUnidad ){
         //System.out.println("Quiero dibujar" + posx + posy + ruta);
         ImageView dibujo = new ImageView(new Image(ruta));
-        dibujo.setFitHeight(alturaUnidad/3);
-        dibujo.setFitWidth(anchuraUnidad/3);
+        dibujo.setFitHeight(alturaUnidad/3d);
+        dibujo.setFitWidth(anchuraUnidad/3d);
         dibujo.relocate(posX, posY);
         juego.getChildren().add(dibujo);
     }

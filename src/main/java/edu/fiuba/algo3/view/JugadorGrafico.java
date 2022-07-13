@@ -17,16 +17,15 @@ public class JugadorGrafico {
     private double posYJugador;
     private ImageView personaje;
     private ImageView fondoNegroDePersonaje;
-    private int tamanoImagenFondoNegro = 4000;
+    private final int tamanoImagenFondoNegro = 4000;
     private int vehiculoActual = 0;
-    private String[] vehiculos = new String[3];
-    ArrayList<String> arr = new ArrayList<String>(3);
+    ArrayList<String> arr = new ArrayList<>(3);
 
-    Map<String, String> rutas = new HashMap<String,String>();
+    Map<String, String> rutas = new HashMap<>();
     private int columnas;
     private int filas;
 
-    public void dibujarPersonaje(Pane juego, String nombreVehiculo, int col, int fil, int altoUnidad, int anchoUnidad){
+    public void dibujarPersonaje(Pane juego, String nombreVehiculo, int col, int fil, int altoUnidad){
         rutas.put("Moto", "moto.png");
         rutas.put("Auto", "auto.png");
         rutas.put("4x4","4x4.png");
@@ -39,10 +38,10 @@ public class JugadorGrafico {
         filas = fil;
         String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(nombreVehiculo);
 
-        Image imagen = new Image(path, 300/(columnas),300/(filas), true, true);
+        Image imagen = new Image(path, 300d/(columnas),300d/(filas), true, true);
 
         posXJugador = 0;
-        posYJugador = altoUnidad*columnas/30+altoUnidad*3/2;
+        posYJugador = altoUnidad*columnas/30d+altoUnidad*3/2d;
         personaje = new ImageView(imagen);
         personaje.setTranslateX(posXJugador);
         personaje.setTranslateY(posYJugador);
@@ -54,8 +53,8 @@ public class JugadorGrafico {
         Image imagenFondoNegro = new Image(path, tamanoImagenFondoNegro,tamanoImagenFondoNegro, true, true);
 
         fondoNegroDePersonaje = new ImageView(imagenFondoNegro);
-        fondoNegroDePersonaje.setTranslateX(-(tamanoImagenFondoNegro/2));
-        fondoNegroDePersonaje.setTranslateY(-(tamanoImagenFondoNegro/2));
+        fondoNegroDePersonaje.setTranslateX(-(tamanoImagenFondoNegro/2d));
+        fondoNegroDePersonaje.setTranslateY(-(tamanoImagenFondoNegro/2d));
 
         juego.getChildren().add(fondoNegroDePersonaje);
     }
@@ -63,17 +62,18 @@ public class JugadorGrafico {
     public void cambiarImagen(){
         System.out.println("Entro");
         vehiculoActual = (vehiculoActual+1)%3;
-        String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(arr.get(vehiculoActual));
+        String path = "file:" + System.getProperty("user.dir")+"/sprites/" + rutas.get(arr.get(vehiculoActual));
         System.out.println(vehiculoActual);
-        Image imagen = new Image(path, 300/(columnas),300/(filas), true, true);
+        Image imagen = new Image(path, 300d/(columnas),300d/(filas), true, true);
         personaje.setImage(imagen);
     }
 
+    // ToDo -> la posicion del personaje se debería actualizar siempre con la posición que devuelva el tablero, mismo con la del fondo negro
     public void actualizarPersonaje(double unaPosXJugador, double unaPosYJugador){
         posXJugador += unaPosXJugador;
         posYJugador += unaPosYJugador;
-        fondoNegroDePersonaje.setTranslateX(posXJugador-(tamanoImagenFondoNegro/2));
-        fondoNegroDePersonaje.setTranslateY(posYJugador-(tamanoImagenFondoNegro/2));
+        fondoNegroDePersonaje.setTranslateX(posXJugador-(tamanoImagenFondoNegro/2d));
+        fondoNegroDePersonaje.setTranslateY(posYJugador-(tamanoImagenFondoNegro/2d));
         personaje.setTranslateX(posXJugador);
         personaje.setTranslateY(posYJugador);
     }

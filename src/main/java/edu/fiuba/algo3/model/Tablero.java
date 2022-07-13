@@ -14,7 +14,6 @@ public class Tablero {
     private final int columnas;
     private final Jugador jugador;
     private final Mapa mapa;
-
     private final Coordenada posMeta;
 
     private boolean posicionFueraDeRango(Coordenada destino ){
@@ -66,6 +65,7 @@ public class Tablero {
         return jugador.obtenerPosicion().equals(posMeta);
     }
 
+    // esto es lo que le debería devolverle al observer
     public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas, ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){
         mapa.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
     }
