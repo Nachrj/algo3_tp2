@@ -80,6 +80,10 @@ public class Mapa {
         return (fila % 2 == 0 && columna % 2 != 0);
     }
 
+    public Coordenada obtenerPosicionMeta() {
+        return new Coordenada((filas/2)-1, columnas-1);
+    }
+
     private boolean posicionTieneCalleVertical(int fila, int columna){
         return (fila % 2 != 0 && columna % 2 == 0);
     }

@@ -70,10 +70,10 @@ public class JugadorGrafico {
     }
 
     public void actualizarPersonaje(double unaPosXJugador, double unaPosYJugador){
-        fondoNegroDePersonaje.setTranslateX(posXJugador-(tamanoImagenFondoNegro/2));
-        fondoNegroDePersonaje.setTranslateY(posYJugador-(tamanoImagenFondoNegro/2));
         posXJugador += unaPosXJugador;
         posYJugador += unaPosYJugador;
+        fondoNegroDePersonaje.setTranslateX(posXJugador-(tamanoImagenFondoNegro/2));
+        fondoNegroDePersonaje.setTranslateY(posYJugador-(tamanoImagenFondoNegro/2));
         personaje.setTranslateX(posXJugador);
         personaje.setTranslateY(posYJugador);
     }

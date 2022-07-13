@@ -201,15 +201,24 @@ public class Main extends Application implements EventHandler<KeyEvent>{
                 tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(), path+rutas.get(nombreSorpresas.get(i)));
             }
         }
-        posicionElemento = obtenerPosicionSorpresaCalleVertical(tablero.obtenerPosicionMeta(), altoUnidad, anchoUnidad);
-        tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(),path+rutas.get("Meta"));
         tableroGrafico.dibujarFondoNegro();
+
+        marcadorGrafico.moverAdelante();
+
+        posicionElemento = obtenerPosicionMeta(tablero.obtenerPosicionMeta(), altoUnidad, anchoUnidad);
+        tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(),path+rutas.get("Meta"));
 
     }
     private Coordenada obtenerPosicionSorpresaCalleHorizontal(Coordenada posicion, int altoUnidad, int anchoUnidad) {
         int posX = posicion.y()/2*altoUnidad*3/2 + anchoUnidad*5/6;
         int posY = anchoUnidad/3+(posicion.x()/2)*(anchoUnidad*3/2);
         return new Coordenada(posX, posY);
+    }
+
+    private Coordenada obtenerPosicionMeta(Coordenada posicion, int altoUnidad, int anchoUnidad) {
+        int posY = (posicion.y()*(anchoUnidad*3/2)+anchoUnidad/4);
+        int posX = (altoUnidad*filas/30+altoUnidad*3/2)+((posicion.x())*(altoUnidad*3/2));
+        return new Coordenada(posY,posX);
     }
 
     private Coordenada obtenerPosicionObstaculoCalleHorizontal(Coordenada posicion, int altoUnidad, int anchoUnidad) {

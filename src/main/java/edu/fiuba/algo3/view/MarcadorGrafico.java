@@ -15,7 +15,12 @@ public class MarcadorGrafico {
 
     public void dibujarMarcador(Pane juego) {
         marcador.setText("Numero de movimientos:" + numero_movimientos);
+        marcador.setTextFill(Color.GREY);
         juego.getChildren().add(marcador);
+    }
+
+    public void moverAdelante() {
+        marcador.toFront();
     }
 
     public void actualizarMarcador(int movimientos) {

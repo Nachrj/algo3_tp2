@@ -73,7 +73,7 @@ public class Tablero {
     }
 
     public Coordenada obtenerPosicionMeta(){
-        return posMeta;
+        return mapa.obtenerPosicionMeta();
     }
     public Calle[][] obtenerMapa(){
         return this.mapa.obtenerMapa();
