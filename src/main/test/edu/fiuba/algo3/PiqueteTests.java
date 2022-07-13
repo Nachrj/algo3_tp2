@@ -1,8 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.model.coordenada.Arriba;
-import edu.fiuba.algo3.model.coordenada.Coordenada;
-import edu.fiuba.algo3.model.coordenada.Derecha;
+import edu.fiuba.algo3.model.coordenada.*;
 import edu.fiuba.algo3.model.Calle;
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
@@ -54,8 +52,11 @@ public class PiqueteTests {
 
         Coordenada posicionFinalEsperada = new Coordenada(Math.round((float) 2/2),0);
 
-        tablero.moverJugador(new Derecha());
-        tablero.moverJugador(new Arriba());
+        for(int i = 0; i <= 20; i++) {
+            tablero.moverJugador(new Derecha());
+            tablero.moverJugador(new Arriba());
+            tablero.mostrarMapaPrueba();
+        }
 
         assertTrue(j.obtenerPosicion().equals(posicionFinalEsperada));
     }
@@ -102,6 +103,23 @@ public class PiqueteTests {
         tablero.moverJugador(new Arriba());
 
         assertEquals(2, j.obtenerMovimientos());
+    }
+    @Test
+    public void test074x4ChocaConPiqueteYNoPuedeAvanzarV2(){
+        CuatroXCuatro camioneta = new CuatroXCuatro(new Coordenada( 0,1));
+        Jugador j = new Jugador("-", camioneta);
+        Calle c = new Calle(new Piquete());
+        Tablero tablero = new Tablero(2, 2, j, c);
+
+        Coordenada posicionFinalEsperada = new Coordenada(0,1);
+
+        for(int i = 0; i <= 20; i++) {
+            tablero.moverJugador(new Abajo());
+            tablero.moverJugador(new Izquierda());
+            tablero.mostrarMapaPrueba();
+        }
+
+        assertTrue(j.obtenerPosicion().equals(posicionFinalEsperada));
     }
 }
 

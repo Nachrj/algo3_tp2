@@ -15,7 +15,7 @@ public class Tablero {
     private final Jugador jugador;
     private final Mapa mapa;
 
-    private Coordenada posMeta;
+    private final Coordenada posMeta;
 
     private boolean posicionFueraDeRango(Coordenada destino ){
         return (destino.x() >= filas || destino.x() < 0) || (destino.y() >= columnas || destino.y() < 0);
@@ -41,6 +41,7 @@ public class Tablero {
         this.filas = fil;
         this.columnas = col;
         this.jugador = jugador;
+        posMeta = new Coordenada((fil/2),col-1);
         mapa = new Mapa(filas, columnas, calle);
     }
 
@@ -58,14 +59,11 @@ public class Tablero {
 
         jugador.sumarMovimiento();
         mostrarMapaPrueba();
-        if(jugador.estaEnMeta(posMeta)){
-            // Ganar
-        }
         return true;
     }
 
     public boolean terminoJuego(){
-        return jugador.estaEnMeta(posMeta);
+        return jugador.obtenerPosicion().equals(posMeta);
     }
 
     public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas, ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){
@@ -74,8 +72,5 @@ public class Tablero {
 
     public Coordenada obtenerPosicionMeta(){
         return mapa.obtenerPosicionMeta();
-    }
-    public Calle[][] obtenerMapa(){
-        return this.mapa.obtenerMapa();
     }
 }

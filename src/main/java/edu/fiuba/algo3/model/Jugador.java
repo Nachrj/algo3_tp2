@@ -9,10 +9,6 @@ import edu.fiuba.algo3.model.coordenada.Coordenada;
 import edu.fiuba.algo3.model.obstaculo.Obstaculo;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
 
-/**
- *
- * @author bruno
- */
 public class Jugador {
     String nombre;
     private int movimientos;
@@ -36,15 +32,6 @@ public class Jugador {
         return this.vehiculo.obtenerPosicion();
     }
 
-    public boolean estaEnMeta(Coordenada pos){
-        if(pos==null){
-            return false;
-        }
-        if (pos.equals(vehiculo.obtenerPosicion())){
-            return true;
-        }
-        return false;
-    }
     public void cambiarVehiculo(){
         this.vehiculo = this.vehiculo.cambiar();
     }

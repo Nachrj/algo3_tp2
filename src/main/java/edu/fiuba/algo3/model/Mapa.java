@@ -69,7 +69,7 @@ public class Mapa {
         Coordenada coordenadaMapa = new Coordenada(2* posicion.x(), 2* posicion.y());
         coordenadaMapa.sumarCoordenadas(direc);
 
-        mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(jugador, direc);
+        mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(jugador);
     }
 
     public Calle[][] obtenerMapa(){

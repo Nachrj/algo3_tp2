@@ -2,7 +2,6 @@ package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.model.coordenada.Coordenada;
 import edu.fiuba.algo3.model.coordenada.Direccion;
-import edu.fiuba.algo3.model.meta.Meta;
 import edu.fiuba.algo3.model.obstaculo.ControlPolicial;
 import edu.fiuba.algo3.model.obstaculo.Obstaculo;
 import edu.fiuba.algo3.model.obstaculo.Piquete;
@@ -44,17 +43,17 @@ public class TableroFalso {
             return false;
         }
         jugador.reversa();
-        calles[calleActual].transitar(jugador, direc);
+        calles[calleActual].transitar(jugador);
         jugador.avanzar(direc);
 
         jugador.sumarMovimiento();
 
 
         System.out.println(jugador.obtenerMovimientos());
-        if(jugador.estaEnMeta(posMapa)){
-            System.out.println(jugador.obtenerMovimientos());
-            return true;
-        }
+        /* if(jugador.estaEnMeta(posMapa)){
+        *    System.out.println(jugador.obtenerMovimientos());
+        *    return true;
+        } */
         calleActual+=1;
         return false;
     }
