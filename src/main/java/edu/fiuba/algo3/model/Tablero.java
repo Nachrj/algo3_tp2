@@ -45,11 +45,11 @@ public class Tablero implements SubjectTablero{
         mapa = new Mapa(filas, columnas, calle);
     }
 
-    public boolean moverJugador(Direccion direc){
+    public void moverJugador(Direccion direc){
         Coordenada posicionJugador = jugador.obtenerPosicion();
         posicionJugador.sumarCoordenadas(direc);
         if(posicionFueraDeRango(posicionJugador)){
-            return false;
+            return;
         }
 
         mapa.transitarCalle(jugador, jugador.obtenerPosicion(), direc);
@@ -59,21 +59,10 @@ public class Tablero implements SubjectTablero{
 
         if(observador != null)
             notificarObservadoresDatosJugador();
-        return true;
     }
 
     public boolean terminoJuego(){
         return jugador.obtenerPosicion().equals(posMeta);
-    }
-
-    // esto es lo que le debería devolverle al observer
-    public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas,
-                                  ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){
-        mapa.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
-    }
-
-    public Coordenada obtenerPosicionMeta(){
-        return mapa.obtenerPosicionMeta();
     }
 
     @Override

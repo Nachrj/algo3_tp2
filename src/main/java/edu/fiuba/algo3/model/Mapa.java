@@ -72,16 +72,8 @@ public class Mapa {
         mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(jugador);
     }
 
-    public Calle[][] obtenerMapa(){
-        return mapa;
-    }
-
     private boolean posicionTieneCalleHorizontal(int fila, int columna){
         return (fila % 2 == 0 && columna % 2 != 0);
-    }
-
-    public Coordenada obtenerPosicionMeta() {
-        return new Coordenada((filas/2)-1, columnas-1);
     }
 
     private boolean posicionTieneCalleVertical(int fila, int columna){
