@@ -45,18 +45,15 @@ public class Tablero {
     }
 
     public boolean moverJugador(Direccion direc){
-        jugador.avanzar(direc);
-
-        if(posicionFueraDeRango(jugador.obtenerPosicion())){
-            jugador.reversa();
+        Coordenada posicionJugador = jugador.obtenerPosicion();
+        posicionJugador.sumarCoordenadas(direc);
+        if(posicionFueraDeRango(posicionJugador)){
             return false;
         }
 
-        jugador.reversa();
         mapa.transitarCalle(jugador, jugador.obtenerPosicion(), direc);
-        jugador.avanzar(direc);
-
         jugador.sumarMovimiento();
+
         mostrarMapaPrueba();
         return true;
     }

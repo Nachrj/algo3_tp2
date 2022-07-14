@@ -16,6 +16,11 @@ public class Coordenada {
         posY = y;
     }
 
+    public Coordenada(Coordenada coordenada){
+        this.posX = coordenada.posX;
+        this.posY = coordenada.posY;
+    }
+
     public void sumarCoordenadas(Coordenada coordenada){
         posX += coordenada.posX;
         posY += coordenada.posY;

@@ -25,7 +25,7 @@ public abstract class Vehiculo {
     }
 
     public Coordenada obtenerPosicion(){
-        return this.posicion;
+        return new Coordenada(posicion);
     }
 
     public abstract Vehiculo cambiar();

@@ -23,7 +23,6 @@ public class ConstructorCalle {
         obstaculos.put(1, () -> calle.agregarObstaculo(new Piquete()));
         obstaculos.put(2, () -> calle.agregarObstaculo(new Pozo()));
         obstaculos.put(3, () -> calle.agregarObstaculo(new ControlPolicial()));
-
     }
     private void agregarSorpresaAleatoria(){
         int rand = generador.obtenerNumeroAleatorio(0, 100);

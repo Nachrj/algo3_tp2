@@ -68,7 +68,7 @@ public class Mapa {
     public void transitarCalle(Jugador jugador, Coordenada posicion, Direccion direc){
         Coordenada coordenadaMapa = new Coordenada(2* posicion.x(), 2* posicion.y());
         coordenadaMapa.sumarCoordenadas(direc);
-
+        jugador.avanzar(direc);
         mapa[coordenadaMapa.x()][coordenadaMapa.y()].transitar(jugador);
     }
 

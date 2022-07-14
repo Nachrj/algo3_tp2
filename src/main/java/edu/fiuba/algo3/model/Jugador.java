@@ -11,13 +11,12 @@ import edu.fiuba.algo3.model.vehiculo.Vehiculo;
 
 public class Jugador {
     String nombre;
-    private int movimientos;
+    private int movimientos = 0;
     private Vehiculo vehiculo;
 
     public Jugador (String n, Vehiculo v) {
         nombre = n;
         vehiculo = v;
-        movimientos = 0;
     }
     public void avanzar(Direccion d){
         this.vehiculo.mover(d);
@@ -31,7 +30,6 @@ public class Jugador {
     public Coordenada obtenerPosicion(){
         return this.vehiculo.obtenerPosicion();
     }
-
     public void cambiarVehiculo(){
         this.vehiculo = this.vehiculo.cambiar();
     }
