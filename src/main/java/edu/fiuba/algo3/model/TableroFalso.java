@@ -17,14 +17,16 @@ public class TableroFalso {
     int calleActual = 0;
     int filas;
     int columnas;
+    GeneradorNumeros generadorFalso;
 
     Coordenada posMapa = new Coordenada(0,3);
-    public TableroFalso(int unasFilas, int unasColumnas, Jugador jugador){
+    public TableroFalso(int unasFilas, int unasColumnas, Jugador jugador, GeneradorNumeros genMocked){
+        generadorFalso = genMocked;
         filas = unasFilas;
         columnas = unasColumnas;
         this.jugador = jugador;
         calles[0] = crearCalle(new Pozo(), new SorpresaFavorable());
-        calles[1] = crearCalle(new ControlPolicial(), new SorpresaDesfavorable());
+        calles[1] = crearCalle(new ControlPolicial(genMocked), new SorpresaDesfavorable());
         calles[2] = crearCalle(new Piquete(), new CambioDeVehiculo());
     }
 
@@ -48,14 +50,8 @@ public class TableroFalso {
 
         jugador.sumarMovimiento();
 
-
-        System.out.println(jugador.obtenerMovimientos());
-        /* if(jugador.estaEnMeta(posMapa)){
-        *    System.out.println(jugador.obtenerMovimientos());
-        *    return true;
-        } */
         calleActual+=1;
-        return false;
+        return true;
     }
 
 
