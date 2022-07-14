@@ -77,7 +77,7 @@ public class Tablero implements SubjectTablero{
 
     @Override
     public void notificarObservadoresDatosJugador() {
-        observador.actualizarDatosJugador(jugador.obtenerPosicion(), jugador.obtenerMovimientos(), jugador.obtenerNombreVehiculo(), terminoJuego());
+        observador.actualizarDatosJugador(jugador.obtenerPosicion(), jugador.obtenerMovimientos(), jugador.obtenerNombreVehiculo(), terminoJuego(), posMeta);
     }
 
     @Override
@@ -87,6 +87,6 @@ public class Tablero implements SubjectTablero{
         ArrayList<Coordenada> posiciones = new ArrayList<>();
         ArrayList<Boolean> esHorizontal = new ArrayList<>();
         mapa.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
-        observador.actualizarDatosTablero(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal, posMeta);
+        observador.actualizarDatosTablero(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
     }
 }

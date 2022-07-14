@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.exceptions.DimensionDeTableroInvalidaException;
 import edu.fiuba.algo3.manejoarchivos.ManejoDeArchivos;
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
@@ -10,6 +9,7 @@ import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
 import edu.fiuba.algo3.viewjuego.*;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -142,6 +142,5 @@ public class JuegoController {
         });
         pantalla.setScene(escenaHighscore);
         pantalla.show();
-
     }
 }

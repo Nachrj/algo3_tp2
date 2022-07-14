@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface ObserverTablero {
     void actualizarDatosTablero(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas,
-                                ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal, Coordenada posicionMeta);
+                                ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal);
 
-    void actualizarDatosJugador(Coordenada posicionJugador, int cantidadMovimientos, String nombreVehiculo, Boolean alcanzoMeta);
+    void actualizarDatosJugador(Coordenada posicionJugador, int cantidadMovimientos, String nombreVehiculo, Boolean alcanzoMeta,  Coordenada posicionMeta);
 }

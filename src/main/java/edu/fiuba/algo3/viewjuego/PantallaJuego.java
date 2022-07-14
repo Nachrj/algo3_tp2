@@ -56,7 +56,7 @@ public class PantallaJuego extends Pane implements ObserverTablero {
     }
 
     @Override
-    public void actualizarDatosJugador(Coordenada posicionJugador, int cantidadMovimientos, String nombreVehiculo, Boolean alcanzoMeta){
+    public void actualizarDatosJugador(Coordenada posicionJugador, int cantidadMovimientos, String nombreVehiculo, Boolean alcanzoMeta, Coordenada posMeta){
         String path = "file:"+System.getProperty("user.dir")+"/sprites/" + rutas.get(nombreVehiculo);
 
         Image imagen = new Image(path, 300d/(tamanioMapa),300d/(tamanioMapa), true, true);
@@ -73,7 +73,7 @@ public class PantallaJuego extends Pane implements ObserverTablero {
 
         actualizarFondoNegro(posXJugador, posYJugador);
         actualizarMarcador(cantidadMovimientos);
-
+        actualizarDatosMeta(posMeta);
         if(alcanzoMeta){
             controlador.mostrarPantallaFinal(cantidadMovimientos);
         }
@@ -108,7 +108,7 @@ public class PantallaJuego extends Pane implements ObserverTablero {
 
     @Override
     public void actualizarDatosTablero(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas,
-                                       ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal, Coordenada posicionMeta) {
+                                       ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal) {
 
         String path = "file:" + System.getProperty("user.dir") + "/sprites/";
 
@@ -131,11 +131,17 @@ public class PantallaJuego extends Pane implements ObserverTablero {
             }
         }
 
-        double posXMeta = posicionMeta.y()*largoCuadra*1.5 + largoCuadra/2d;
-        double posYMeta = posicionMeta.x()*largoCuadra*1.5 + largoCuadra/3d;
-        dibujarElementoCalle(posXMeta, posYMeta,path+rutas.get("Meta"));
+
     }
 
+    public void actualizarDatosMeta(Coordenada posicionMeta){
+        String path = "file:" + System.getProperty("user.dir") + "/sprites/";
+        double posXMeta = posicionMeta.y()*largoCuadra*1.5 + largoCuadra/2d;
+        double posYMeta = posicionMeta.x()*largoCuadra*1.5 + largoCuadra/3d;
+        dibujarElementoCalleConId(posXMeta, posYMeta,path+rutas.get("Meta"),"Meta");
+        ImageView image = (ImageView)juego.lookup("#Meta");
+        image.toFront();
+    }
     private Coordenada obtenerPosicionSorpresaCalleHorizontal(Coordenada posicion) {
         int posX = posicion.y()/2*largoCuadra*3/2 + largoCuadra*5/6;
         int posY = largoCuadra/3+(posicion.x()/2)*(largoCuadra*3/2);
@@ -165,6 +171,15 @@ public class PantallaJuego extends Pane implements ObserverTablero {
         dibujo.setFitHeight(largoCuadra/3d);
         dibujo.setFitWidth(largoCuadra/3d);
         dibujo.relocate(posX, posY);
+        juego.getChildren().add(dibujo);
+    }
+    public void dibujarElementoCalleConId(double posX, double posY, String ruta,String id){
+        ImageView dibujo = new ImageView(new Image(ruta));
+        dibujo.setFitHeight(largoCuadra/3d);
+        dibujo.setFitWidth(largoCuadra/3d);
+        dibujo.relocate(posX, posY);
+        dibujo.setId(id);
+        dibujo.toBack();
         juego.getChildren().add(dibujo);
     }
 }
