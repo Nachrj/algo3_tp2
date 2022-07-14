@@ -114,6 +114,11 @@ public class JuegoController {
         Scene escenaJuego = pantallaFinal.crearPantallaFinal(puntajeJugador, nombreJugador);
         pantalla.setScene(escenaJuego);
         pantalla.show();
-    }
 
+        Button botonReinicio = (Button) escenaJuego.lookup("#ReiniciarJuego");
+
+        botonReinicio.setOnAction(e->{
+            iniciarMenuJuego();
+        });
+    }
 }
