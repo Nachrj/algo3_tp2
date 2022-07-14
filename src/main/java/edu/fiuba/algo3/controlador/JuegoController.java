@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.manejoarchivos.ManejoDeArchivos;
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
 import edu.fiuba.algo3.model.coordenada.*;
@@ -8,6 +9,7 @@ import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
 import edu.fiuba.algo3.viewjuego.PantallaFinal;
+import edu.fiuba.algo3.viewjuego.PantallaHighscores;
 import edu.fiuba.algo3.viewjuego.PantallaInicioJuego;
 import edu.fiuba.algo3.viewjuego.PantallaJuego;
 import javafx.scene.Scene;
@@ -86,6 +88,7 @@ public class JuegoController {
             inicializarTablero(nombreJugador, nombreVehiculo, tamanio);
             iniciarJuego(tamanioMapa);
         });
+
     }
 
     public void iniciarJuego(int tamanioMapa){
@@ -109,16 +112,23 @@ public class JuegoController {
         direcciones.get(tecla).run();
     }
 
-    public void mostrarPantallaFinal(int puntajeJugador){
+    public void mostrarPantallaFinal(int puntajeJugador) {
         PantallaFinal pantallaFinal = new PantallaFinal();
-        Scene escenaJuego = pantallaFinal.crearPantallaFinal(puntajeJugador, nombreJugador);
+        Scene escenaJuego = pantallaFinal.crearPantallaFinal(puntajeJugador, nombreJugador, this, tamanioMapa);
         pantalla.setScene(escenaJuego);
         pantalla.show();
-
         Button botonReinicio = (Button) escenaJuego.lookup("#ReiniciarJuego");
 
-        botonReinicio.setOnAction(e->{
+        botonReinicio.setOnAction(e -> {
             iniciarMenuJuego();
         });
+    }
+
+    public void mostrarPantallaHighscores(ManejoDeArchivos ma){
+        PantallaHighscores pantallaHighscores = new PantallaHighscores();
+        Scene escenaHighscore = pantallaHighscores.crearPantallaHighscores(ma, tamanioMapa);
+        pantalla.setScene(escenaHighscore);
+        pantalla.show();
+
     }
 }

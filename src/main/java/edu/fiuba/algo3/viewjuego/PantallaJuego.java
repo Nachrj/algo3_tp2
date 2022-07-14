@@ -91,7 +91,12 @@ public class PantallaJuego extends Pane implements ObserverTablero {
 
     private void actualizarMarcador(int cantidadMovimientos){
         Label marcador = new Label();
-        marcador.setText("Numero de movimientos: " + cantidadMovimientos);
+        // Este if es necesario porque sino cuando bajas de 10 movimientos a 9, te queda el 0 al final y parece 90
+        if(cantidadMovimientos<10){
+            marcador.setText("Numero de movimientos: " + cantidadMovimientos + "  ");
+        }else{
+            marcador.setText("Numero de movimientos: " + cantidadMovimientos);
+        }
         marcador.relocate(40, largoCuadra*1.5*(tamanioMapa-0.25) );
         marcador.setMinWidth(70);
         marcador.setMinHeight(10);

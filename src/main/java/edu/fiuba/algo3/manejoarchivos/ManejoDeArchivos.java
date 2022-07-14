@@ -5,19 +5,25 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class ManejoDeArchivos {
-    public void guardarDatos(String nombre, int cantidadDeMovimientos) {
-        ArrayList<ArrayList> datos = cargarDatos();
+    public void guardarDatos(String nombre, int cantidadDeMovimientos, int dimensiones) {
+        ArrayList<ArrayList> datos = cargarDatos(dimensiones);
+        Boolean cambio = false;
         for(int i = 0; i < datos.get(0).size(); i++) {
             System.out.println(datos.get(1).get(i).getClass());
             if ((int)datos.get(1).get(i) > cantidadDeMovimientos) {
+                cambio = true;
                 datos.get(1).add(i, cantidadDeMovimientos);
                 datos.get(0).add(i, nombre);
                 break;
             }
         }
+        if (!cambio){
+            datos.get(1).add(cantidadDeMovimientos);
+            datos.get(0).add(nombre);
+        }
 
         try {
-            FileWriter myWriter = new FileWriter("highscores.txt");
+            FileWriter myWriter = new FileWriter("highscores"+dimensiones+".txt");
             for(int i = 0; i < datos.get(0).size(); i++) {
                 myWriter.write(datos.get(0).get(i) + "," + datos.get(1).get(i)+ "\n");
             }
@@ -27,8 +33,8 @@ public class ManejoDeArchivos {
         }
     }
 
-    public ArrayList cargarDatos() {
-        File f = new File("highscores.txt");
+    public ArrayList cargarDatos(int dimensiones) {
+        File f = new File("highscores"+dimensiones+".txt");
         if (!f.exists()) {
             try {
                 f.createNewFile();
