@@ -1,4 +1,4 @@
-anashei,3
-b,15
-0,550
-0,550
+bruno,15
+jc,23
+nacho,31
+agustin,50
