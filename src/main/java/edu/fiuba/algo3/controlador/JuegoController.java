@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.exceptions.DimensionDeTableroInvalidaException;
 import edu.fiuba.algo3.manejoarchivos.ManejoDeArchivos;
 import edu.fiuba.algo3.model.Jugador;
 import edu.fiuba.algo3.model.Tablero;
@@ -112,7 +113,11 @@ public class JuegoController {
 
     public void keyPressed(KeyEvent event){
         String tecla = event.getCode().toString();
+        try {
         direcciones.get(tecla).run();
+        } catch(Exception e) {
+            System.out.println("Tecla incorrecta");
+        }
     }
 
     public void mostrarPantallaFinal(int puntajeJugador) {
