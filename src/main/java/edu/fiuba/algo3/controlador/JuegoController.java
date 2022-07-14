@@ -7,6 +7,7 @@ import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
+import edu.fiuba.algo3.viewjuego.PantallaFinal;
 import edu.fiuba.algo3.viewjuego.PantallaInicioJuego;
 import edu.fiuba.algo3.viewjuego.PantallaJuego;
 import javafx.scene.Scene;
@@ -24,7 +25,6 @@ public class JuegoController {
     private final Stage pantalla;
     private Tablero tablero;
     private int tamanioMapa;
-
     private final Map<String, Runnable> direcciones = new HashMap<>();
 
 
@@ -89,7 +89,7 @@ public class JuegoController {
 
     public void iniciarJuego(int tamanioMapa){
         PantallaJuego juego = new PantallaJuego();
-        Pane pantallaJuego = juego.iniciarPantallaJuego(tamanioMapa);
+        Pane pantallaJuego = juego.iniciarPantallaJuego(tamanioMapa,this);
         Scene escenaJuego = new Scene(pantallaJuego, 600, 600);
         escenaJuego.setRoot(pantallaJuego);
         pantalla.setScene(escenaJuego);
@@ -97,6 +97,7 @@ public class JuegoController {
         tablero.registrarObservador(juego);
         tablero.notificarObservadoresDatosTablero();
         tablero.notificarObservadoresDatosJugador();
+
         pantalla.show();
 
         escenaJuego.setOnKeyPressed(this::keyPressed);
@@ -105,6 +106,13 @@ public class JuegoController {
     public void keyPressed(KeyEvent event){
         String tecla = event.getCode().toString();
         direcciones.get(tecla).run();
+    }
+
+    public void mostrarPantallaFinal(int puntajeJugador){
+        PantallaFinal pantallaFinal = new PantallaFinal();
+        Scene escenaJuego = pantallaFinal.crearPantallaFinal(puntajeJugador);
+        pantalla.setScene(escenaJuego);
+        pantalla.show();
     }
 
 }

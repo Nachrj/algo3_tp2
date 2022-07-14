@@ -1,12 +1,17 @@
 package edu.fiuba.algo3.viewjuego;
 
+import edu.fiuba.algo3.controlador.JuegoController;
 import edu.fiuba.algo3.model.ObserverTablero;
 import edu.fiuba.algo3.model.coordenada.Coordenada;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,9 +21,10 @@ public class PantallaJuego extends Pane implements ObserverTablero {
     private int tamanioMapa;
     private int largoCuadra;
     private Pane juego;
-
     private ImageView jugador = null;
+    private ImageView imagenFondoNegro = null;
     private final Map<String, String> rutas = new HashMap<>();
+    private JuegoController controlador;
 
     private void inicializarRutas(){
         rutas.put("SorpresaFavorable", "sorpresa.png");
@@ -32,7 +38,8 @@ public class PantallaJuego extends Pane implements ObserverTablero {
         rutas.put("Auto", "auto.png");
         rutas.put("CuatroXCuatro","4x4.png");
     }
-    public Pane iniciarPantallaJuego(int tamanioMapa){
+    public Pane iniciarPantallaJuego(int tamanioMapa, JuegoController controlador){
+        this.controlador = controlador;
         inicializarRutas();
         juego = new Pane();
         this.tamanioMapa = tamanioMapa;
@@ -63,6 +70,35 @@ public class PantallaJuego extends Pane implements ObserverTablero {
         }
         jugador.setImage(imagen);
         jugador.relocate(posXJugador, posYJugador);
+
+        actualizarFondoNegro(posXJugador, posYJugador);
+        actualizarMarcador(cantidadMovimientos);
+
+        if(alcanzoMeta){
+            controlador.mostrarPantallaFinal(cantidadMovimientos);
+        }
+    }
+
+    private void actualizarFondoNegro(double posX, double posY){
+        if(imagenFondoNegro == null){
+            String path = "file:"+System.getProperty("user.dir") + "/sprites/fondo_negro_circulo.png";
+            Image imagen = new Image(path, 4000-tamanioMapa*200, 4000-tamanioMapa*200, true, true);
+            imagenFondoNegro = new ImageView(imagen);
+            juego.getChildren().add(imagenFondoNegro);
+        }
+        imagenFondoNegro.relocate(posX-((4000-tamanioMapa*200)/2d) + largoCuadra/2d, posY-((4000-tamanioMapa*200)/2d));
+    }
+
+    private void actualizarMarcador(int cantidadMovimientos){
+        Label marcador = new Label();
+        marcador.setText("Numero de movimientos: " + cantidadMovimientos);
+        marcador.relocate(40, largoCuadra*1.5*(tamanioMapa-0.25) );
+        marcador.setMinWidth(70);
+        marcador.setMinHeight(10);
+        marcador.setFont(new Font("Arial", 15));
+        marcador.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, null, null)));
+
+        juego.getChildren().add(marcador);
     }
 
     @Override
@@ -89,12 +125,10 @@ public class PantallaJuego extends Pane implements ObserverTablero {
                 dibujarElementoCalle(posicionElemento.x(),posicionElemento.y(), path + rutas.get(nombreSorpresas.get(i)));
             }
         }
-        //tableroGrafico.dibujarFondoNegro();
 
-        //marcadorGrafico.moverAdelante();
-
-        //posicionElemento = obtenerPosicionMeta(tablero.obtenerPosicionMeta(), altoUnidad, anchoUnidad);
-        //tableroGrafico.dibujarObstaculoNuevo(posicionElemento.x(),posicionElemento.y(),path+rutas.get("Meta"));*/
+        double posXMeta = posicionMeta.y()*largoCuadra*1.5 + largoCuadra/2d;
+        double posYMeta = posicionMeta.x()*largoCuadra*1.5 + largoCuadra/3d;
+        dibujarElementoCalle(posXMeta, posYMeta,path+rutas.get("Meta"));
     }
 
     private Coordenada obtenerPosicionSorpresaCalleHorizontal(Coordenada posicion) {
@@ -103,17 +137,12 @@ public class PantallaJuego extends Pane implements ObserverTablero {
         return new Coordenada(posX, posY);
     }
 
-    private Coordenada obtenerPosicionMeta(Coordenada posicion) {
-        int posX = (posicion.y()*(largoCuadra*3/2)+largoCuadra/4);
-        int posY = (largoCuadra*tamanioMapa/30+largoCuadra*3/2)+((posicion.x())*(largoCuadra*3/2));
-        return new Coordenada(posX,posY);
-    }
-
     private Coordenada obtenerPosicionObstaculoCalleHorizontal(Coordenada posicion) {
         int posX = posicion.y()/2 * (largoCuadra*3/2) + largoCuadra*3/2;
         int posY = largoCuadra/3 + (posicion.x()/2) * (largoCuadra*3/2);
         return new Coordenada(posX, posY);
     }
+
     private Coordenada obtenerPosicionSorpresaCalleVertical(Coordenada posicion) {
         int posX = (posicion.y()/2)*(largoCuadra*3/2) + largoCuadra*2/5;
         int posY = largoCuadra/4+(posicion.x()/2)*(largoCuadra*3/2)+ largoCuadra*3/4;

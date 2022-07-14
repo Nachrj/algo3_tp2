@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.view;
+package edu.fiuba.algo3.viewjuego;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;

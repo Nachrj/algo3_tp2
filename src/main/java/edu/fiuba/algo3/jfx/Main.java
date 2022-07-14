@@ -8,7 +8,7 @@ import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
 import edu.fiuba.algo3.view.MarcadorGrafico;
-import edu.fiuba.algo3.view.PantallaFinal;
+import edu.fiuba.algo3.viewjuego.PantallaFinal;
 import edu.fiuba.algo3.view.PantallaInicio;
 import edu.fiuba.algo3.view.TableroGrafico;
 import javafx.application.Application;
