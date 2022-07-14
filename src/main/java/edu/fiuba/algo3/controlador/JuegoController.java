@@ -25,6 +25,7 @@ public class JuegoController {
     private final Stage pantalla;
     private Tablero tablero;
     private int tamanioMapa;
+    private String nombreJugador;
     private final Map<String, Runnable> direcciones = new HashMap<>();
 
 
@@ -73,7 +74,7 @@ public class JuegoController {
 
         botonIniciar.setOnAction(e->{
             TextField inputNombre = (TextField) pantallaInicio.lookup("#NombreUsuario");
-            String nombreUsuario = inputNombre.getText();
+            nombreJugador = inputNombre.getText();
 
             TextField inputTamanioMapa = (TextField) pantallaInicio.lookup("#TamañoMapa");
             int tamanio = Integer.parseInt(inputTamanioMapa.getText());
@@ -82,7 +83,7 @@ public class JuegoController {
             ComboBox<String> inputVehiculo = (ComboBox<String>) pantallaInicio.lookup("#VehiculoElegido");
             String nombreVehiculo = inputVehiculo.getValue();
 
-            inicializarTablero(nombreUsuario, nombreVehiculo, tamanio);
+            inicializarTablero(nombreJugador, nombreVehiculo, tamanio);
             iniciarJuego(tamanioMapa);
         });
     }
@@ -110,7 +111,7 @@ public class JuegoController {
 
     public void mostrarPantallaFinal(int puntajeJugador){
         PantallaFinal pantallaFinal = new PantallaFinal();
-        Scene escenaJuego = pantallaFinal.crearPantallaFinal(puntajeJugador);
+        Scene escenaJuego = pantallaFinal.crearPantallaFinal(puntajeJugador, nombreJugador);
         pantalla.setScene(escenaJuego);
         pantalla.show();
     }

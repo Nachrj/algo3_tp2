@@ -1,0 +1,8 @@
+roman,10
+WACHIN,10
+prueba,18
+jc,26
+nacho,30
+roman,35
+bruno,50
+agustin,383
