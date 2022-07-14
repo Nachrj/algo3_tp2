@@ -18,7 +18,7 @@ public class PantallaInicioJuego extends Pane{
         crearInput(inicio, 210, 200, "Ingresa tu nombre", "NombreUsuario");
         crearInputNumerico(inicio, 210, 250, "Elegir tamaño del mapa", "TamañoMapa");
         crearBoton(inicio,210,350,"Iniciar juego", "IniciarJuego");
-
+        crearBoton(inicio, 210, 450, "Como Jugar", "ComoJugar");
         ObservableList<String> opciones = FXCollections.observableArrayList("Moto", "Auto", "4x4");
         desplegable(inicio, 210, 400, opciones, "VehiculoElegido");
 

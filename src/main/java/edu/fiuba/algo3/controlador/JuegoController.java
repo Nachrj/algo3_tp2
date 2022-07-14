@@ -8,10 +8,7 @@ import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
-import edu.fiuba.algo3.viewjuego.PantallaFinal;
-import edu.fiuba.algo3.viewjuego.PantallaHighscores;
-import edu.fiuba.algo3.viewjuego.PantallaInicioJuego;
-import edu.fiuba.algo3.viewjuego.PantallaJuego;
+import edu.fiuba.algo3.viewjuego.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -29,7 +26,6 @@ public class JuegoController {
     private int tamanioMapa;
     private String nombreJugador;
     private final Map<String, Runnable> direcciones = new HashMap<>();
-
 
     private void inicializarDirecciones(){
         direcciones.put("A", () -> tablero.moverJugador(new Izquierda()));
@@ -87,6 +83,13 @@ public class JuegoController {
 
             inicializarTablero(nombreJugador, nombreVehiculo, tamanio);
             iniciarJuego(tamanioMapa);
+        });
+
+        Button comoJugar = (Button) pantallaInicio.lookup("#ComoJugar");
+        comoJugar.setOnAction(e->{
+            PantallaExplicacion explicacion = new PantallaExplicacion();
+            Scene escenaJuego = explicacion.crearPantallaExplicacion();
+            pantalla.setScene(escenaJuego);
         });
 
     }
