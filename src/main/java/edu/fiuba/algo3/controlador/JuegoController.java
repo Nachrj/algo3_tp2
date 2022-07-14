@@ -74,9 +74,16 @@ public class JuegoController {
         botonIniciar.setOnAction(e->{
             TextField inputNombre = (TextField) pantallaInicio.lookup("#NombreUsuario");
             nombreJugador = inputNombre.getText();
+            if (nombreJugador.isEmpty()) {
+                return;
+            }
 
             TextField inputTamanioMapa = (TextField) pantallaInicio.lookup("#TamañoMapa");
             int tamanio = Integer.parseInt(inputTamanioMapa.getText());
+            if (tamanio < 2 || tamanio > 14) {
+                inputTamanioMapa.setText("");
+                return;
+            }
 
             @SuppressWarnings("unchecked")
             ComboBox<String> inputVehiculo = (ComboBox<String>) pantallaInicio.lookup("#VehiculoElegido");

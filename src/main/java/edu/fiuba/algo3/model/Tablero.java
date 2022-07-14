@@ -10,7 +10,7 @@ import edu.fiuba.algo3.model.coordenada.Direccion;
 import java.util.ArrayList;
 
 public class Tablero implements SubjectTablero{
-    private ObserverTablero observador;
+    private final ArrayList<ObserverTablero> observers = new ArrayList<>();
     private final int filas;
     private final int columnas;
     private final Jugador jugador;
@@ -57,8 +57,7 @@ public class Tablero implements SubjectTablero{
 
         mostrarMapaPrueba();
 
-        if(observador != null)
-            notificarObservadoresDatosJugador();
+        notificarObservadoresDatosJugador();
     }
 
     public boolean terminoJuego(){
@@ -67,17 +66,18 @@ public class Tablero implements SubjectTablero{
 
     @Override
     public void registrarObservador(ObserverTablero observador) {
-        this.observador = observador;
+        observers.add(observador);
     }
 
     @Override
-    public void eliminarObservador() {
-        this.observador = null;
+    public void eliminarObservador(ObserverTablero observador) {
+        observers.remove(observador);
     }
 
     @Override
     public void notificarObservadoresDatosJugador() {
         observador.actualizarDatosJugador(jugador.obtenerPosicion(), jugador.obtenerMovimientos(), jugador.obtenerNombreVehiculo(), terminoJuego(), posMeta);
+
     }
 
     @Override
@@ -88,5 +88,6 @@ public class Tablero implements SubjectTablero{
         ArrayList<Boolean> esHorizontal = new ArrayList<>();
         mapa.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
         observador.actualizarDatosTablero(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
+
     }
 }
