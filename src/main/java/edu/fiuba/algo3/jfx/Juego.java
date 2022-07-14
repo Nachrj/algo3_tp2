@@ -14,8 +14,6 @@ public class Juego extends Application {
     public void start(Stage stage) {
         stage.setTitle("TP2 ALGO3 GPS");
         JuegoController controlador = new JuegoController(stage);
-
         controlador.iniciarMenuJuego();
-
     }
 }

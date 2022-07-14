@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.model.Jugador;
+import edu.fiuba.algo3.model.ObserverTablero;
 import edu.fiuba.algo3.model.Tablero;
 import edu.fiuba.algo3.model.coordenada.Coordenada;
 import edu.fiuba.algo3.model.vehiculo.Auto;
@@ -8,6 +9,7 @@ import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
 import edu.fiuba.algo3.model.vehiculo.Vehiculo;
 import edu.fiuba.algo3.viewjuego.PantallaInicioJuego;
+import edu.fiuba.algo3.viewjuego.PantallaJuego;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 public class JuegoController {
     private final Stage pantalla;
     private Tablero tablero;
+    private int tamanioMapa;
 
     private void inicializarTablero(String nombreUsuario, String nombreVehiculo, int tamanioTablero){
         Vehiculo vehiculo;
@@ -36,6 +39,7 @@ public class JuegoController {
 
         Jugador jugador = new Jugador(nombreUsuario, vehiculo);
         tablero = new Tablero(tamanioTablero, tamanioTablero, jugador);
+        tamanioMapa = tamanioTablero;
         tablero.mostrarMapaPrueba();
     }
 
@@ -60,12 +64,21 @@ public class JuegoController {
             @SuppressWarnings("unchecked")
             ComboBox<String> inputVehiculo = (ComboBox<String>) pantallaInicio.lookup("#VehiculoElegido");
             String nombreVehiculo = inputVehiculo.getValue();
-            if(nombreVehiculo == null)
-                nombreVehiculo = "";
 
             inicializarTablero(nombreUsuario, nombreVehiculo, tamanio);
-            pantalla.close();
+            iniciarJuego(tamanioMapa);
         });
+    }
+
+    public void iniciarJuego(int tamanioMapa){
+        PantallaJuego juego = new PantallaJuego();
+        Pane pantallaJuego = juego.iniciarPantallaJuego(tamanioMapa);
+        Scene escenaJuego = new Scene(pantallaJuego, 600, 600);
+        escenaJuego.setRoot(pantallaJuego);
+        pantalla.setScene(escenaJuego);
+        tablero.registrarObservador(juego);
+        tablero.notificarObservadoresDatosTablero();
+        pantalla.show();
     }
 
 }

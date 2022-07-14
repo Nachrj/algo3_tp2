@@ -24,8 +24,8 @@ public class TableroGrafico extends Pane{
         for(int i = 0; i < (filas-1); i++) {
             for(int j = 0; j < (columnas-1); j++) {
                 Rectangle rectangle = new Rectangle(anchoUnidad, altoUnidad, Color.GREY);
-                rectangle.setTranslateX((anchoUnidad+(anchoUnidad/2))*j + anchoUnidad*3/4);
-                rectangle.setTranslateY((altoUnidad + (altoUnidad/2))*i + altoUnidad*3/4);
+                rectangle.setTranslateX((anchoUnidad+(anchoUnidad/2d))*j + anchoUnidad*3/4d);
+                rectangle.setTranslateY((altoUnidad + (altoUnidad/2d))*i + altoUnidad*3/4d);
                 juego.getChildren().add(rectangle);
             }
         }

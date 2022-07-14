@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.viewjuego;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -42,13 +40,9 @@ public class PantallaInicioJuego extends Pane{
         textField.relocate(posX, posY);
         textField.setPromptText(promptText);
         textField.setFocusTraversable(false);
-        textField.textProperty().addListener(new ChangeListener<>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    textField.setText(newValue.replaceAll("\\D", ""));
-                }
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("\\D", ""));
             }
         });
         textField.setId(id);
@@ -64,6 +58,7 @@ public class PantallaInicioJuego extends Pane{
 
     public void desplegable(Pane pane, int posX, int posY, ObservableList<String> opciones, String id){
         ComboBox<String> desplegable = new ComboBox<>(opciones);
+        desplegable.getSelectionModel().selectFirst();
         desplegable.relocate(posX, posY);
         desplegable.setId(id);
         pane.getChildren().add(desplegable);

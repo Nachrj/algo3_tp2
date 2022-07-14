@@ -9,7 +9,8 @@ import edu.fiuba.algo3.model.coordenada.Direccion;
 
 import java.util.ArrayList;
 
-public class Tablero {
+public class Tablero implements SubjectTablero{
+    private ObserverTablero observador;
     private final int filas;
     private final int columnas;
     private final Jugador jugador;
@@ -63,11 +64,37 @@ public class Tablero {
     }
 
     // esto es lo que le debería devolverle al observer
-    public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas, ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){
+    public void cargarDatosCalles(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas,
+                                  ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal){
         mapa.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
     }
 
     public Coordenada obtenerPosicionMeta(){
         return mapa.obtenerPosicionMeta();
+    }
+
+    @Override
+    public void registrarObservador(ObserverTablero observador) {
+        this.observador = observador;
+    }
+
+    @Override
+    public void eliminarObservador() {
+        this.observador = null;
+    }
+
+    @Override
+    public void notificarObservadoresDatosJugador() {
+        observador.actualizarDatosJugador(jugador.obtenerPosicion(), jugador.obtenerMovimientos(), terminoJuego());
+    }
+
+    @Override
+    public void notificarObservadoresDatosTablero() {
+        ArrayList<String> nombreObstaculos = new ArrayList<>();
+        ArrayList<String> nombreSorpresas = new ArrayList<>();
+        ArrayList<Coordenada> posiciones = new ArrayList<>();
+        ArrayList<Boolean> esHorizontal = new ArrayList<>();
+        mapa.cargarDatosCalles(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal);
+        observador.actualizarDatosTablero(nombreObstaculos, nombreSorpresas, posiciones, esHorizontal, posMeta);
     }
 }

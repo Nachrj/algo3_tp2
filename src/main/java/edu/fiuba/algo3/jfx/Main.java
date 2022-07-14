@@ -160,6 +160,7 @@ public class Main extends Application implements EventHandler<KeyEvent>{
         String nombre = inputNombre.getText();
         int columnas = Integer.parseInt(inputColumnas.getText());
         filas = Integer.parseInt(inputFilas.getText());
+
         escena.setRoot(tableroGrafico.crearEscena(columnas, filas, nombreVehiculo, marcadorGrafico));
         int anchoUnidad = tableroGrafico.obtenerMetricasTableroAncho();
         int altoUnidad = tableroGrafico.obtenerMetricasTableroAlto();
