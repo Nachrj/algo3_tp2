@@ -8,5 +8,5 @@ public interface ObserverTablero {
     void actualizarDatosTablero(ArrayList<String> nombreObstaculos, ArrayList<String> nombreSorpresas,
                                 ArrayList<Coordenada> posiciones, ArrayList<Boolean> esHorizontal, Coordenada posicionMeta);
 
-    void actualizarDatosJugador(Coordenada posicionJugador, int cantidadMovimientos, Boolean alcanzoMeta);
+    void actualizarDatosJugador(Coordenada posicionJugador, int cantidadMovimientos, String nombreVehiculo, Boolean alcanzoMeta);
 }

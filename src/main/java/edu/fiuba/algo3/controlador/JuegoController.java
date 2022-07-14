@@ -1,9 +1,8 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.model.Jugador;
-import edu.fiuba.algo3.model.ObserverTablero;
 import edu.fiuba.algo3.model.Tablero;
-import edu.fiuba.algo3.model.coordenada.Coordenada;
+import edu.fiuba.algo3.model.coordenada.*;
 import edu.fiuba.algo3.model.vehiculo.Auto;
 import edu.fiuba.algo3.model.vehiculo.CuatroXCuatro;
 import edu.fiuba.algo3.model.vehiculo.Moto;
@@ -14,14 +13,31 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class JuegoController {
     private final Stage pantalla;
     private Tablero tablero;
     private int tamanioMapa;
 
+    private final Map<String, Runnable> direcciones = new HashMap<>();
+
+
+    private void inicializarDirecciones(){
+        direcciones.put("A", () -> tablero.moverJugador(new Izquierda()));
+        direcciones.put("D", () -> tablero.moverJugador(new Derecha()));
+        direcciones.put("W", () -> tablero.moverJugador(new Arriba()));
+        direcciones.put("S", () -> tablero.moverJugador(new Abajo()));
+        direcciones.put("LEFT", () -> tablero.moverJugador(new Izquierda()));
+        direcciones.put("RIGHT", () -> tablero.moverJugador(new Derecha()));
+        direcciones.put("UP", () -> tablero.moverJugador(new Arriba()));
+        direcciones.put("DOWN", () -> tablero.moverJugador(new Abajo()));
+    }
     private void inicializarTablero(String nombreUsuario, String nombreVehiculo, int tamanioTablero){
         Vehiculo vehiculo;
         switch(nombreVehiculo){
@@ -45,6 +61,7 @@ public class JuegoController {
 
     public JuegoController(Stage pantalla){
         this.pantalla = pantalla;
+        inicializarDirecciones();
     }
     public void iniciarMenuJuego(){
         Pane pantallaInicio = new PantallaInicioJuego().crearPantallaInicial();
@@ -76,9 +93,18 @@ public class JuegoController {
         Scene escenaJuego = new Scene(pantallaJuego, 600, 600);
         escenaJuego.setRoot(pantallaJuego);
         pantalla.setScene(escenaJuego);
+
         tablero.registrarObservador(juego);
         tablero.notificarObservadoresDatosTablero();
+        tablero.notificarObservadoresDatosJugador();
         pantalla.show();
+
+        escenaJuego.setOnKeyPressed(this::keyPressed);
+    }
+
+    public void keyPressed(KeyEvent event){
+        String tecla = event.getCode().toString();
+        direcciones.get(tecla).run();
     }
 
 }

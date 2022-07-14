@@ -56,6 +56,9 @@ public class Tablero implements SubjectTablero{
         jugador.sumarMovimiento();
 
         mostrarMapaPrueba();
+
+        if(observador != null)
+            notificarObservadoresDatosJugador();
         return true;
     }
 
@@ -85,7 +88,7 @@ public class Tablero implements SubjectTablero{
 
     @Override
     public void notificarObservadoresDatosJugador() {
-        observador.actualizarDatosJugador(jugador.obtenerPosicion(), jugador.obtenerMovimientos(), terminoJuego());
+        observador.actualizarDatosJugador(jugador.obtenerPosicion(), jugador.obtenerMovimientos(), jugador.obtenerNombreVehiculo(), terminoJuego());
     }
 
     @Override

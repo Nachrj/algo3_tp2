@@ -39,6 +39,9 @@ public class Jugador {
     public void modificarPorcentajeMovimientos(float porcentaje) {
         this.movimientos = Math.round(this.movimientos * porcentaje);
     }
+    public String obtenerNombreVehiculo(){
+        return vehiculo.getClass().getSimpleName();
+    }
     public int obtenerMovimientos(){
         return this.movimientos;
     }
