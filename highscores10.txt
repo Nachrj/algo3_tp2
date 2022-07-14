@@ -2,3 +2,5 @@ bruno,15
 jc,23
 nacho,31
 agustin,50
+0,181
+0,181
