@@ -10,23 +10,25 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 public class PantallaFinal extends Pane{
-
     public Scene crearPantallaFinal(int cantidadMovimientos, String nombreJugador, JuegoController controlador, int dimensiones) {
         Pane inicio = new Pane();
 
         Label titulo = new Label("Felicitaciones ganaste!\nPuntaje: " + cantidadMovimientos );
         titulo.relocate(100, 100);
-        crearBoton(inicio, 145,150, "Volver a Jugar", "ReiniciarJuego");
-
+        crearBoton(inicio, 145,150, "Volver a Jugar ", "ReiniciarJuego");
+        Button botonReinicio = (Button) inicio.lookup("#ReiniciarJuego");
+        botonReinicio.setOnAction(e -> {
+            controlador.iniciarMenuJuego();
+        });
         ManejoDeArchivos ma = new ManejoDeArchivos();
         ma.guardarDatos(nombreJugador, cantidadMovimientos, dimensiones);
 
-        Scene escena = new Scene(inicio, 400, 200);
+        Scene escena = new Scene(inicio, 400, 500);
 
         crearBoton(inicio, 145, 180,"Ver Highscores", "highscores");
         Button mostrarHighscores = (Button) inicio.lookup("#highscores");
         mostrarHighscores.setOnAction(e -> {
-            controlador.mostrarPantallaHighscores(ma);
+            controlador.mostrarPantallaHighscores(ma, cantidadMovimientos);
         });
         inicio.getChildren().add(titulo);
         return escena;

@@ -117,16 +117,17 @@ public class JuegoController {
         Scene escenaJuego = pantallaFinal.crearPantallaFinal(puntajeJugador, nombreJugador, this, tamanioMapa);
         pantalla.setScene(escenaJuego);
         pantalla.show();
-        Button botonReinicio = (Button) escenaJuego.lookup("#ReiniciarJuego");
-
-        botonReinicio.setOnAction(e -> {
-            iniciarMenuJuego();
-        });
     }
 
-    public void mostrarPantallaHighscores(ManejoDeArchivos ma){
+    public void mostrarPantallaHighscores(ManejoDeArchivos ma, int cantidadMovimientos){
         PantallaHighscores pantallaHighscores = new PantallaHighscores();
         Scene escenaHighscore = pantallaHighscores.crearPantallaHighscores(ma, tamanioMapa);
+
+        Button botonReinicio = (Button) escenaHighscore.lookup("#SalirPantallaHighScore");
+
+        botonReinicio.setOnAction(e -> {
+            mostrarPantallaFinal(cantidadMovimientos);
+        });
         pantalla.setScene(escenaHighscore);
         pantalla.show();
 
