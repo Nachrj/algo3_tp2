@@ -16,13 +16,13 @@ public class PantallaExplicacion extends Pane{
         Pane root = new Pane();
         Scene scene = new Scene(root, 800, 600);
         String path = "file:"+System.getProperty("user.dir")+"/sprites/";
-
+        crearBoton(root, 80, 20, "Volver", "VolverAMenuExplicacion");
         crearImagen(path+"moto.png", 80, 80, root);
-        crearLabel("Esto es una moto ta rota", 150, 100, root);
+        crearLabel("Esto es una moto", 150, 100, root);
         crearImagen(path+"auto.png", 80, 150, root);
         crearLabel("Esto es un auto", 150, 150, root);
         crearImagen(path+"4x4.png", 80, 200, root);
-        crearLabel("Esto es un 4x4 no ta rota", 150, 200, root);
+        crearLabel("Esto es un 4x4 no", 150, 200, root);
 
         crearImagen(path+"sorpresa.png", 80, 250, root);
         crearLabel("Esto es una sorpresa, puede ser favorable desfavorable o cambiar de vehiculo", 150, 250, root);
@@ -38,6 +38,13 @@ public class PantallaExplicacion extends Pane{
 
 
         return scene;
+    }
+
+    public void crearBoton(Pane pane, int posX, int posY, String texto, String id){
+        Button button = new Button(texto);
+        button.relocate(posX, posY);
+        button.setId(id);
+        pane.getChildren().add(button);
     }
 
     public void crearImagen(String path, int posx, int posy, Pane pane){

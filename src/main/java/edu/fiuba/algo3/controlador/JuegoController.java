@@ -89,6 +89,10 @@ public class JuegoController {
         comoJugar.setOnAction(e->{
             PantallaExplicacion explicacion = new PantallaExplicacion();
             Scene escenaJuego = explicacion.crearPantallaExplicacion();
+            Button botonRetorno = (Button) escenaJuego.lookup("#VolverAMenuExplicacion");
+            botonRetorno.setOnAction(f->{
+                iniciarMenuJuego();
+            });
             pantalla.setScene(escenaJuego);
         });
 
